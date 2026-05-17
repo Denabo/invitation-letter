@@ -41,7 +41,7 @@ export default function Events() {
   }, []);
 
   return (
-    <section id="event" style={{ marginBottom: 40 }}>
+    <section id="event" style={{ marginBottom: 64 }}>
       <RevealOnScroll>
         <div style={{ textAlign: "center" }}>
           <p
@@ -50,7 +50,7 @@ export default function Events() {
               letterSpacing: "0.25em",
               textTransform: "uppercase",
               fontWeight: 500,
-              marginBottom: 12,
+              marginBottom: 20,
             }}
           >
             {config.weddingMonth || "Сентябрь"}
@@ -59,8 +59,8 @@ export default function Events() {
             style={{
               display: "inline-block",
               border: "1px solid var(--border)",
-              padding: "16px 20px",
-              background: "#fff",
+              padding: "20px 24px",
+              background: "var(--champagne)",
             }}
           >
             <div
@@ -112,7 +112,7 @@ export default function Events() {
                         fontSize: 12,
                         color: isActive ? "#fff" : "var(--muted)",
                         background: isActive
-                          ? "var(--rose-dark)"
+                          ? "var(--antique-dark)"
                           : "transparent",
                         borderRadius: isActive ? "50%" : 0,
                         fontWeight: isActive ? 500 : 300,
@@ -135,7 +135,7 @@ export default function Events() {
             textTransform: "uppercase",
             textAlign: "center",
             color: "var(--muted)",
-            margin: "24px 0 12px",
+            margin: "40px 0 16px",
           }}
         >
           До свадьбы осталось
@@ -145,6 +145,7 @@ export default function Events() {
             display: "flex",
             justifyContent: "center",
             alignItems: "baseline",
+            gap: 8,
           }}
         >
           {[
@@ -160,7 +161,7 @@ export default function Events() {
                     fontFamily: "Cormorant Garamond, serif",
                     fontSize: 40,
                     fontWeight: 300,
-                    color: "var(--rose-dark)",
+                    color: "var(--antique-dark)",
                     lineHeight: 1,
                   }}
                 >
@@ -182,7 +183,7 @@ export default function Events() {
                 <span
                   style={{
                     fontSize: 24,
-                    color: "var(--rose)",
+                    color: "var(--antique)",
                     padding: "0 4px",
                     marginTop: 8,
                   }}
@@ -204,7 +205,7 @@ export default function Events() {
             textTransform: "uppercase",
             fontWeight: 500,
             color: "var(--text)",
-            marginBottom: 12,
+            marginBottom: 24,
           }}
         >
           Тайминг
@@ -227,18 +228,18 @@ export default function Events() {
                 style={{
                   display: "flex",
                   alignItems: "center",
-                  gap: 16,
+                  gap: 28,
                   justifyContent: "center",
-                  padding: "8px 0",
+                  padding: "16px 0",
                 }}
               >
-                <Icon size={28} color="var(--rose-dark)" strokeWidth={1.5} />
+                <Icon size={28} color="var(--antique-dark)" strokeWidth={1.5} />
                 <div style={{ textAlign: "left", minWidth: 120 }}>
                   <div
                     style={{
                       fontFamily: "Cormorant Garamond, serif",
                       fontSize: 20,
-                      color: "var(--rose-dark)",
+                      color: "var(--antique-dark)",
                     }}
                   >
                     {item.time}

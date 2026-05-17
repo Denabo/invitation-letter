@@ -9,7 +9,7 @@ const scriptTitleStyle = {
   fontFamily: "Great Vibes, cursive",
   fontSize: 58,
   fontWeight: 400,
-  color: "var(--rose-dark)",
+  color: "var(--antique-dark)",
   textAlign: "center",
 };
 
@@ -32,7 +32,7 @@ export default function Wishes() {
   };
 
   return (
-    <section id="wishes" style={{ marginBottom: 40 }}>
+    <section id="wishes" style={{ marginBottom: 64 }}>
       <RevealOnScroll>
         <motion.h3
           initial={{ opacity: 0, y: 20 }}
@@ -49,7 +49,7 @@ export default function Wishes() {
             color: "var(--muted)",
             lineHeight: 2,
             textAlign: "center",
-            marginBottom: 12,
+            marginBottom: 24,
           }}
         >
           Чтобы сделать праздник более комфортным,
@@ -61,17 +61,17 @@ export default function Wishes() {
       <button
         onClick={() => setOpen((v) => !v)}
         style={{
-          border: "1px solid var(--rose-dark)",
+          border: "1px solid var(--antique-dark)",
           borderRadius: 40,
           padding: "12px 32px",
           fontSize: 10,
           letterSpacing: "0.2em",
           textTransform: "uppercase",
-          color: "var(--rose-dark)",
+          color: "var(--antique-dark)",
           background: "transparent",
           cursor: "pointer",
           display: "block",
-          margin: "24px auto",
+          margin: "24px auto 16px",
         }}
       >
         Анкета гостя
@@ -115,7 +115,7 @@ export default function Wishes() {
                     fontSize: 14,
                     color: "var(--text)",
                     outline: "none",
-                    marginBottom: 12,
+                    marginBottom: 24,
                   }}
                 />
               </RevealOnScroll>
@@ -137,7 +137,7 @@ export default function Wishes() {
                     display: "flex",
                     gap: 12,
                     flexWrap: "wrap",
-                    marginBottom: 12,
+                    marginBottom: 24,
                   }}
                 >
                   <label>
@@ -187,7 +187,7 @@ export default function Wishes() {
                     fontSize: 14,
                     color: "var(--text)",
                     outline: "none",
-                    marginBottom: 12,
+                    marginBottom: 24,
                   }}
                 >
                   <option>Только я</option>
@@ -224,15 +224,15 @@ export default function Wishes() {
                     fontSize: 14,
                     color: "var(--text)",
                     outline: "none",
-                    marginBottom: 12,
+                    marginBottom: 24,
                   }}
                 />
               </RevealOnScroll>
               <button
                 type="submit"
                 style={{
-                  border: "1px solid var(--rose-dark)",
-                  color: "var(--rose-dark)",
+                  border: "1px solid var(--antique-dark)",
+                  color: "var(--antique-dark)",
                   padding: "14px 32px",
                   fontSize: 11,
                   letterSpacing: "0.15em",

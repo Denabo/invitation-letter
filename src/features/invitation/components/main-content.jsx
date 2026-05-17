@@ -8,15 +8,27 @@ import { useConfig } from "@/features/invitation/hooks/use-config";
 import { getGuestName } from "@/lib/invitation-storage";
 import RevealOnScroll from "@/components/ui/reveal-on-scroll";
 
+function SectionDivider() {
+  return (
+    <div
+      style={{
+        borderTop: "1px solid var(--border)",
+        width: 60,
+        margin: "0 auto 64px",
+      }}
+    />
+  );
+}
+
 function Footer() {
   return (
-    <footer>
+    <footer style={{ paddingTop: 48, paddingBottom: 48 }}>
       <motion.span
         style={{
           fontSize: 24,
-          color: "var(--rose)",
+          color: "var(--antique)",
           display: "block",
-          marginBottom: 12,
+          marginBottom: 16,
           textAlign: "center",
         }}
         animate={{ scale: [1, 1.15, 1] }}
@@ -30,7 +42,7 @@ function Footer() {
           fontStyle: "italic",
           fontSize: 28,
           fontWeight: 300,
-          color: "var(--rose-dark)",
+          color: "var(--antique-dark)",
           textAlign: "center",
         }}
       >
@@ -44,7 +56,7 @@ function Greeting() {
   const config = useConfig();
   const guestName = getGuestName();
   return (
-    <section id="greeting" style={{ marginBottom: 40 }}>
+    <section id="greeting" style={{ marginBottom: 64 }}>
       <RevealOnScroll>
         <p
           style={{
@@ -52,7 +64,7 @@ function Greeting() {
             letterSpacing: "0.2em",
             textTransform: "uppercase",
             fontWeight: 500,
-            marginBottom: 12,
+            marginBottom: 16,
             textAlign: "center",
           }}
         >
@@ -61,7 +73,7 @@ function Greeting() {
         <p
           style={{
             color: "var(--muted)",
-            lineHeight: 2,
+            lineHeight: 2.2,
             fontSize: 13,
             textAlign: "center",
           }}
@@ -77,11 +89,17 @@ export default function MainContent() {
   return (
     <>
       <Hero />
+      <SectionDivider />
       <Greeting />
+      <SectionDivider />
       <Events />
+      <SectionDivider />
       <Location />
+      <SectionDivider />
       <Gifts />
+      <SectionDivider />
       <Wishes />
+      <SectionDivider />
       <Footer />
     </>
   );

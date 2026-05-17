@@ -8,7 +8,7 @@ export default function Hero() {
   return (
     <section
       id="home"
-      style={{ textAlign: "center", padding: "48px 0 0", marginBottom: 40 }}
+      style={{ textAlign: "center", padding: "72px 0 0", marginBottom: 64 }}
     >
       <div style={{ position: "relative", display: "inline-block" }}>
         <motion.div
@@ -20,7 +20,7 @@ export default function Hero() {
             fontSize: 86,
             fontWeight: 700,
             lineHeight: 1,
-            color: "var(--rose-dark)",
+            color: "var(--antique-dark)",
           }}
         >
           love
@@ -49,7 +49,7 @@ export default function Hero() {
           fontSize: 76,
           fontWeight: 700,
           lineHeight: 1,
-          color: "var(--rose-dark)",
+          color: "var(--antique-dark)",
         }}
       >
         story
@@ -59,7 +59,7 @@ export default function Hero() {
         style={{
           height: 180,
           position: "relative",
-          margin: "0 auto",
+          margin: "32px auto",
           maxWidth: 320,
         }}
       >
@@ -138,7 +138,7 @@ export default function Hero() {
             transition={{ duration: 0.4, delay: 1.1 }}
             style={{
               position: "absolute",
-              color: "var(--rose)",
+              color: "var(--antique)",
               fontSize: 18,
               ...heart,
             }}
@@ -154,13 +154,15 @@ export default function Hero() {
             fontFamily: "Great Vibes, cursive",
             fontStyle: "italic",
             fontSize: 48,
-            color: "var(--rose-dark)",
+            color: "var(--antique-dark)",
+            marginTop: 32,
             textAlign: "center",
           }}
         >
           {config.coupleNames || `${config.brideName} & ${config.groomName}`}
         </p>
       </RevealOnScroll>
+      <div style={{ marginTop: 48 }} />
     </section>
   );
 }
