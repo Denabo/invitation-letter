@@ -3,8 +3,8 @@ import { Helmet, HelmetProvider } from "react-helmet-async";
 import { useInvitation } from "@/features/invitation";
 import staticConfig from "@/config/config";
 
-const LandingPage = lazy(
-  () => import("@/features/invitation/components/landing-page"),
+const MainContent = lazy(
+  () => import("@/features/invitation/components/main-content"),
 );
 
 function App() {
@@ -40,7 +40,7 @@ function App() {
         }}
       >
         <Suspense fallback={<div style={{ minHeight: "100vh" }} />}>
-          <LandingPage />
+          <MainContent />
         </Suspense>
       </div>
     </HelmetProvider>
