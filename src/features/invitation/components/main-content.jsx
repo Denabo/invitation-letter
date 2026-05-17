@@ -51,7 +51,7 @@ function Footer() {
       </motion.span>
       <p
         style={{
-          fontFamily: "Great Vibes, cursive",
+          fontFamily: "Pinyon Script, cursive",
           fontSize: 48,
           color: "var(--antique-dark)",
         }}

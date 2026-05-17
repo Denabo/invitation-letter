@@ -20,8 +20,8 @@ export default function Hero() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.0, ease: "easeOut", delay: 0.1 }}
         style={{
-          fontFamily: "Great Vibes, cursive",
-          fontSize: 80,
+          fontFamily: "Pinyon Script, cursive",
+          fontSize: 110,
           color: "var(--antique-dark)",
           lineHeight: 0.9,
           display: "block",
@@ -38,7 +38,7 @@ export default function Hero() {
           top: 54,
           right: 60,
           fontSize: 9,
-          letterSpacing: "0.2em",
+          letterSpacing: "0.25em",
           color: "var(--muted)",
           textTransform: "uppercase",
         }}
@@ -50,8 +50,8 @@ export default function Hero() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.0, ease: "easeOut", delay: 0.3 }}
         style={{
-          fontFamily: "Great Vibes, cursive",
-          fontSize: 72,
+          fontFamily: "Pinyon Script, cursive",
+          fontSize: 96,
           color: "var(--antique-dark)",
           lineHeight: 0.9,
           display: "block",
@@ -128,8 +128,8 @@ export default function Hero() {
       <RevealOnScroll>
         <p
           style={{
-            fontFamily: "Great Vibes, cursive",
-            fontSize: 46,
+            fontFamily: "Pinyon Script, cursive",
+            fontSize: 64,
             color: "var(--antique-dark)",
             textAlign: "center",
             marginTop: 8,

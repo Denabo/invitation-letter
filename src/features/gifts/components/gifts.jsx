@@ -10,8 +10,8 @@ export default function Gifts() {
         <RevealOnScroll>
           <h3
             style={{
-              fontFamily: "Great Vibes, cursive",
-              fontSize: 58,
+              fontFamily: "Pinyon Script, cursive",
+              fontSize: 72,
               color: "var(--antique-dark)",
               textAlign: "center",
               marginBottom: 14,
@@ -60,8 +60,8 @@ export default function Gifts() {
         <RevealOnScroll>
           <h3
             style={{
-              fontFamily: "Great Vibes, cursive",
-              fontSize: 58,
+              fontFamily: "Pinyon Script, cursive",
+              fontSize: 72,
               color: "var(--antique-dark)",
               textAlign: "center",
               marginBottom: 14,

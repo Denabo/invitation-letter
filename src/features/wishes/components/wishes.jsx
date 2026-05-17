@@ -31,8 +31,8 @@ export default function Wishes() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           style={{
-            fontFamily: "Great Vibes, cursive",
-            fontSize: 58,
+            fontFamily: "Pinyon Script, cursive",
+            fontSize: 72,
             color: "var(--antique-dark)",
             textAlign: "center",
             marginBottom: 8,
