@@ -1,21 +1,23 @@
 import { motion } from "framer-motion";
 import { useConfig } from "@/features/invitation/hooks/use-config";
 import RevealOnScroll from "@/components/ui/reveal-on-scroll";
-import Divider from "@/components/ui/divider";
 
 export default function Hero() {
   const config = useConfig();
 
   return (
-    <section id="home" style={{ textAlign: "center", padding: "80px 0 0" }}>
+    <section
+      id="home"
+      style={{ textAlign: "center", padding: "48px 0 0", marginBottom: 40 }}
+    >
       <div style={{ position: "relative", display: "inline-block" }}>
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, ease: "easeOut" }}
           style={{
-            fontFamily: "Dancing Script, cursive",
-            fontSize: 80,
+            fontFamily: "Great Vibes, cursive",
+            fontSize: 86,
             fontWeight: 700,
             lineHeight: 1,
             color: "var(--rose-dark)",
@@ -43,8 +45,8 @@ export default function Hero() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.2, delay: 0.2, ease: "easeOut" }}
         style={{
-          fontFamily: "Dancing Script, cursive",
-          fontSize: 72,
+          fontFamily: "Great Vibes, cursive",
+          fontSize: 76,
           fontWeight: 700,
           lineHeight: 1,
           color: "var(--rose-dark)",
@@ -53,11 +55,9 @@ export default function Hero() {
         story
       </motion.div>
 
-      <Divider />
-
       <div
         style={{
-          height: 220,
+          height: 180,
           position: "relative",
           margin: "0 auto",
           maxWidth: 320,
@@ -148,14 +148,12 @@ export default function Hero() {
         ))}
       </div>
 
-      <Divider />
-
       <RevealOnScroll>
         <p
           style={{
-            fontFamily: "Dancing Script, cursive",
+            fontFamily: "Great Vibes, cursive",
             fontStyle: "italic",
-            fontSize: 42,
+            fontSize: 48,
             color: "var(--rose-dark)",
             textAlign: "center",
           }}

@@ -1,21 +1,20 @@
 import RevealOnScroll from "@/components/ui/reveal-on-scroll";
-import Divider from "@/components/ui/divider";
 import { useConfig } from "@/features/invitation/hooks/use-config";
 
 export default function Gifts() {
   const config = useConfig();
 
   return (
-    <section id="gifts">
+    <section id="gifts" style={{ marginBottom: 40 }}>
       <RevealOnScroll>
         <h3
           style={{
-            fontFamily: "Dancing Script, cursive",
-            fontSize: 52,
+            fontFamily: "Great Vibes, cursive",
+            fontSize: 58,
             fontWeight: 400,
             color: "var(--rose-dark)",
             textAlign: "center",
-            marginBottom: 16,
+            marginBottom: 12,
           }}
         >
           дресс код
@@ -52,17 +51,15 @@ export default function Gifts() {
         </div>
       </RevealOnScroll>
 
-      <Divider />
-
       <RevealOnScroll>
         <h3
           style={{
-            fontFamily: "Dancing Script, cursive",
-            fontSize: 52,
+            fontFamily: "Great Vibes, cursive",
+            fontSize: 58,
             fontWeight: 400,
             color: "var(--rose-dark)",
             textAlign: "center",
-            marginBottom: 16,
+            marginBottom: 12,
           }}
         >
           детали
@@ -82,7 +79,6 @@ export default function Gifts() {
             .replace("будет бутылочка ", "будет бутылочка\n")}
         </p>
       </RevealOnScroll>
-      <Divider />
     </section>
   );
 }

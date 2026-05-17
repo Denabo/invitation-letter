@@ -1,11 +1,10 @@
 import RevealOnScroll from "@/components/ui/reveal-on-scroll";
-import Divider from "@/components/ui/divider";
 import { useConfig } from "@/features/invitation/hooks/use-config";
 
 export default function Location() {
   const config = useConfig();
   return (
-    <section id="location">
+    <section id="location" style={{ marginBottom: 40 }}>
       <RevealOnScroll>
         <div style={{ textAlign: "center" }}>
           <p
@@ -14,7 +13,7 @@ export default function Location() {
               letterSpacing: "0.2em",
               textTransform: "uppercase",
               fontWeight: 500,
-              marginBottom: 16,
+              marginBottom: 12,
             }}
           >
             Локация
@@ -24,7 +23,7 @@ export default function Location() {
               fontSize: 13,
               color: "var(--muted)",
               lineHeight: 2,
-              marginBottom: 20,
+              marginBottom: 12,
             }}
           >
             {config.location?.name}
@@ -56,7 +55,6 @@ export default function Location() {
           </a>
         </div>
       </RevealOnScroll>
-      <Divider />
     </section>
   );
 }

@@ -6,8 +6,8 @@ import { getGuestName } from "@/lib/invitation-storage";
 import { api } from "@/lib/api";
 
 const scriptTitleStyle = {
-  fontFamily: "Dancing Script, cursive",
-  fontSize: 52,
+  fontFamily: "Great Vibes, cursive",
+  fontSize: 58,
   fontWeight: 400,
   color: "var(--rose-dark)",
   textAlign: "center",
@@ -32,7 +32,7 @@ export default function Wishes() {
   };
 
   return (
-    <section id="wishes">
+    <section id="wishes" style={{ marginBottom: 40 }}>
       <RevealOnScroll>
         <motion.h3
           initial={{ opacity: 0, y: 20 }}
@@ -49,7 +49,7 @@ export default function Wishes() {
             color: "var(--muted)",
             lineHeight: 2,
             textAlign: "center",
-            marginBottom: 24,
+            marginBottom: 12,
           }}
         >
           Чтобы сделать праздник более комфортным,
@@ -115,7 +115,7 @@ export default function Wishes() {
                     fontSize: 14,
                     color: "var(--text)",
                     outline: "none",
-                    marginBottom: 16,
+                    marginBottom: 12,
                   }}
                 />
               </RevealOnScroll>
@@ -137,7 +137,7 @@ export default function Wishes() {
                     display: "flex",
                     gap: 12,
                     flexWrap: "wrap",
-                    marginBottom: 16,
+                    marginBottom: 12,
                   }}
                 >
                   <label>
@@ -187,7 +187,7 @@ export default function Wishes() {
                     fontSize: 14,
                     color: "var(--text)",
                     outline: "none",
-                    marginBottom: 16,
+                    marginBottom: 12,
                   }}
                 >
                   <option>Только я</option>
@@ -224,7 +224,7 @@ export default function Wishes() {
                     fontSize: 14,
                     color: "var(--text)",
                     outline: "none",
-                    marginBottom: 24,
+                    marginBottom: 12,
                   }}
                 />
               </RevealOnScroll>

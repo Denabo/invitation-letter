@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@300;400;500&family=Dancing+Script:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@300;400;500&family=Great+Vibes&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -7,10 +7,10 @@
 :root {
   --cream: #faf8f4;
   --warm: #f5f0e8;
-  --rose: #c9a87c;
-  --rose-dark: #a07850;
-  --text: #2c2420;
-  --muted: #9a8a7a;
+  --rose: #a07850;
+  --rose-dark: #7a5535;
+  --text: #1a1210;
+  --muted: #6b5a4e;
   --border: #e8ddd0;
 }
 

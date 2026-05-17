@@ -7,7 +7,6 @@ import { Gifts } from "@/features/gifts";
 import { useConfig } from "@/features/invitation/hooks/use-config";
 import { getGuestName } from "@/lib/invitation-storage";
 import RevealOnScroll from "@/components/ui/reveal-on-scroll";
-import Divider from "@/components/ui/divider";
 
 function Footer() {
   return (
@@ -45,8 +44,7 @@ function Greeting() {
   const config = useConfig();
   const guestName = getGuestName();
   return (
-    <>
-      <Divider />
+    <section id="greeting" style={{ marginBottom: 40 }}>
       <RevealOnScroll>
         <p
           style={{
@@ -54,7 +52,7 @@ function Greeting() {
             letterSpacing: "0.2em",
             textTransform: "uppercase",
             fontWeight: 500,
-            marginBottom: 16,
+            marginBottom: 12,
             textAlign: "center",
           }}
         >
@@ -71,8 +69,7 @@ function Greeting() {
           {config.greeting}
         </p>
       </RevealOnScroll>
-      <Divider />
-    </>
+    </section>
   );
 }
 

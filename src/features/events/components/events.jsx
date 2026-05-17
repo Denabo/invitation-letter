@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 import { GlassWater, CircleDot, UtensilsCrossed } from "lucide-react";
 import { useConfig } from "@/features/invitation/hooks/use-config";
 import RevealOnScroll from "@/components/ui/reveal-on-scroll";
-import Divider from "@/components/ui/divider";
 
 const iconMap = {
   Welcome: GlassWater,
@@ -42,8 +41,7 @@ export default function Events() {
   }, []);
 
   return (
-    <section id="event">
-      <Divider />
+    <section id="event" style={{ marginBottom: 40 }}>
       <RevealOnScroll>
         <div style={{ textAlign: "center" }}>
           <p
@@ -52,7 +50,7 @@ export default function Events() {
               letterSpacing: "0.25em",
               textTransform: "uppercase",
               fontWeight: 500,
-              marginBottom: 20,
+              marginBottom: 12,
             }}
           >
             {config.weddingMonth || "Сентябрь"}
@@ -137,7 +135,7 @@ export default function Events() {
             textTransform: "uppercase",
             textAlign: "center",
             color: "var(--muted)",
-            margin: "32px 0 16px",
+            margin: "24px 0 12px",
           }}
         >
           До свадьбы осталось
@@ -197,7 +195,6 @@ export default function Events() {
         </div>
       </RevealOnScroll>
 
-      <Divider />
       <section style={{ textAlign: "center" }}>
         <h3
           style={{
@@ -207,7 +204,7 @@ export default function Events() {
             textTransform: "uppercase",
             fontWeight: 500,
             color: "var(--text)",
-            marginBottom: 20,
+            marginBottom: 12,
           }}
         >
           Тайминг
@@ -232,7 +229,7 @@ export default function Events() {
                   alignItems: "center",
                   gap: 16,
                   justifyContent: "center",
-                  padding: "10px 0",
+                  padding: "8px 0",
                 }}
               >
                 <Icon size={28} color="var(--rose-dark)" strokeWidth={1.5} />
@@ -266,7 +263,6 @@ export default function Events() {
           );
         })}
       </section>
-      <Divider />
     </section>
   );
 }
