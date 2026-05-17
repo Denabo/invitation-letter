@@ -1,110 +1,42 @@
 const config = {
   data: {
-    // Main invitation title that appears on the page
     title: "Даша & Данил",
-    // Opening message/description of the invitation
-    description:
-      "Kami akan menikah dan mengundang Anda untuk turut merayakan momen istimewa ini.", // Nanti ini dibikin random
-    // Groom's name
+    description: "Свадебное приглашение Даши и Данила",
+    coupleNames: "Даша & Данил",
     groomName: "Данил",
-    // Bride's name
     brideName: "Даша",
-    // Groom's parents names
-    parentGroom: "Bapak Groom & Ibu Groom",
-    // Bride's parents names
-    parentBride: "Bapak Bride & Ibu Bride",
-    // Wedding date (format: YYYY-MM-DD)
-    date: "2026-09-12",
-    // Google Maps link for location (short clickable link)
-    maps_url: "https://goo.gl/maps/abcdef",
-    // Google Maps embed code to display map on website
-    // How to get: open Google Maps → select location → Share → Embed → copy link
-    maps_embed:
-      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.0000000000005!2d106.8270733147699!3d-6.175392995514422!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f4f1b6d7b1e7%3A0x2e69f4f1b6d7b1e7!2sMonumen%20Nasional!5e0!3m2!1sid!2sid!4v1633666820004!5m2!1sid!2sid",
-    // Event time (free format, example: "10:00 - 12:00 WIB")
-    time: "10:00",
-    // Venue/building name
-    location: "Grand Ballroom, Hotel Majesty",
-    // Full address of the wedding venue
-    address: "Jl. Jend. Sudirman No.1, Jakarta",
-    // Image that appears when link is shared on social media
-    ogImage: "/images/og-image.jpg",
-    // Icon that appears in browser tab
-    favicon: "/images/favicon.ico",
-    // List of event agenda/schedule
-    agenda: [
-      {
-        // First event name
-        title: "Церемония",
-        // Event date (format: YYYY-MM-DD)
-        date: "2026-09-12",
-        // Start time (format: HH:MM)
-        startTime: "10:00",
-        // End time (format: HH:MM)
-        endTime: "15:30",
-        // Event venue
-        location: "Grand Ballroom, Hotel Majesty",
-        // Full address
-        address: "Jl. Jend. Sudirman No.1, Jakarta",
-      },
-      {
-        // Second event name
-        title: "Праздничный ужин",
-        date: "2026-09-12",
-        startTime: "10:00",
-        endTime: "15:30",
-        location: "Grand Ballroom, Hotel Majesty",
-        address: "Jl. Jend. Sudirman No.1, Jakarta",
-      },
-      // You can add more agenda items with the same format
+    weddingDate: new Date(2026, 8, 12, 15, 30, 0),
+    weddingDay: 12,
+    weddingMonth: "Сентябрь",
+    calendarFirstDay: 1,
+    calendarDaysInMonth: 30,
+    greeting:
+      "Совсем скоро наступит очень важный и особенный для нас день. Мы приглашаем вас разделить эту радость вместе с нами.",
+    location: {
+      name: "Название ресторана",
+      address: "Город, ул. Примерная, д. 1",
+      mapsUrl: "https://maps.google.com",
+    },
+    schedule: [
+      { time: "15:30", name: "Welcome", icon: "🥂" },
+      { time: "16:00", name: "Церемония", icon: "💍" },
+      { time: "17:00", name: "Банкет", icon: "🍽" },
     ],
-
-    // Hero metadata
-    hero: {
-      label: "love story",
-      namesDisplay: "Даша & Данил",
-      since: "2024",
+    dressCode: {
+      text: "Мы будем благодарны, если вы поддержите цветовую гамму нашего торжества.",
+      colors: ["#f5ede0", "#e8d5c0", "#c9a87c", "#9a7a5a", "#5c4030"],
     },
-
-    // Calendar metadata
-    calendar: {
-      month: "Сентябрь",
-      day: 12,
-      firstDay: 1, // 0 = Monday
-      daysInMonth: 30,
+    gifts: {
+      text: "Чтобы не утруждать вас поиском подарков, мы будем рады принять ваши поздравления в конвертах. Приятным комплиментом для нас вместо цветов будет бутылочка любимого вина.",
     },
-
-    // Countdown target date
-    countdownDate: new Date(2026, 8, 12, 15, 30, 0),
-    // Background music settings
     audio: {
-      // Music file (choose one or replace with your own file)
-      src: "/audio/fulfilling-humming.mp3", // or /audio/nature-sound.mp3
-      // Music title to display
-      title: "Fulfilling Humming", // or Nature Sound
-      // Whether music plays automatically when website opens
+      src: "/audio/fulfilling-humming.mp3",
+      title: "Fulfilling Humming",
       autoplay: true,
-      // Whether music repeats continuously
       loop: true,
     },
-
-    // List of bank accounts for digital envelope/gifts
-    banks: [
-      {
-        // Bank name
-        bank: "Bank Central Asia",
-        // Account number
-        accountNumber: "1234567890",
-        // Account holder name (all uppercase)
-        accountName: "FULAN",
-      },
-      {
-        bank: "Bank Mandiri",
-        accountNumber: "0987654321",
-        accountName: "FULANA",
-      },
-      // You can add more banks with the same format
-    ],
+    ogImage: "/images/og-image.jpg",
+    favicon: "/images/favicon.ico",
   },
 };
 
