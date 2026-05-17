@@ -7,7 +7,7 @@ import { api } from "@/lib/api";
 
 const scriptTitleStyle = {
   fontFamily: "Great Vibes, cursive",
-  fontSize: 58,
+  fontSize: 64,
   fontWeight: 400,
   color: "var(--antique-dark)",
   textAlign: "center",
@@ -32,7 +32,7 @@ export default function Wishes() {
   };
 
   return (
-    <section id="wishes" style={{ marginBottom: 64 }}>
+    <section id="wishes" style={{ marginBottom: 36 }}>
       <RevealOnScroll>
         <motion.h3
           initial={{ opacity: 0, y: 20 }}
@@ -46,10 +46,10 @@ export default function Wishes() {
         <p
           style={{
             fontSize: 13,
-            color: "var(--muted)",
+            color: "var(--text)",
             lineHeight: 2,
             textAlign: "center",
-            marginBottom: 24,
+            marginBottom: 12,
           }}
         >
           Чтобы сделать праздник более комфортным,
@@ -63,15 +63,15 @@ export default function Wishes() {
         style={{
           border: "1px solid var(--antique-dark)",
           borderRadius: 40,
-          padding: "12px 32px",
-          fontSize: 10,
+          padding: "16px 32px",
+          fontSize: 11,
           letterSpacing: "0.2em",
           textTransform: "uppercase",
           color: "var(--antique-dark)",
           background: "transparent",
           cursor: "pointer",
           display: "block",
-          margin: "24px auto 16px",
+          margin: "20px auto 16px",
         }}
       >
         Анкета гостя
@@ -92,7 +92,7 @@ export default function Wishes() {
                     fontSize: 9,
                     letterSpacing: "0.15em",
                     textTransform: "uppercase",
-                    color: "var(--muted)",
+                    color: "var(--text)",
                     display: "block",
                     marginBottom: 8,
                   }}
@@ -115,7 +115,7 @@ export default function Wishes() {
                     fontSize: 14,
                     color: "var(--text)",
                     outline: "none",
-                    marginBottom: 24,
+                    marginBottom: 20,
                   }}
                 />
               </RevealOnScroll>
@@ -125,7 +125,7 @@ export default function Wishes() {
                     fontSize: 9,
                     letterSpacing: "0.15em",
                     textTransform: "uppercase",
-                    color: "var(--muted)",
+                    color: "var(--text)",
                     display: "block",
                     marginBottom: 8,
                   }}
@@ -137,7 +137,7 @@ export default function Wishes() {
                     display: "flex",
                     gap: 12,
                     flexWrap: "wrap",
-                    marginBottom: 24,
+                    marginBottom: 20,
                   }}
                 >
                   <label>
@@ -166,7 +166,7 @@ export default function Wishes() {
                     fontSize: 9,
                     letterSpacing: "0.15em",
                     textTransform: "uppercase",
-                    color: "var(--muted)",
+                    color: "var(--text)",
                     display: "block",
                     marginBottom: 8,
                   }}
@@ -187,7 +187,7 @@ export default function Wishes() {
                     fontSize: 14,
                     color: "var(--text)",
                     outline: "none",
-                    marginBottom: 24,
+                    marginBottom: 20,
                   }}
                 >
                   <option>Только я</option>
@@ -201,7 +201,7 @@ export default function Wishes() {
                     fontSize: 9,
                     letterSpacing: "0.15em",
                     textTransform: "uppercase",
-                    color: "var(--muted)",
+                    color: "var(--text)",
                     display: "block",
                     marginBottom: 8,
                   }}
@@ -224,7 +224,7 @@ export default function Wishes() {
                     fontSize: 14,
                     color: "var(--text)",
                     outline: "none",
-                    marginBottom: 24,
+                    marginBottom: 20,
                   }}
                 />
               </RevealOnScroll>
@@ -233,14 +233,13 @@ export default function Wishes() {
                 style={{
                   border: "1px solid var(--antique-dark)",
                   color: "var(--antique-dark)",
-                  padding: "14px 32px",
+                  padding: "16px 32px",
                   fontSize: 11,
                   letterSpacing: "0.15em",
                   textTransform: "uppercase",
                   background: "transparent",
                   cursor: "pointer",
                   display: "block",
-                  maxWidth: 280,
                   width: "100%",
                   margin: "0 auto",
                   textAlign: "center",

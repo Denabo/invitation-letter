@@ -28,7 +28,17 @@ function App() {
         <meta name="description" content={activeConfig.description} />
         <link rel="icon" type="image/x-icon" href={activeConfig.favicon} />
       </Helmet>
-      <div style={{ maxWidth: 480, margin: "0 auto", padding: "0 24px 80px" }}>
+      <div
+        style={{
+          maxWidth: 430,
+          width: "100%",
+          margin: "0 auto",
+          padding: "0 28px 60px",
+          background: "var(--cream)",
+          boxShadow: "0 0 60px rgba(0,0,0,0.08)",
+          minHeight: "100vh",
+        }}
+      >
         <Suspense fallback={<div style={{ minHeight: "100vh" }} />}>
           <MainContent />
         </Suspense>

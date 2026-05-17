@@ -41,7 +41,7 @@ export default function Events() {
   }, []);
 
   return (
-    <section id="event" style={{ marginBottom: 64 }}>
+    <section id="event" style={{ marginBottom: 36 }}>
       <RevealOnScroll>
         <div style={{ textAlign: "center" }}>
           <p
@@ -57,7 +57,8 @@ export default function Events() {
           </p>
           <div
             style={{
-              display: "inline-block",
+              display: "block",
+              width: "100%",
               border: "1px solid var(--border)",
               padding: "20px 24px",
               background: "var(--champagne)",
@@ -66,7 +67,7 @@ export default function Events() {
             <div
               style={{
                 display: "grid",
-                gridTemplateColumns: "repeat(7, 32px)",
+                gridTemplateColumns: "repeat(7, 36px)",
                 gap: 4,
                 marginBottom: 8,
               }}
@@ -76,7 +77,7 @@ export default function Events() {
                   key={d}
                   style={{
                     fontSize: 10,
-                    color: "var(--muted)",
+                    color: "var(--text)",
                     textAlign: "center",
                   }}
                 >
@@ -87,13 +88,13 @@ export default function Events() {
             <div
               style={{
                 display: "grid",
-                gridTemplateColumns: "repeat(7, 32px)",
+                gridTemplateColumns: "repeat(7, 36px)",
                 gap: 4,
               }}
             >
               {Array.from({ length: config.calendarFirstDay ?? 1 }).map(
                 (_, i) => (
-                  <div key={`e-${i}`} style={{ width: 32, height: 32 }} />
+                  <div key={`e-${i}`} style={{ width: 36, height: 36 }} />
                 ),
               )}
               {Array.from({ length: config.calendarDaysInMonth ?? 30 }).map(
@@ -104,8 +105,8 @@ export default function Events() {
                     <div
                       key={day}
                       style={{
-                        width: 32,
-                        height: 32,
+                        width: 36,
+                        height: 36,
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "center",
@@ -134,7 +135,7 @@ export default function Events() {
             letterSpacing: "0.2em",
             textTransform: "uppercase",
             textAlign: "center",
-            color: "var(--muted)",
+            color: "var(--text)",
             margin: "40px 0 16px",
           }}
         >
@@ -159,7 +160,7 @@ export default function Events() {
                 <div
                   style={{
                     fontFamily: "Cormorant Garamond, serif",
-                    fontSize: 40,
+                    fontSize: 48,
                     fontWeight: 300,
                     color: "var(--antique-dark)",
                     lineHeight: 1,
@@ -172,7 +173,7 @@ export default function Events() {
                     fontSize: 9,
                     letterSpacing: "0.15em",
                     textTransform: "uppercase",
-                    color: "var(--muted)",
+                    color: "var(--text)",
                     marginTop: 4,
                   }}
                 >
@@ -205,7 +206,7 @@ export default function Events() {
             textTransform: "uppercase",
             fontWeight: 500,
             color: "var(--text)",
-            marginBottom: 24,
+            marginBottom: 12,
           }}
         >
           Тайминг
@@ -228,7 +229,7 @@ export default function Events() {
                 style={{
                   display: "flex",
                   alignItems: "center",
-                  gap: 28,
+                  gap: 20,
                   justifyContent: "center",
                   padding: "16px 0",
                 }}
@@ -250,7 +251,7 @@ export default function Events() {
                       fontSize: 10,
                       letterSpacing: "0.15em",
                       textTransform: "uppercase",
-                      color: "var(--muted)",
+                      color: "var(--text)",
                     }}
                   >
                     {item.name}

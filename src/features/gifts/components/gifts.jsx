@@ -5,16 +5,16 @@ export default function Gifts() {
   const config = useConfig();
 
   return (
-    <section id="gifts" style={{ marginBottom: 64 }}>
+    <section id="gifts" style={{ marginBottom: 36 }}>
       <RevealOnScroll>
         <h3
           style={{
             fontFamily: "Great Vibes, cursive",
-            fontSize: 58,
+            fontSize: 64,
             fontWeight: 400,
             color: "var(--antique-dark)",
             textAlign: "center",
-            marginBottom: 24,
+            marginBottom: 12,
           }}
         >
           дресс код
@@ -22,7 +22,7 @@ export default function Gifts() {
         <p
           style={{
             fontSize: 13,
-            color: "var(--muted)",
+            color: "var(--text)",
             lineHeight: 2.2,
             textAlign: "center",
           }}
@@ -33,7 +33,7 @@ export default function Gifts() {
           style={{
             display: "flex",
             justifyContent: "center",
-            gap: 16,
+            gap: 12,
             marginTop: 24,
           }}
         >
@@ -55,11 +55,11 @@ export default function Gifts() {
         <h3
           style={{
             fontFamily: "Great Vibes, cursive",
-            fontSize: 58,
+            fontSize: 64,
             fontWeight: 400,
             color: "var(--antique-dark)",
             textAlign: "center",
-            marginBottom: 24,
+            marginBottom: 12,
           }}
         >
           детали
@@ -67,7 +67,7 @@ export default function Gifts() {
         <p
           style={{
             fontSize: 13,
-            color: "var(--muted)",
+            color: "var(--text)",
             lineHeight: 2.2,
             textAlign: "center",
             whiteSpace: "pre-line",

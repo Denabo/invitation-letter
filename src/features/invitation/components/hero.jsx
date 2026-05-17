@@ -8,7 +8,7 @@ export default function Hero() {
   return (
     <section
       id="home"
-      style={{ textAlign: "center", padding: "72px 0 0", marginBottom: 64 }}
+      style={{ textAlign: "center", padding: "40px 0 0", marginBottom: 36 }}
     >
       <div style={{ position: "relative", display: "inline-block" }}>
         <motion.div
@@ -17,7 +17,7 @@ export default function Hero() {
           transition={{ duration: 1.2, ease: "easeOut" }}
           style={{
             fontFamily: "Great Vibes, cursive",
-            fontSize: 86,
+            fontSize: 96,
             fontWeight: 700,
             lineHeight: 1,
             color: "var(--antique-dark)",
@@ -30,7 +30,7 @@ export default function Hero() {
             fontFamily: "Montserrat, sans-serif",
             fontSize: 10,
             letterSpacing: "0.2em",
-            color: "var(--muted)",
+            color: "var(--text)",
             position: "absolute",
             top: 8,
             right: -40,
@@ -46,7 +46,7 @@ export default function Hero() {
         transition={{ duration: 1.2, delay: 0.2, ease: "easeOut" }}
         style={{
           fontFamily: "Great Vibes, cursive",
-          fontSize: 76,
+          fontSize: 84,
           fontWeight: 700,
           lineHeight: 1,
           color: "var(--antique-dark)",
@@ -57,10 +57,10 @@ export default function Hero() {
 
       <div
         style={{
-          height: 180,
+          height: 200,
           position: "relative",
           margin: "32px auto",
-          maxWidth: 320,
+          maxWidth: "100%",
         }}
       >
         <motion.div
@@ -69,7 +69,7 @@ export default function Hero() {
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.5 }}
           style={{
             background: "#fff",
-            padding: "10px 10px 32px",
+            padding: "12px 12px 40px",
             boxShadow: "0 4px 20px rgba(0,0,0,0.1)",
             position: "absolute",
             left: "calc(50% - 130px)",
@@ -79,13 +79,13 @@ export default function Hero() {
         >
           <div
             style={{
-              width: 110,
-              height: 110,
+              width: 140,
+              height: 140,
               background: "#e8e0d8",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              color: "var(--muted)",
+              color: "var(--text)",
               fontSize: 11,
               letterSpacing: "0.1em",
               textTransform: "uppercase",
@@ -101,7 +101,7 @@ export default function Hero() {
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.7 }}
           style={{
             background: "#fff",
-            padding: "10px 10px 32px",
+            padding: "12px 12px 40px",
             boxShadow: "0 4px 20px rgba(0,0,0,0.1)",
             position: "absolute",
             left: "calc(50% - 20px)",
@@ -111,13 +111,13 @@ export default function Hero() {
         >
           <div
             style={{
-              width: 110,
-              height: 110,
+              width: 140,
+              height: 140,
               background: "#e8e0d8",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              color: "var(--muted)",
+              color: "var(--text)",
               fontSize: 11,
               letterSpacing: "0.1em",
               textTransform: "uppercase",
@@ -153,7 +153,7 @@ export default function Hero() {
           style={{
             fontFamily: "Great Vibes, cursive",
             fontStyle: "italic",
-            fontSize: 48,
+            fontSize: 54,
             color: "var(--antique-dark)",
             marginTop: 32,
             textAlign: "center",

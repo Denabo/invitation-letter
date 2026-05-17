@@ -4,7 +4,7 @@ import { useConfig } from "@/features/invitation/hooks/use-config";
 export default function Location() {
   const config = useConfig();
   return (
-    <section id="location" style={{ marginBottom: 64 }}>
+    <section id="location" style={{ marginBottom: 36 }}>
       <RevealOnScroll>
         <div style={{ textAlign: "center" }}>
           <p
@@ -21,7 +21,7 @@ export default function Location() {
           <p
             style={{
               fontSize: 13,
-              color: "var(--muted)",
+              color: "var(--text)",
               lineHeight: 2.2,
               marginBottom: 12,
             }}
@@ -37,15 +37,15 @@ export default function Location() {
             style={{
               border: "1px solid var(--antique-dark)",
               color: "var(--antique-dark)",
-              padding: "14px 32px",
+              padding: "16px 32px",
               fontSize: 11,
               letterSpacing: "0.15em",
               textTransform: "uppercase",
               background: "transparent",
               cursor: "pointer",
               display: "block",
-              maxWidth: 280,
               margin: "0 auto",
+              width: "100%",
               textAlign: "center",
               textDecoration: "none",
               transition: "background 0.3s, color 0.3s",

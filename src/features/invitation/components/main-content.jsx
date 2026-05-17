@@ -8,27 +8,15 @@ import { useConfig } from "@/features/invitation/hooks/use-config";
 import { getGuestName } from "@/lib/invitation-storage";
 import RevealOnScroll from "@/components/ui/reveal-on-scroll";
 
-function SectionDivider() {
-  return (
-    <div
-      style={{
-        borderTop: "1px solid var(--border)",
-        width: 60,
-        margin: "0 auto 64px",
-      }}
-    />
-  );
-}
-
 function Footer() {
   return (
-    <footer style={{ paddingTop: 48, paddingBottom: 48 }}>
+    <footer style={{ padding: "32px 0" }}>
       <motion.span
         style={{
           fontSize: 24,
           color: "var(--antique)",
           display: "block",
-          marginBottom: 16,
+          marginBottom: 20,
           textAlign: "center",
         }}
         animate={{ scale: [1, 1.15, 1] }}
@@ -56,7 +44,7 @@ function Greeting() {
   const config = useConfig();
   const guestName = getGuestName();
   return (
-    <section id="greeting" style={{ marginBottom: 64 }}>
+    <section id="greeting" style={{ marginBottom: 36 }}>
       <RevealOnScroll>
         <p
           style={{
@@ -64,7 +52,7 @@ function Greeting() {
             letterSpacing: "0.2em",
             textTransform: "uppercase",
             fontWeight: 500,
-            marginBottom: 16,
+            marginBottom: 20,
             textAlign: "center",
           }}
         >
@@ -72,7 +60,7 @@ function Greeting() {
         </p>
         <p
           style={{
-            color: "var(--muted)",
+            color: "var(--text)",
             lineHeight: 2.2,
             fontSize: 13,
             textAlign: "center",
@@ -89,17 +77,11 @@ export default function MainContent() {
   return (
     <>
       <Hero />
-      <SectionDivider />
       <Greeting />
-      <SectionDivider />
       <Events />
-      <SectionDivider />
       <Location />
-      <SectionDivider />
       <Gifts />
-      <SectionDivider />
       <Wishes />
-      <SectionDivider />
       <Footer />
     </>
   );
