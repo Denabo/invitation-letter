@@ -10,10 +10,9 @@ export default function Gifts() {
       <RevealOnScroll>
         <h3
           style={{
-            fontFamily: "Cormorant Garamond, serif",
-            fontStyle: "italic",
-            fontSize: 48,
-            fontWeight: 300,
+            fontFamily: "Dancing Script, cursive",
+            fontSize: 52,
+            fontWeight: 400,
             color: "var(--rose-dark)",
             textAlign: "center",
             marginBottom: 16,
@@ -58,10 +57,9 @@ export default function Gifts() {
       <RevealOnScroll>
         <h3
           style={{
-            fontFamily: "Cormorant Garamond, serif",
-            fontStyle: "italic",
-            fontSize: 48,
-            fontWeight: 300,
+            fontFamily: "Dancing Script, cursive",
+            fontSize: 52,
+            fontWeight: 400,
             color: "var(--rose-dark)",
             textAlign: "center",
             marginBottom: 16,

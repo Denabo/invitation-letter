@@ -1,11 +1,21 @@
 import { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import RevealOnScroll from "@/components/ui/reveal-on-scroll";
 import { useInvitation } from "@/features/invitation";
 import { getGuestName } from "@/lib/invitation-storage";
 import { api } from "@/lib/api";
 
+const scriptTitleStyle = {
+  fontFamily: "Dancing Script, cursive",
+  fontSize: 52,
+  fontWeight: 400,
+  color: "var(--rose-dark)",
+  textAlign: "center",
+};
+
 export default function Wishes() {
   const { uid } = useInvitation();
+  const [open, setOpen] = useState(false);
   const [name, setName] = useState(getGuestName() || "");
   const [attendance, setAttendance] = useState("ATTENDING");
   const [guestCount, setGuestCount] = useState("Только я");
@@ -24,18 +34,15 @@ export default function Wishes() {
   return (
     <section id="wishes">
       <RevealOnScroll>
-        <h3
-          style={{
-            fontFamily: "Cormorant Garamond, serif",
-            fontStyle: "italic",
-            fontSize: 48,
-            fontWeight: 300,
-            color: "var(--rose-dark)",
-            textAlign: "center",
-          }}
+        <motion.h3
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+          style={scriptTitleStyle}
         >
           анкета
-        </h3>
+        </motion.h3>
         <p
           style={{
             fontSize: 13,
@@ -51,170 +58,200 @@ export default function Wishes() {
         </p>
       </RevealOnScroll>
 
-      <form onSubmit={submit}>
-        <RevealOnScroll>
-          <label
-            style={{
-              fontSize: 9,
-              letterSpacing: "0.15em",
-              textTransform: "uppercase",
-              color: "var(--muted)",
-              display: "block",
-              marginBottom: 8,
-            }}
+      <button
+        onClick={() => setOpen((v) => !v)}
+        style={{
+          border: "1px solid var(--rose-dark)",
+          borderRadius: 40,
+          padding: "12px 32px",
+          fontSize: 10,
+          letterSpacing: "0.2em",
+          textTransform: "uppercase",
+          color: "var(--rose-dark)",
+          background: "transparent",
+          cursor: "pointer",
+          display: "block",
+          margin: "24px auto",
+        }}
+      >
+        Анкета гостя
+      </button>
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.5, ease: "easeInOut" }}
+            style={{ overflow: "hidden" }}
           >
-            Ваше имя
-          </label>
-          <input
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            type="text"
-            placeholder="Имя Фамилия"
-            style={{
-              border: "none",
-              borderBottom: "1px solid var(--border)",
-              background: "transparent",
-              width: "100%",
-              padding: "12px 0",
-              fontFamily: "Montserrat, sans-serif",
-              fontWeight: 300,
-              fontSize: 14,
-              color: "var(--text)",
-              outline: "none",
-              marginBottom: 16,
-            }}
-          />
-        </RevealOnScroll>
-        <RevealOnScroll delay={0.15}>
-          <label
-            style={{
-              fontSize: 9,
-              letterSpacing: "0.15em",
-              textTransform: "uppercase",
-              color: "var(--muted)",
-              display: "block",
-              marginBottom: 8,
-            }}
-          >
-            Вы придёте?
-          </label>
-          <div
-            style={{
-              display: "flex",
-              gap: 12,
-              flexWrap: "wrap",
-              marginBottom: 16,
-            }}
-          >
-            <label>
-              <input
-                type="radio"
-                name="att"
-                checked={attendance === "ATTENDING"}
-                onChange={() => setAttendance("ATTENDING")}
-              />{" "}
-              С радостью буду
-            </label>
-            <label>
-              <input
-                type="radio"
-                name="att"
-                checked={attendance === "NOT_ATTENDING"}
-                onChange={() => setAttendance("NOT_ATTENDING")}
-              />{" "}
-              К сожалению нет
-            </label>
-          </div>
-        </RevealOnScroll>
-        <RevealOnScroll delay={0.3}>
-          <label
-            style={{
-              fontSize: 9,
-              letterSpacing: "0.15em",
-              textTransform: "uppercase",
-              color: "var(--muted)",
-              display: "block",
-              marginBottom: 8,
-            }}
-          >
-            Количество гостей
-          </label>
-          <select
-            value={guestCount}
-            onChange={(e) => setGuestCount(e.target.value)}
-            style={{
-              border: "none",
-              borderBottom: "1px solid var(--border)",
-              background: "transparent",
-              width: "100%",
-              padding: "12px 0",
-              fontFamily: "Montserrat, sans-serif",
-              fontWeight: 300,
-              fontSize: 14,
-              color: "var(--text)",
-              outline: "none",
-              marginBottom: 16,
-            }}
-          >
-            <option>Только я</option>
-            <option>Я + 1</option>
-            <option>Я + 2</option>
-          </select>
-        </RevealOnScroll>
-        <RevealOnScroll delay={0.45}>
-          <label
-            style={{
-              fontSize: 9,
-              letterSpacing: "0.15em",
-              textTransform: "uppercase",
-              color: "var(--muted)",
-              display: "block",
-              marginBottom: 8,
-            }}
-          >
-            Пожелания / аллергии
-          </label>
-          <textarea
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-            rows={3}
-            placeholder="Ваши пожелания..."
-            style={{
-              border: "none",
-              borderBottom: "1px solid var(--border)",
-              background: "transparent",
-              width: "100%",
-              padding: "12px 0",
-              fontFamily: "Montserrat, sans-serif",
-              fontWeight: 300,
-              fontSize: 14,
-              color: "var(--text)",
-              outline: "none",
-              marginBottom: 24,
-            }}
-          />
-        </RevealOnScroll>
-        <button
-          type="submit"
-          style={{
-            border: "1px solid var(--rose-dark)",
-            color: "var(--rose-dark)",
-            padding: "14px 32px",
-            fontSize: 11,
-            letterSpacing: "0.15em",
-            textTransform: "uppercase",
-            background: "transparent",
-            cursor: "pointer",
-            display: "block",
-            maxWidth: 280,
-            width: "100%",
-            margin: "0 auto",
-            textAlign: "center",
-          }}
-        >
-          Отправить анкету
-        </button>
-      </form>
+            <form onSubmit={submit}>
+              <RevealOnScroll>
+                <label
+                  style={{
+                    fontSize: 9,
+                    letterSpacing: "0.15em",
+                    textTransform: "uppercase",
+                    color: "var(--muted)",
+                    display: "block",
+                    marginBottom: 8,
+                  }}
+                >
+                  Ваше имя
+                </label>
+                <input
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  type="text"
+                  placeholder="Имя Фамилия"
+                  style={{
+                    border: "none",
+                    borderBottom: "1px solid var(--border)",
+                    background: "transparent",
+                    width: "100%",
+                    padding: "12px 0",
+                    fontFamily: "Montserrat, sans-serif",
+                    fontWeight: 300,
+                    fontSize: 14,
+                    color: "var(--text)",
+                    outline: "none",
+                    marginBottom: 16,
+                  }}
+                />
+              </RevealOnScroll>
+              <RevealOnScroll delay={0.15}>
+                <label
+                  style={{
+                    fontSize: 9,
+                    letterSpacing: "0.15em",
+                    textTransform: "uppercase",
+                    color: "var(--muted)",
+                    display: "block",
+                    marginBottom: 8,
+                  }}
+                >
+                  Вы придёте?
+                </label>
+                <div
+                  style={{
+                    display: "flex",
+                    gap: 12,
+                    flexWrap: "wrap",
+                    marginBottom: 16,
+                  }}
+                >
+                  <label>
+                    <input
+                      type="radio"
+                      name="att"
+                      checked={attendance === "ATTENDING"}
+                      onChange={() => setAttendance("ATTENDING")}
+                    />{" "}
+                    С радостью буду
+                  </label>
+                  <label>
+                    <input
+                      type="radio"
+                      name="att"
+                      checked={attendance === "NOT_ATTENDING"}
+                      onChange={() => setAttendance("NOT_ATTENDING")}
+                    />{" "}
+                    К сожалению нет
+                  </label>
+                </div>
+              </RevealOnScroll>
+              <RevealOnScroll delay={0.3}>
+                <label
+                  style={{
+                    fontSize: 9,
+                    letterSpacing: "0.15em",
+                    textTransform: "uppercase",
+                    color: "var(--muted)",
+                    display: "block",
+                    marginBottom: 8,
+                  }}
+                >
+                  Количество гостей
+                </label>
+                <select
+                  value={guestCount}
+                  onChange={(e) => setGuestCount(e.target.value)}
+                  style={{
+                    border: "none",
+                    borderBottom: "1px solid var(--border)",
+                    background: "transparent",
+                    width: "100%",
+                    padding: "12px 0",
+                    fontFamily: "Montserrat, sans-serif",
+                    fontWeight: 300,
+                    fontSize: 14,
+                    color: "var(--text)",
+                    outline: "none",
+                    marginBottom: 16,
+                  }}
+                >
+                  <option>Только я</option>
+                  <option>Я + 1</option>
+                  <option>Я + 2</option>
+                </select>
+              </RevealOnScroll>
+              <RevealOnScroll delay={0.45}>
+                <label
+                  style={{
+                    fontSize: 9,
+                    letterSpacing: "0.15em",
+                    textTransform: "uppercase",
+                    color: "var(--muted)",
+                    display: "block",
+                    marginBottom: 8,
+                  }}
+                >
+                  Пожелания / аллергии
+                </label>
+                <textarea
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
+                  rows={3}
+                  placeholder="Ваши пожелания..."
+                  style={{
+                    border: "none",
+                    borderBottom: "1px solid var(--border)",
+                    background: "transparent",
+                    width: "100%",
+                    padding: "12px 0",
+                    fontFamily: "Montserrat, sans-serif",
+                    fontWeight: 300,
+                    fontSize: 14,
+                    color: "var(--text)",
+                    outline: "none",
+                    marginBottom: 24,
+                  }}
+                />
+              </RevealOnScroll>
+              <button
+                type="submit"
+                style={{
+                  border: "1px solid var(--rose-dark)",
+                  color: "var(--rose-dark)",
+                  padding: "14px 32px",
+                  fontSize: 11,
+                  letterSpacing: "0.15em",
+                  textTransform: "uppercase",
+                  background: "transparent",
+                  cursor: "pointer",
+                  display: "block",
+                  maxWidth: 280,
+                  width: "100%",
+                  margin: "0 auto",
+                  textAlign: "center",
+                }}
+              >
+                Отправить анкету
+              </button>
+            </form>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }

@@ -8,44 +8,44 @@ export default function Hero() {
 
   return (
     <section id="home" style={{ textAlign: "center", padding: "80px 0 0" }}>
-      <RevealOnScroll>
+      <div style={{ position: "relative", display: "inline-block" }}>
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.2, ease: "easeOut" }}
+          style={{
+            fontFamily: "Dancing Script, cursive",
+            fontSize: 80,
+            fontWeight: 700,
+            lineHeight: 1,
+            color: "var(--rose-dark)",
+          }}
+        >
+          love
+        </motion.div>
         <p
           style={{
-            fontSize: 11,
+            fontFamily: "Montserrat, sans-serif",
+            fontSize: 10,
             letterSpacing: "0.2em",
-            textTransform: "uppercase",
             color: "var(--muted)",
-            marginBottom: 8,
+            position: "absolute",
+            top: 8,
+            right: -40,
           }}
         >
           since 2024
         </p>
-      </RevealOnScroll>
+      </div>
 
-      <motion.div
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1.2, ease: "easeOut" }}
-        style={{
-          fontFamily: "Cormorant Garamond, serif",
-          fontStyle: "italic",
-          fontSize: 72,
-          fontWeight: 300,
-          lineHeight: 1,
-          color: "var(--rose-dark)",
-        }}
-      >
-        love
-      </motion.div>
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.2, delay: 0.2, ease: "easeOut" }}
         style={{
-          fontFamily: "Cormorant Garamond, serif",
-          fontStyle: "italic",
-          fontSize: 52,
-          fontWeight: 300,
+          fontFamily: "Dancing Script, cursive",
+          fontSize: 72,
+          fontWeight: 700,
           lineHeight: 1,
           color: "var(--rose-dark)",
         }}
@@ -55,84 +55,107 @@ export default function Hero() {
 
       <Divider />
 
-      <RevealOnScroll>
-        <div
+      <div
+        style={{
+          height: 220,
+          position: "relative",
+          margin: "0 auto",
+          maxWidth: 320,
+        }}
+      >
+        <motion.div
+          initial={{ opacity: 0, x: -120, rotate: -15 }}
+          animate={{ opacity: 1, x: 0, rotate: -6 }}
+          transition={{ duration: 0.8, ease: "easeOut", delay: 0.5 }}
           style={{
-            height: 220,
-            position: "relative",
-            margin: "0 auto",
-            maxWidth: 320,
+            background: "#fff",
+            padding: "10px 10px 32px",
+            boxShadow: "0 4px 20px rgba(0,0,0,0.1)",
+            position: "absolute",
+            left: "calc(50% - 130px)",
+            top: 10,
+            zIndex: 1,
           }}
         >
-          {[
-            ["-130px", "10px", "rotate(-6deg)", 1],
-            ["-20px", "0", "rotate(5deg)", 2],
-          ].map((card, i) => (
-            <div
-              key={i}
-              style={{
-                background: "#fff",
-                padding: "10px 10px 32px",
-                boxShadow: "0 4px 20px rgba(0,0,0,0.1)",
-                transform: card[2],
-                position: "absolute",
-                left: `calc(50% + ${card[0]})`,
-                top: card[1],
-                zIndex: card[3],
-              }}
-            >
-              <div
-                style={{
-                  width: 110,
-                  height: 110,
-                  background: "#e8e0d8",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  color: "var(--muted)",
-                  fontSize: 11,
-                  letterSpacing: "0.1em",
-                  textTransform: "uppercase",
-                }}
-              >
-                фото
-              </div>
-            </div>
-          ))}
-          <span
+          <div
+            style={{
+              width: 110,
+              height: 110,
+              background: "#e8e0d8",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              color: "var(--muted)",
+              fontSize: 11,
+              letterSpacing: "0.1em",
+              textTransform: "uppercase",
+            }}
+          >
+            фото
+          </div>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, x: 120, rotate: 15 }}
+          animate={{ opacity: 1, x: 0, rotate: 5 }}
+          transition={{ duration: 0.8, ease: "easeOut", delay: 0.7 }}
+          style={{
+            background: "#fff",
+            padding: "10px 10px 32px",
+            boxShadow: "0 4px 20px rgba(0,0,0,0.1)",
+            position: "absolute",
+            left: "calc(50% - 20px)",
+            top: 0,
+            zIndex: 2,
+          }}
+        >
+          <div
+            style={{
+              width: 110,
+              height: 110,
+              background: "#e8e0d8",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              color: "var(--muted)",
+              fontSize: 11,
+              letterSpacing: "0.1em",
+              textTransform: "uppercase",
+            }}
+          >
+            фото
+          </div>
+        </motion.div>
+
+        {[
+          { top: 20, right: "calc(50% - 160px)" },
+          { bottom: 20, left: "calc(50% + 80px)" },
+        ].map((heart, idx) => (
+          <motion.span
+            key={idx}
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.4, delay: 1.1 }}
             style={{
               position: "absolute",
               color: "var(--rose)",
               fontSize: 18,
-              top: 20,
-              right: "calc(50% - 160px)",
+              ...heart,
             }}
           >
             ♡
-          </span>
-          <span
-            style={{
-              position: "absolute",
-              color: "var(--rose)",
-              fontSize: 18,
-              bottom: 20,
-              left: "calc(50% + 80px)",
-            }}
-          >
-            ♡
-          </span>
-        </div>
-      </RevealOnScroll>
+          </motion.span>
+        ))}
+      </div>
 
       <Divider />
 
       <RevealOnScroll>
         <p
           style={{
-            fontFamily: "Cormorant Garamond, serif",
+            fontFamily: "Dancing Script, cursive",
             fontStyle: "italic",
-            fontSize: 36,
-            fontWeight: 300,
+            fontSize: 42,
             color: "var(--rose-dark)",
             textAlign: "center",
           }}
