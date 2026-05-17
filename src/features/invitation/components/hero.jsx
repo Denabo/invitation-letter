@@ -136,7 +136,7 @@ export default function Hero() {
             className="inline-block mx-auto"
           >
             <span className="px-4 py-1 text-sm bg-rose-50 text-rose-600 rounded-full border border-rose-200">
-              Catat Tanggal Penting Ini
+              {config.hero?.label || "love story"}
             </span>
           </motion.div>
 
@@ -155,8 +155,14 @@ export default function Hero() {
               transition={{ delay: 0.6 }}
               className="text-3xl sm:text-5xl font-serif bg-clip-text text-transparent bg-gradient-to-r from-rose-600 to-pink-600"
             >
-              {config.groomName} & {config.brideName}
+              {config.hero?.namesDisplay ||
+                `${config.brideName} & ${config.groomName}`}
             </motion.h2>
+            {config.hero?.since ? (
+              <p className="text-sm tracking-[0.2em] uppercase text-rose-400">
+                since {config.hero.since}
+              </p>
+            ) : null}
           </div>
 
           <motion.div
@@ -232,7 +238,7 @@ export default function Hero() {
             <div className="absolute -bottom-2 -left-2 w-16 sm:w-24 h-16 sm:h-24 bg-rose-100/20 rounded-full blur-xl" />
           </motion.div>
 
-          <CountdownTimer targetDate={config.date} />
+          <CountdownTimer targetDate={config.countdownDate || config.date} />
 
           <div className="pt-6 relative">
             <FloatingHearts />

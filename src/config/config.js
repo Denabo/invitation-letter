@@ -1,20 +1,20 @@
 const config = {
   data: {
     // Main invitation title that appears on the page
-    title: "Pernikahan Fulan & Fulana",
+    title: "Даша & Данил",
     // Opening message/description of the invitation
     description:
       "Kami akan menikah dan mengundang Anda untuk turut merayakan momen istimewa ini.", // Nanti ini dibikin random
     // Groom's name
-    groomName: "Fulan",
+    groomName: "Данил",
     // Bride's name
-    brideName: "Fulana",
+    brideName: "Даша",
     // Groom's parents names
     parentGroom: "Bapak Groom & Ibu Groom",
     // Bride's parents names
     parentBride: "Bapak Bride & Ibu Bride",
     // Wedding date (format: YYYY-MM-DD)
-    date: "2024-12-24",
+    date: "2026-09-12",
     // Google Maps link for location (short clickable link)
     maps_url: "https://goo.gl/maps/abcdef",
     // Google Maps embed code to display map on website
@@ -22,7 +22,7 @@ const config = {
     maps_embed:
       "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.0000000000005!2d106.8270733147699!3d-6.175392995514422!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f4f1b6d7b1e7%3A0x2e69f4f1b6d7b1e7!2sMonumen%20Nasional!5e0!3m2!1sid!2sid!4v1633666820004!5m2!1sid!2sid",
     // Event time (free format, example: "10:00 - 12:00 WIB")
-    time: "16:16 - 17:30 WIB",
+    time: "10:00",
     // Venue/building name
     location: "Grand Ballroom, Hotel Majesty",
     // Full address of the wedding venue
@@ -35,13 +35,13 @@ const config = {
     agenda: [
       {
         // First event name
-        title: "Akad Nikah",
+        title: "Церемония",
         // Event date (format: YYYY-MM-DD)
-        date: "2024-12-24",
+        date: "2026-09-12",
         // Start time (format: HH:MM)
-        startTime: "16:16",
+        startTime: "10:00",
         // End time (format: HH:MM)
-        endTime: "17:30",
+        endTime: "15:30",
         // Event venue
         location: "Grand Ballroom, Hotel Majesty",
         // Full address
@@ -49,16 +49,33 @@ const config = {
       },
       {
         // Second event name
-        title: "Resepsi Nikah",
-        date: "2024-12-24",
-        startTime: "16:16",
-        endTime: "17:30",
+        title: "Праздничный ужин",
+        date: "2026-09-12",
+        startTime: "10:00",
+        endTime: "15:30",
         location: "Grand Ballroom, Hotel Majesty",
         address: "Jl. Jend. Sudirman No.1, Jakarta",
-      }
+      },
       // You can add more agenda items with the same format
     ],
 
+    // Hero metadata
+    hero: {
+      label: "love story",
+      namesDisplay: "Даша & Данил",
+      since: "2024",
+    },
+
+    // Calendar metadata
+    calendar: {
+      month: "Сентябрь",
+      day: 12,
+      firstDay: 1, // 0 = Monday
+      daysInMonth: 30,
+    },
+
+    // Countdown target date
+    countdownDate: new Date(2026, 8, 12, 15, 30, 0),
     // Background music settings
     audio: {
       // Music file (choose one or replace with your own file)
@@ -68,7 +85,7 @@ const config = {
       // Whether music plays automatically when website opens
       autoplay: true,
       // Whether music repeats continuously
-      loop: true
+      loop: true,
     },
 
     // List of bank accounts for digital envelope/gifts
@@ -85,10 +102,10 @@ const config = {
         bank: "Bank Mandiri",
         accountNumber: "0987654321",
         accountName: "FULANA",
-      }
+      },
       // You can add more banks with the same format
-    ]
-  }
+    ],
+  },
 };
 
 export default config;
