@@ -30,12 +30,12 @@ function App() {
       </Helmet>
       <div
         style={{
-          maxWidth: 430,
+          maxWidth: 390,
           width: "100%",
           margin: "0 auto",
-          padding: "0 28px 60px",
-          background: "var(--cream)",
-          boxShadow: "0 0 60px rgba(0,0,0,0.08)",
+          padding: "0 24px 60px",
+          background: "var(--white)",
+          boxShadow: "0 0 80px rgba(0,0,0,0.1)",
           minHeight: "100vh",
         }}
       >

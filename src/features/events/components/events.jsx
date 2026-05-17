@@ -18,7 +18,6 @@ export default function Events() {
     minutes: "00",
     seconds: "00",
   });
-
   useEffect(() => {
     const target = new Date(2026, 8, 12, 15, 30, 0);
     const timer = setInterval(() => {
@@ -41,33 +40,33 @@ export default function Events() {
   }, []);
 
   return (
-    <section id="event" style={{ marginBottom: 36 }}>
+    <section id="event" style={{ marginBottom: 44 }}>
       <RevealOnScroll>
-        <div style={{ textAlign: "center" }}>
+        <div style={{ textAlign: "center", marginBottom: 44 }}>
           <p
             style={{
               fontSize: 11,
+              fontWeight: 500,
               letterSpacing: "0.25em",
               textTransform: "uppercase",
-              fontWeight: 500,
-              marginBottom: 20,
+              color: "var(--text)",
+              marginBottom: 16,
             }}
           >
             {config.weddingMonth || "Сентябрь"}
           </p>
           <div
             style={{
-              display: "block",
-              width: "100%",
-              border: "1px solid var(--border)",
-              padding: "20px 24px",
+              display: "inline-block",
               background: "var(--champagne)",
+              padding: "16px 20px",
+              width: "100%",
             }}
           >
             <div
               style={{
                 display: "grid",
-                gridTemplateColumns: "repeat(7, 36px)",
+                gridTemplateColumns: "repeat(7, 34px)",
                 gap: 4,
                 marginBottom: 8,
               }}
@@ -77,7 +76,8 @@ export default function Events() {
                   key={d}
                   style={{
                     fontSize: 10,
-                    color: "var(--text)",
+                    color: "var(--muted)",
+                    letterSpacing: "0.05em",
                     textAlign: "center",
                   }}
                 >
@@ -88,35 +88,36 @@ export default function Events() {
             <div
               style={{
                 display: "grid",
-                gridTemplateColumns: "repeat(7, 36px)",
+                gridTemplateColumns: "repeat(7, 34px)",
                 gap: 4,
+                justifyContent: "center",
               }}
             >
               {Array.from({ length: config.calendarFirstDay ?? 1 }).map(
                 (_, i) => (
-                  <div key={`e-${i}`} style={{ width: 36, height: 36 }} />
+                  <div key={`e-${i}`} style={{ width: 34, height: 34 }} />
                 ),
               )}
               {Array.from({ length: config.calendarDaysInMonth ?? 30 }).map(
                 (_, i) => {
                   const day = i + 1;
-                  const isActive = day === (config.weddingDay ?? 12);
+                  const active = day === (config.weddingDay ?? 12);
                   return (
                     <div
                       key={day}
                       style={{
-                        width: 36,
-                        height: 36,
+                        width: 34,
+                        height: 34,
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "center",
                         fontSize: 12,
-                        color: isActive ? "#fff" : "var(--muted)",
-                        background: isActive
+                        color: active ? "var(--white)" : "var(--muted)",
+                        background: active
                           ? "var(--antique-dark)"
                           : "transparent",
-                        borderRadius: isActive ? "50%" : 0,
-                        fontWeight: isActive ? 500 : 300,
+                        borderRadius: active ? "50%" : 0,
+                        fontWeight: active ? 500 : 300,
                       }}
                     >
                       {day}
@@ -128,15 +129,16 @@ export default function Events() {
           </div>
         </div>
       </RevealOnScroll>
-      <RevealOnScroll delay={0.15}>
+
+      <RevealOnScroll>
         <p
           style={{
-            fontSize: 11,
+            fontSize: 10,
             letterSpacing: "0.2em",
             textTransform: "uppercase",
+            color: "var(--muted)",
             textAlign: "center",
-            color: "var(--text)",
-            margin: "40px 0 16px",
+            marginBottom: 12,
           }}
         >
           До свадьбы осталось
@@ -146,7 +148,8 @@ export default function Events() {
             display: "flex",
             justifyContent: "center",
             alignItems: "baseline",
-            gap: 8,
+            gap: 0,
+            marginBottom: 44,
           }}
         >
           {[
@@ -154,13 +157,13 @@ export default function Events() {
             [timeLeft.hours, "часов"],
             [timeLeft.minutes, "минут"],
             [timeLeft.seconds, "секунд"],
-          ].map((u, idx) => (
+          ].map((u, i) => (
             <div key={u[1]} style={{ display: "contents" }}>
               <div style={{ minWidth: 60, textAlign: "center" }}>
                 <div
                   style={{
                     fontFamily: "Cormorant Garamond, serif",
-                    fontSize: 48,
+                    fontSize: 44,
                     fontWeight: 300,
                     color: "var(--antique-dark)",
                     lineHeight: 1,
@@ -171,22 +174,23 @@ export default function Events() {
                 <div
                   style={{
                     fontSize: 9,
-                    letterSpacing: "0.15em",
+                    letterSpacing: "0.12em",
                     textTransform: "uppercase",
-                    color: "var(--text)",
+                    color: "var(--muted)",
                     marginTop: 4,
                   }}
                 >
                   {u[1]}
                 </div>
               </div>
-              {idx < 3 && (
+              {i < 3 && (
                 <span
                   style={{
-                    fontSize: 24,
+                    fontSize: 28,
                     color: "var(--antique)",
-                    padding: "0 4px",
-                    marginTop: 8,
+                    padding: "0 6px",
+                    alignSelf: "flex-start",
+                    marginTop: 6,
                   }}
                 >
                   :
@@ -197,16 +201,16 @@ export default function Events() {
         </div>
       </RevealOnScroll>
 
-      <section style={{ textAlign: "center" }}>
+      <section style={{ marginBottom: 44 }}>
         <h3
           style={{
-            fontFamily: "Montserrat, sans-serif",
             fontSize: 11,
+            fontWeight: 500,
             letterSpacing: "0.25em",
             textTransform: "uppercase",
-            fontWeight: 500,
             color: "var(--text)",
-            marginBottom: 12,
+            textAlign: "center",
+            marginBottom: 20,
           }}
         >
           Тайминг
@@ -216,51 +220,45 @@ export default function Events() {
           return (
             <motion.div
               key={item.time + item.name}
-              initial={{ opacity: 0, x: -30 }}
+              initial={{ opacity: 0, x: -24 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, amount: 0.5 }}
-              transition={{
-                duration: 0.6,
-                ease: "easeOut",
-                delay: index * 0.2,
-              }}
+              transition={{ duration: 0.5, delay: index * 0.15 }}
             >
               <div
                 style={{
                   display: "flex",
                   alignItems: "center",
-                  gap: 20,
-                  justifyContent: "center",
-                  padding: "16px 0",
+                  gap: 16,
+                  padding: "14px 0",
+                  borderBottom: "1px solid var(--border)",
+                  borderTop: index === 0 ? "1px solid var(--border)" : "none",
                 }}
               >
-                <Icon size={28} color="var(--antique-dark)" strokeWidth={1.5} />
-                <div style={{ textAlign: "left", minWidth: 120 }}>
+                <Icon size={26} color="var(--antique-dark)" strokeWidth={1.2} />
+                <div>
                   <div
                     style={{
                       fontFamily: "Cormorant Garamond, serif",
                       fontSize: 20,
                       color: "var(--antique-dark)",
+                      fontStyle: "italic",
                     }}
                   >
                     {item.time}
                   </div>
                   <div
                     style={{
-                      fontFamily: "Montserrat, sans-serif",
-                      fontSize: 10,
+                      fontSize: 9,
                       letterSpacing: "0.15em",
                       textTransform: "uppercase",
-                      color: "var(--text)",
+                      color: "var(--muted)",
                     }}
                   >
                     {item.name}
                   </div>
                 </div>
               </div>
-              {index < config.schedule.length - 1 && (
-                <div style={{ borderTop: "1px solid var(--border)" }} />
-              )}
             </motion.div>
           );
         })}

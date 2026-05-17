@@ -1,20 +1,21 @@
-@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@300;400;500&family=Great+Vibes&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --cream: #fdf8f5;
+  --white: #ffffff;
+  --bg: #ffffff;
   --blush: #f0c4cb;
   --antique: #c87d87;
-  --antique-dark: #7a3f48;
+  --antique-dark: #8b4f58;
   --champagne: #fbead6;
   --thyme: #6b7556;
   --bisque: #e5bca9;
-  --text: #1c1010;
-  --muted: #4a3030;
-  --border: #e8d0c8;
+  --text: #1a0f0f;
+  --muted: #5a3a3a;
+  --border: #e8d5ce;
 }
 
 *,
@@ -30,18 +31,19 @@ html {
 }
 
 body {
-  background: var(--champagne);
+  background: #f5ede8;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
   color: var(--text);
   font-family: "Montserrat", sans-serif;
   font-weight: 300;
   font-size: 15px;
   line-height: 1.9;
-  letter-spacing: 0.03em;
-  overflow-x: hidden;
 }
 
 #root {
-  min-height: 100vh;
+  width: 100%;
   display: flex;
   justify-content: center;
 }

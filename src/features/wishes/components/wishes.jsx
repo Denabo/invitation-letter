@@ -5,14 +5,6 @@ import { useInvitation } from "@/features/invitation";
 import { getGuestName } from "@/lib/invitation-storage";
 import { api } from "@/lib/api";
 
-const scriptTitleStyle = {
-  fontFamily: "Great Vibes, cursive",
-  fontSize: 64,
-  fontWeight: 400,
-  color: "var(--antique-dark)",
-  textAlign: "center",
-};
-
 export default function Wishes() {
   const { uid } = useInvitation();
   const [open, setOpen] = useState(false);
@@ -32,24 +24,30 @@ export default function Wishes() {
   };
 
   return (
-    <section id="wishes" style={{ marginBottom: 36 }}>
+    <section id="wishes" style={{ marginBottom: 44 }}>
       <RevealOnScroll>
         <motion.h3
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, ease: "easeOut" }}
-          style={scriptTitleStyle}
+          transition={{ duration: 0.8 }}
+          style={{
+            fontFamily: "Great Vibes, cursive",
+            fontSize: 58,
+            color: "var(--antique-dark)",
+            textAlign: "center",
+            marginBottom: 8,
+          }}
         >
           анкета
         </motion.h3>
         <p
           style={{
-            fontSize: 13,
-            color: "var(--text)",
-            lineHeight: 2,
+            fontSize: 12,
+            fontWeight: 300,
+            color: "var(--muted)",
             textAlign: "center",
-            marginBottom: 12,
+            lineHeight: 1.8,
+            marginBottom: 20,
           }}
         >
           Чтобы сделать праздник более комфортным,
@@ -63,38 +61,38 @@ export default function Wishes() {
         style={{
           border: "1px solid var(--antique-dark)",
           borderRadius: 40,
-          padding: "16px 32px",
-          fontSize: 11,
+          padding: "12px 36px",
+          fontSize: 10,
           letterSpacing: "0.2em",
           textTransform: "uppercase",
           color: "var(--antique-dark)",
           background: "transparent",
-          cursor: "pointer",
           display: "block",
-          margin: "20px auto 16px",
+          margin: "0 auto",
+          cursor: "pointer",
         }}
       >
         Анкета гостя
       </button>
+
       <AnimatePresence>
         {open && (
           <motion.div
-            initial={{ height: 0, opacity: 0 }}
+            initial={{ height: 0, opacity: 0, overflow: "hidden" }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.5, ease: "easeInOut" }}
-            style={{ overflow: "hidden" }}
           >
-            <form onSubmit={submit}>
-              <RevealOnScroll>
+            <form onSubmit={submit} style={{ marginTop: 20 }}>
+              <div style={{ marginBottom: 20 }}>
                 <label
                   style={{
                     fontSize: 9,
                     letterSpacing: "0.15em",
                     textTransform: "uppercase",
-                    color: "var(--text)",
+                    color: "var(--muted)",
+                    marginBottom: 6,
                     display: "block",
-                    marginBottom: 8,
                   }}
                 >
                   Ваше имя
@@ -109,66 +107,55 @@ export default function Wishes() {
                     borderBottom: "1px solid var(--border)",
                     background: "transparent",
                     width: "100%",
-                    padding: "12px 0",
-                    fontFamily: "Montserrat, sans-serif",
-                    fontWeight: 300,
+                    padding: "10px 0",
                     fontSize: 14,
                     color: "var(--text)",
                     outline: "none",
-                    marginBottom: 20,
                   }}
                 />
-              </RevealOnScroll>
-              <RevealOnScroll delay={0.15}>
+              </div>
+              <div style={{ marginBottom: 20 }}>
                 <label
                   style={{
                     fontSize: 9,
                     letterSpacing: "0.15em",
                     textTransform: "uppercase",
-                    color: "var(--text)",
+                    color: "var(--muted)",
+                    marginBottom: 6,
                     display: "block",
-                    marginBottom: 8,
                   }}
                 >
                   Вы придёте?
                 </label>
-                <div
-                  style={{
-                    display: "flex",
-                    gap: 12,
-                    flexWrap: "wrap",
-                    marginBottom: 20,
-                  }}
-                >
+                <div>
                   <label>
                     <input
                       type="radio"
-                      name="att"
                       checked={attendance === "ATTENDING"}
                       onChange={() => setAttendance("ATTENDING")}
                     />{" "}
                     С радостью буду
                   </label>
+                  <br />
                   <label>
                     <input
                       type="radio"
-                      name="att"
                       checked={attendance === "NOT_ATTENDING"}
                       onChange={() => setAttendance("NOT_ATTENDING")}
                     />{" "}
                     К сожалению нет
                   </label>
                 </div>
-              </RevealOnScroll>
-              <RevealOnScroll delay={0.3}>
+              </div>
+              <div style={{ marginBottom: 20 }}>
                 <label
                   style={{
                     fontSize: 9,
                     letterSpacing: "0.15em",
                     textTransform: "uppercase",
-                    color: "var(--text)",
+                    color: "var(--muted)",
+                    marginBottom: 6,
                     display: "block",
-                    marginBottom: 8,
                   }}
                 >
                   Количество гостей
@@ -181,29 +168,26 @@ export default function Wishes() {
                     borderBottom: "1px solid var(--border)",
                     background: "transparent",
                     width: "100%",
-                    padding: "12px 0",
-                    fontFamily: "Montserrat, sans-serif",
-                    fontWeight: 300,
+                    padding: "10px 0",
                     fontSize: 14,
                     color: "var(--text)",
                     outline: "none",
-                    marginBottom: 20,
                   }}
                 >
                   <option>Только я</option>
                   <option>Я + 1</option>
                   <option>Я + 2</option>
                 </select>
-              </RevealOnScroll>
-              <RevealOnScroll delay={0.45}>
+              </div>
+              <div style={{ marginBottom: 20 }}>
                 <label
                   style={{
                     fontSize: 9,
                     letterSpacing: "0.15em",
                     textTransform: "uppercase",
-                    color: "var(--text)",
+                    color: "var(--muted)",
+                    marginBottom: 6,
                     display: "block",
-                    marginBottom: 8,
                   }}
                 >
                   Пожелания / аллергии
@@ -218,31 +202,24 @@ export default function Wishes() {
                     borderBottom: "1px solid var(--border)",
                     background: "transparent",
                     width: "100%",
-                    padding: "12px 0",
-                    fontFamily: "Montserrat, sans-serif",
-                    fontWeight: 300,
+                    padding: "10px 0",
                     fontSize: 14,
                     color: "var(--text)",
                     outline: "none",
-                    marginBottom: 20,
                   }}
                 />
-              </RevealOnScroll>
+              </div>
               <button
                 type="submit"
                 style={{
                   border: "1px solid var(--antique-dark)",
                   color: "var(--antique-dark)",
-                  padding: "16px 32px",
-                  fontSize: 11,
-                  letterSpacing: "0.15em",
+                  padding: "14px",
+                  width: "100%",
+                  fontSize: 10,
+                  letterSpacing: "0.2em",
                   textTransform: "uppercase",
                   background: "transparent",
-                  cursor: "pointer",
-                  display: "block",
-                  width: "100%",
-                  margin: "0 auto",
-                  textAlign: "center",
                 }}
               >
                 Отправить анкету

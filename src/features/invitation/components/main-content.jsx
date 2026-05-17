@@ -8,67 +8,56 @@ import { useConfig } from "@/features/invitation/hooks/use-config";
 import { getGuestName } from "@/lib/invitation-storage";
 import RevealOnScroll from "@/components/ui/reveal-on-scroll";
 
+function Greeting() {
+  const config = useConfig();
+  const guestName = getGuestName();
+  return (
+    <section id="greeting" style={{ marginBottom: 44, textAlign: "center" }}>
+      <RevealOnScroll>
+        <p
+          style={{
+            fontSize: 11,
+            fontWeight: 500,
+            letterSpacing: "0.2em",
+            textTransform: "uppercase",
+            color: "var(--text)",
+            marginBottom: 14,
+          }}
+        >
+          Дорогой {guestName || "гость"}!
+        </p>
+        <p style={{ fontSize: 13, color: "var(--muted)", lineHeight: 1.9 }}>
+          {config.greeting}
+        </p>
+      </RevealOnScroll>
+    </section>
+  );
+}
+
 function Footer() {
   return (
-    <footer style={{ padding: "32px 0" }}>
+    <section style={{ padding: "32px 0 48px", textAlign: "center" }}>
       <motion.span
         style={{
-          fontSize: 24,
+          fontSize: 28,
           color: "var(--antique)",
           display: "block",
-          marginBottom: 20,
-          textAlign: "center",
+          marginBottom: 12,
         }}
-        animate={{ scale: [1, 1.15, 1] }}
+        animate={{ scale: [1, 1.2, 1] }}
         transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
       >
         ♡
       </motion.span>
       <p
         style={{
-          fontFamily: "Cormorant Garamond, serif",
-          fontStyle: "italic",
-          fontSize: 28,
-          fontWeight: 300,
+          fontFamily: "Great Vibes, cursive",
+          fontSize: 48,
           color: "var(--antique-dark)",
-          textAlign: "center",
         }}
       >
         Ждём вас!
       </p>
-    </footer>
-  );
-}
-
-function Greeting() {
-  const config = useConfig();
-  const guestName = getGuestName();
-  return (
-    <section id="greeting" style={{ marginBottom: 36 }}>
-      <RevealOnScroll>
-        <p
-          style={{
-            fontSize: 11,
-            letterSpacing: "0.2em",
-            textTransform: "uppercase",
-            fontWeight: 500,
-            marginBottom: 20,
-            textAlign: "center",
-          }}
-        >
-          Дорогой {guestName || "гость"}!
-        </p>
-        <p
-          style={{
-            color: "var(--text)",
-            lineHeight: 2.2,
-            fontSize: 13,
-            textAlign: "center",
-          }}
-        >
-          {config.greeting}
-        </p>
-      </RevealOnScroll>
     </section>
   );
 }
@@ -80,8 +69,8 @@ export default function MainContent() {
       <Greeting />
       <Events />
       <Location />
-      <Gifts />
       <Wishes />
+      <Gifts />
       <Footer />
     </>
   );

@@ -8,161 +8,136 @@ export default function Hero() {
   return (
     <section
       id="home"
-      style={{ textAlign: "center", padding: "40px 0 0", marginBottom: 36 }}
+      style={{
+        paddingTop: 44,
+        textAlign: "center",
+        position: "relative",
+        marginBottom: 44,
+      }}
     >
-      <div style={{ position: "relative", display: "inline-block" }}>
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.2, ease: "easeOut" }}
-          style={{
-            fontFamily: "Great Vibes, cursive",
-            fontSize: 96,
-            fontWeight: 700,
-            lineHeight: 1,
-            color: "var(--antique-dark)",
-          }}
-        >
-          love
-        </motion.div>
-        <p
-          style={{
-            fontFamily: "Montserrat, sans-serif",
-            fontSize: 10,
-            letterSpacing: "0.2em",
-            color: "var(--text)",
-            position: "absolute",
-            top: 8,
-            right: -40,
-          }}
-        >
-          since 2024
-        </p>
-      </div>
-
-      <motion.div
-        initial={{ opacity: 0, y: -20 }}
+      <motion.span
+        initial={{ opacity: 0, y: -30 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1.2, delay: 0.2, ease: "easeOut" }}
+        transition={{ duration: 1.0, ease: "easeOut", delay: 0.1 }}
         style={{
           fontFamily: "Great Vibes, cursive",
-          fontSize: 84,
-          fontWeight: 700,
-          lineHeight: 1,
+          fontSize: 80,
           color: "var(--antique-dark)",
+          lineHeight: 0.9,
+          display: "block",
+        }}
+      >
+        love
+      </motion.span>
+      <motion.p
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.6, delay: 0.8 }}
+        style={{
+          position: "absolute",
+          top: 54,
+          right: 60,
+          fontSize: 9,
+          letterSpacing: "0.2em",
+          color: "var(--muted)",
+          textTransform: "uppercase",
+        }}
+      >
+        since 2024
+      </motion.p>
+      <motion.span
+        initial={{ opacity: 0, y: -30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1.0, ease: "easeOut", delay: 0.3 }}
+        style={{
+          fontFamily: "Great Vibes, cursive",
+          fontSize: 72,
+          color: "var(--antique-dark)",
+          lineHeight: 0.9,
+          display: "block",
         }}
       >
         story
-      </motion.div>
+      </motion.span>
 
-      <div
-        style={{
-          height: 200,
-          position: "relative",
-          margin: "32px auto",
-          maxWidth: "100%",
-        }}
-      >
+      <div style={{ position: "relative", height: 210, margin: "28px 0 24px" }}>
         <motion.div
-          initial={{ opacity: 0, x: -120, rotate: -15 }}
-          animate={{ opacity: 1, x: 0, rotate: -6 }}
-          transition={{ duration: 0.8, ease: "easeOut", delay: 0.5 }}
+          initial={{ opacity: 0, x: -100, rotate: -20 }}
+          animate={{ opacity: 1, x: 0, rotate: -7 }}
+          transition={{ duration: 0.7, ease: "easeOut", delay: 0.6 }}
           style={{
-            background: "#fff",
-            padding: "12px 12px 40px",
-            boxShadow: "0 4px 20px rgba(0,0,0,0.1)",
             position: "absolute",
-            left: "calc(50% - 130px)",
+            background: "var(--white)",
+            padding: "10px 10px 36px",
+            boxShadow: "0 4px 16px rgba(0,0,0,0.12)",
+            transform: "rotate(-7deg)",
+            left: "calc(50% - 120px)",
             top: 10,
             zIndex: 1,
           }}
         >
-          <div
-            style={{
-              width: 140,
-              height: 140,
-              background: "#e8e0d8",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              color: "var(--text)",
-              fontSize: 11,
-              letterSpacing: "0.1em",
-              textTransform: "uppercase",
-            }}
-          >
-            фото
-          </div>
+          <div style={{ width: 120, height: 120, background: "#e0d8d0" }} />
         </motion.div>
-
         <motion.div
-          initial={{ opacity: 0, x: 120, rotate: 15 }}
-          animate={{ opacity: 1, x: 0, rotate: 5 }}
-          transition={{ duration: 0.8, ease: "easeOut", delay: 0.7 }}
+          initial={{ opacity: 0, x: 100, rotate: 20 }}
+          animate={{ opacity: 1, x: 0, rotate: 6 }}
+          transition={{ duration: 0.7, ease: "easeOut", delay: 0.8 }}
           style={{
-            background: "#fff",
-            padding: "12px 12px 40px",
-            boxShadow: "0 4px 20px rgba(0,0,0,0.1)",
             position: "absolute",
-            left: "calc(50% - 20px)",
+            background: "var(--white)",
+            padding: "10px 10px 36px",
+            boxShadow: "0 4px 16px rgba(0,0,0,0.12)",
+            transform: "rotate(6deg)",
+            left: "calc(50% - 10px)",
             top: 0,
             zIndex: 2,
           }}
         >
-          <div
-            style={{
-              width: 140,
-              height: 140,
-              background: "#e8e0d8",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              color: "var(--text)",
-              fontSize: 11,
-              letterSpacing: "0.1em",
-              textTransform: "uppercase",
-            }}
-          >
-            фото
-          </div>
+          <div style={{ width: 120, height: 120, background: "#e0d8d0" }} />
         </motion.div>
-
-        {[
-          { top: 20, right: "calc(50% - 160px)" },
-          { bottom: 20, left: "calc(50% + 80px)" },
-        ].map((heart, idx) => (
-          <motion.span
-            key={idx}
-            initial={{ opacity: 0, scale: 0 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.4, delay: 1.1 }}
-            style={{
-              position: "absolute",
-              color: "var(--antique)",
-              fontSize: 18,
-              ...heart,
-            }}
-          >
-            ♡
-          </motion.span>
-        ))}
+        <motion.span
+          initial={{ opacity: 0, scale: 0 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 1.1, duration: 0.4 }}
+          style={{
+            position: "absolute",
+            top: 8,
+            left: "calc(50% + 70px)",
+            color: "var(--antique-dark)",
+            fontSize: 16,
+          }}
+        >
+          ♡
+        </motion.span>
+        <motion.span
+          initial={{ opacity: 0, scale: 0 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 1.2, duration: 0.4 }}
+          style={{
+            position: "absolute",
+            bottom: 8,
+            left: "calc(50% - 90px)",
+            color: "var(--antique-dark)",
+            fontSize: 16,
+          }}
+        >
+          ♡
+        </motion.span>
       </div>
 
       <RevealOnScroll>
         <p
           style={{
             fontFamily: "Great Vibes, cursive",
-            fontStyle: "italic",
-            fontSize: 54,
+            fontSize: 46,
             color: "var(--antique-dark)",
-            marginTop: 32,
             textAlign: "center",
+            marginTop: 8,
           }}
         >
           {config.coupleNames || `${config.brideName} & ${config.groomName}`}
         </p>
       </RevealOnScroll>
-      <div style={{ marginTop: 48 }} />
     </section>
   );
 }

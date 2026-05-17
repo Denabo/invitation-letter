@@ -1,84 +1,108 @@
+import { motion } from "framer-motion";
 import RevealOnScroll from "@/components/ui/reveal-on-scroll";
 import { useConfig } from "@/features/invitation/hooks/use-config";
 
 export default function Gifts() {
   const config = useConfig();
-
   return (
-    <section id="gifts" style={{ marginBottom: 36 }}>
-      <RevealOnScroll>
-        <h3
-          style={{
-            fontFamily: "Great Vibes, cursive",
-            fontSize: 64,
-            fontWeight: 400,
-            color: "var(--antique-dark)",
-            textAlign: "center",
-            marginBottom: 12,
-          }}
-        >
-          дресс код
-        </h3>
-        <p
-          style={{
-            fontSize: 13,
-            color: "var(--text)",
-            lineHeight: 2.2,
-            textAlign: "center",
-          }}
-        >
-          {config.dressCode?.text}
-        </p>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            gap: 12,
-            marginTop: 24,
-          }}
-        >
-          {config.dressCode?.colors?.map((color) => (
-            <div
-              key={color}
-              style={{
-                width: 40,
-                height: 40,
-                borderRadius: "50%",
-                background: color,
-              }}
-            />
-          ))}
-        </div>
-      </RevealOnScroll>
+    <>
+      <section id="gifts" style={{ marginBottom: 44 }}>
+        <RevealOnScroll>
+          <h3
+            style={{
+              fontFamily: "Great Vibes, cursive",
+              fontSize: 58,
+              color: "var(--antique-dark)",
+              textAlign: "center",
+              marginBottom: 14,
+            }}
+          >
+            дресс код
+          </h3>
+          <p
+            style={{
+              fontSize: 12,
+              color: "var(--muted)",
+              textAlign: "center",
+              lineHeight: 1.8,
+              marginBottom: 20,
+            }}
+          >
+            {config.dressCode?.text}
+          </p>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              gap: 14,
+              marginTop: 16,
+            }}
+          >
+            {config.dressCode?.colors?.map((c, index) => (
+              <motion.div
+                key={c}
+                initial={{ opacity: 0, scale: 0 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+                style={{
+                  width: 38,
+                  height: 38,
+                  borderRadius: "50%",
+                  background: c,
+                }}
+              />
+            ))}
+          </div>
+        </RevealOnScroll>
+      </section>
 
-      <RevealOnScroll>
-        <h3
-          style={{
-            fontFamily: "Great Vibes, cursive",
-            fontSize: 64,
-            fontWeight: 400,
-            color: "var(--antique-dark)",
-            textAlign: "center",
-            marginBottom: 12,
-          }}
-        >
-          детали
-        </h3>
-        <p
-          style={{
-            fontSize: 13,
-            color: "var(--text)",
-            lineHeight: 2.2,
-            textAlign: "center",
-            whiteSpace: "pre-line",
-          }}
-        >
-          {config.gifts?.text
-            ?.replace("в конвертах. ", "в конвертах.\n\n")
-            .replace("для нас ", "для нас\n")
-            .replace("будет бутылочка ", "будет бутылочка\n")}
-        </p>
-      </RevealOnScroll>
-    </section>
+      <section id="details" style={{ marginBottom: 44 }}>
+        <RevealOnScroll>
+          <h3
+            style={{
+              fontFamily: "Great Vibes, cursive",
+              fontSize: 58,
+              color: "var(--antique-dark)",
+              textAlign: "center",
+              marginBottom: 14,
+            }}
+          >
+            детали
+          </h3>
+          <p
+            style={{
+              fontSize: 12,
+              color: "var(--muted)",
+              textAlign: "center",
+              lineHeight: 1.9,
+              marginBottom: 14,
+            }}
+          >
+            {config.gifts?.text}
+          </p>
+          <a
+            href="https://t.me"
+            target="_blank"
+            rel="noreferrer"
+            style={{
+              display: "block",
+              width: "100%",
+              border: "1px solid var(--antique-dark)",
+              color: "var(--antique-dark)",
+              padding: 14,
+              fontSize: 10,
+              fontWeight: 400,
+              letterSpacing: "0.2em",
+              textTransform: "uppercase",
+              background: "transparent",
+              textAlign: "center",
+              textDecoration: "none",
+            }}
+          >
+            Телеграм
+          </a>
+        </RevealOnScroll>
+      </section>
+    </>
   );
 }
