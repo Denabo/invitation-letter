@@ -7,6 +7,18 @@ const overlayStyle = {
   inset: 0,
   zIndex: 100,
   overflow: "hidden",
+  background: "var(--bg)",
+};
+
+const sharedSvgStyle = {
+  position: "absolute",
+  left: "50%",
+  top: "50%",
+  transform: "translate(-50%, -50%)",
+  width: "min(44vw, 320px)",
+  maxWidth: "320px",
+  maxHeight: "44vh",
+  pointerEvents: "none",
 };
 
 export default function LandingPage() {
@@ -19,83 +31,55 @@ export default function LandingPage() {
           <motion.div
             initial={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.45 }}
+            transition={{ duration: 0.45, delay: 0.75 }}
             style={overlayStyle}
           >
             <motion.img
               src="/top.svg"
               alt="top"
-              initial={{ y: -20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: -340, opacity: 0 }}
-              transition={{ duration: 0.8, ease: "easeInOut" }}
-              style={{
-                position: "absolute",
-                top: 0,
-                left: "50%",
-                transform: "translateX(-50%)",
-                width: "min(100vw, 720px)",
-                maxWidth: "100vw",
-                pointerEvents: "none",
-                zIndex: 3,
-              }}
+              initial={{ scale: 0.9, opacity: 0, y: -40 }}
+              animate={{ scale: 1, opacity: 1, y: -120 }}
+              exit={{ y: -420, opacity: 0 }}
+              transition={{ duration: 0.65, ease: "easeOut" }}
+              style={{ ...sharedSvgStyle, zIndex: 4 }}
             />
 
             <motion.img
               src="/left.svg"
               alt="left"
-              initial={{ x: -20, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              exit={{ x: -380, opacity: 0 }}
-              transition={{ duration: 0.8, ease: "easeInOut", delay: 0.05 }}
-              style={{
-                position: "absolute",
-                left: 0,
-                bottom: 0,
-                width: "min(40vw, 260px)",
-                pointerEvents: "none",
-                zIndex: 1,
-              }}
+              initial={{ scale: 0.9, opacity: 0, x: -40 }}
+              animate={{ scale: 1, opacity: 1, x: -160, y: 80 }}
+              exit={{ x: -460, opacity: 0 }}
+              transition={{ duration: 0.65, ease: "easeOut", delay: 0.1 }}
+              style={{ ...sharedSvgStyle, zIndex: 2 }}
             />
 
             <motion.img
               src="/right.svg"
               alt="right"
-              initial={{ x: 20, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              exit={{ x: 380, opacity: 0 }}
-              transition={{ duration: 0.8, ease: "easeInOut", delay: 0.1 }}
-              style={{
-                position: "absolute",
-                right: 0,
-                bottom: 0,
-                width: "min(40vw, 260px)",
-                pointerEvents: "none",
-                zIndex: 1,
-              }}
+              initial={{ scale: 0.9, opacity: 0, x: 40 }}
+              animate={{ scale: 1, opacity: 1, x: 160, y: 80 }}
+              exit={{ x: 460, opacity: 0 }}
+              transition={{ duration: 0.65, ease: "easeOut", delay: 0.2 }}
+              style={{ ...sharedSvgStyle, zIndex: 2 }}
             />
 
             <motion.img
               src="/button.svg"
               alt="bottom"
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: 340, opacity: 0 }}
-              transition={{ duration: 0.8, ease: "easeInOut", delay: 0.07 }}
-              style={{
-                position: "absolute",
-                bottom: 0,
-                left: "50%",
-                transform: "translateX(-50%)",
-                width: "min(90vw, 520px)",
-                pointerEvents: "none",
-                zIndex: 2,
-              }}
+              initial={{ scale: 0.9, opacity: 0, y: 40 }}
+              animate={{ scale: 1, opacity: 1, y: 160 }}
+              exit={{ y: 460, opacity: 0 }}
+              transition={{ duration: 0.65, ease: "easeOut", delay: 0.15 }}
+              style={{ ...sharedSvgStyle, zIndex: 3 }}
             />
 
             <motion.button
               type="button"
               onClick={() => setOpened(true)}
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.75, duration: 0.35 }}
               whileTap={{ scale: 0.97 }}
               whileHover={{ scale: 1.03 }}
               style={{
@@ -125,7 +109,7 @@ export default function LandingPage() {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: opened ? 1 : 0 }}
-        transition={{ duration: 0.6 }}
+        transition={{ duration: 0.6, delay: opened ? 0.2 : 0 }}
       >
         <MainContent />
       </motion.div>
