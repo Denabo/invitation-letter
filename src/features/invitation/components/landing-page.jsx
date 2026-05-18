@@ -15,9 +15,10 @@ const sharedSvgStyle = {
   left: "50%",
   top: "50%",
   transform: "translate(-50%, -50%)",
-  width: "min(44vw, 320px)",
-  maxWidth: "320px",
-  maxHeight: "44vh",
+  width: "min(42vw, 300px)",
+  height: "min(42vw, 300px)",
+  maxWidth: "42vh",
+  maxHeight: "42vh",
   pointerEvents: "none",
 };
 
@@ -31,45 +32,45 @@ export default function LandingPage() {
           <motion.div
             initial={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.45, delay: 0.75 }}
+            transition={{ duration: 0.45, delay: 0.7 }}
             style={overlayStyle}
           >
             <motion.img
               src="/top.svg"
-              alt="top"
-              initial={{ scale: 0.9, opacity: 0, y: -40 }}
-              animate={{ scale: 1, opacity: 1, y: -120 }}
-              exit={{ y: -420, opacity: 0 }}
+              alt="top ornament"
+              initial={{ scale: 0.92, opacity: 0, y: -35 }}
+              animate={{ scale: 1, opacity: 1, x: 0, y: -130 }}
+              exit={{ y: -460, opacity: 0 }}
               transition={{ duration: 0.65, ease: "easeOut" }}
               style={{ ...sharedSvgStyle, zIndex: 4 }}
             />
 
             <motion.img
               src="/left.svg"
-              alt="left"
-              initial={{ scale: 0.9, opacity: 0, x: -40 }}
-              animate={{ scale: 1, opacity: 1, x: -160, y: 80 }}
-              exit={{ x: -460, opacity: 0 }}
+              alt="left ornament"
+              initial={{ scale: 0.92, opacity: 0, x: -35 }}
+              animate={{ scale: 1, opacity: 1, x: -170, y: 80 }}
+              exit={{ x: -500, opacity: 0 }}
               transition={{ duration: 0.65, ease: "easeOut", delay: 0.1 }}
               style={{ ...sharedSvgStyle, zIndex: 2 }}
             />
 
             <motion.img
               src="/right.svg"
-              alt="right"
-              initial={{ scale: 0.9, opacity: 0, x: 40 }}
-              animate={{ scale: 1, opacity: 1, x: 160, y: 80 }}
-              exit={{ x: 460, opacity: 0 }}
+              alt="right ornament"
+              initial={{ scale: 0.92, opacity: 0, x: 35 }}
+              animate={{ scale: 1, opacity: 1, x: 170, y: 80 }}
+              exit={{ x: 500, opacity: 0 }}
               transition={{ duration: 0.65, ease: "easeOut", delay: 0.2 }}
               style={{ ...sharedSvgStyle, zIndex: 2 }}
             />
 
             <motion.img
               src="/button.svg"
-              alt="bottom"
-              initial={{ scale: 0.9, opacity: 0, y: 40 }}
-              animate={{ scale: 1, opacity: 1, y: 160 }}
-              exit={{ y: 460, opacity: 0 }}
+              alt="bottom ornament"
+              initial={{ scale: 0.92, opacity: 0, y: 35 }}
+              animate={{ scale: 1, opacity: 1, x: 0, y: 170 }}
+              exit={{ y: 500, opacity: 0 }}
               transition={{ duration: 0.65, ease: "easeOut", delay: 0.15 }}
               style={{ ...sharedSvgStyle, zIndex: 3 }}
             />
@@ -77,7 +78,7 @@ export default function LandingPage() {
             <motion.button
               type="button"
               onClick={() => setOpened(true)}
-              initial={{ opacity: 0, scale: 0.95 }}
+              initial={{ opacity: 0, scale: 0.94 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.75, duration: 0.35 }}
               whileTap={{ scale: 0.97 }}
@@ -106,13 +107,15 @@ export default function LandingPage() {
         )}
       </AnimatePresence>
 
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: opened ? 1 : 0 }}
-        transition={{ duration: 0.6, delay: opened ? 0.2 : 0 }}
-      >
-        <MainContent />
-      </motion.div>
+      {opened && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6 }}
+        >
+          <MainContent />
+        </motion.div>
+      )}
     </>
   );
 }
