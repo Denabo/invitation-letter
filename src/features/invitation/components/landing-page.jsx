@@ -17,7 +17,7 @@ const overlayStyle = {
 const ornamentBaseStyle = {
   position: "absolute",
   left: "50%",
-  width: "160%",
+  width: "103%",
   height: "auto",
   maxWidth: "none",
   transform: "translateX(-50%)",
@@ -45,7 +45,7 @@ export default function LandingPage() {
               transition={{ duration: 0.65, ease: "easeOut" }}
               style={{
                 ...ornamentBaseStyle,
-                bottom: "-8%",
+                bottom: "-4%",
                 zIndex: 3,
               }}
             />
@@ -58,13 +58,8 @@ export default function LandingPage() {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.65, ease: "easeOut" }}
               style={{
-                position: "absolute",
+                ...ornamentBaseStyle,
                 top: "-4%",
-                left: "50%",
-                transform: "translateX(-50%)",
-                width: "103%",
-                height: "auto",
-                maxWidth: "none",
               }}
             />
 
