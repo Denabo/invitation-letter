@@ -16,6 +16,7 @@ const overlayStyle = {
 
 export default function LandingPage() {
   const [opened, setOpened] = useState(false);
+  const [topImageSrc, setTopImageSrc] = useState("/top.png");
 
   return (
     <>
@@ -28,19 +29,21 @@ export default function LandingPage() {
             style={overlayStyle}
           >
             <motion.img
-              src="/top.svg"
+              src={topImageSrc}
               alt="top ornament"
+              onError={() => setTopImageSrc("/top.svg")}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.65, ease: "easeOut" }}
               style={{
+                position: "absolute",
+                top: "-8%",
+                left: "50%",
+                transform: "translateX(-50%)",
                 width: "160%",
                 height: "auto",
                 maxWidth: "none",
-                position: "relative",
-                left: "50%",
-                transform: "translateX(-50%)",
               }}
             />
 
