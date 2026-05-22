@@ -44,8 +44,8 @@ export default function LandingPage() {
                 ...layerBaseStyle,
                 left: 0,
                 top: 0,
-                width: "100%",
-                height: "100%",
+                width: "50vw",
+                height: "100vh",
                 zIndex: 2,
               }}
             />
@@ -61,8 +61,8 @@ export default function LandingPage() {
                 ...layerBaseStyle,
                 right: 0,
                 top: 0,
-                width: "100%",
-                height: "100%",
+                width: "50vw",
+                height: "100vh",
                 zIndex: 2,
               }}
             />
@@ -78,8 +78,8 @@ export default function LandingPage() {
                 ...layerBaseStyle,
                 left: 0,
                 bottom: 0,
-                width: "100%",
-                height: "100%",
+                width: "100vw",
+                height: "50vh",
                 zIndex: 3,
               }}
             />
@@ -95,8 +95,8 @@ export default function LandingPage() {
                 ...layerBaseStyle,
                 left: 0,
                 top: 0,
-                width: "100%",
-                height: "100%",
+                width: "100vw",
+                height: "50vh",
                 zIndex: 4,
               }}
             />
