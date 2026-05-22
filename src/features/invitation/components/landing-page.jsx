@@ -34,57 +34,6 @@ export default function LandingPage() {
             style={overlayStyle}
           >
             <motion.img
-              src="/left.svg"
-              alt="left ornament"
-              initial={{ x: -60, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              exit={{ x: -460, opacity: 0 }}
-              transition={{ duration: 0.65, ease: "easeOut", delay: 0.1 }}
-              style={{
-                ...layerBaseStyle,
-                left: 0,
-                top: 0,
-                width: "50vw",
-                height: "100vh",
-                zIndex: 2,
-              }}
-            />
-
-            <motion.img
-              src="/right.svg"
-              alt="right ornament"
-              initial={{ x: 60, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              exit={{ x: 460, opacity: 0 }}
-              transition={{ duration: 0.65, ease: "easeOut", delay: 0.2 }}
-              style={{
-                ...layerBaseStyle,
-                right: 0,
-                top: 0,
-                width: "50vw",
-                height: "100vh",
-                zIndex: 2,
-              }}
-            />
-
-            <motion.img
-              src="/button.svg"
-              alt="bottom ornament"
-              initial={{ y: 50, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: 500, opacity: 0 }}
-              transition={{ duration: 0.65, ease: "easeOut", delay: 0.15 }}
-              style={{
-                ...layerBaseStyle,
-                left: 0,
-                bottom: 0,
-                width: "100vw",
-                height: "50vh",
-                zIndex: 3,
-              }}
-            />
-
-            <motion.img
               src="/top.svg"
               alt="top ornament"
               initial={{ y: -50, opacity: 0 }}
