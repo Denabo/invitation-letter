@@ -22,7 +22,7 @@ const bottomOrnamentStyle = {
   maxWidth: "none",
   transform: "translateX(-50%)",
   bottom: "-4%",
-  zIndex: 3,
+  zIndex: 2,
   filter: "drop-shadow(0px -4px 12px rgba(0,0,0,0.12))",
 };
 
@@ -34,8 +34,19 @@ const topOrnamentStyle = {
   maxWidth: "none",
   transform: "translateX(-50%)",
   top: "-4%",
-  zIndex: 4,
+  zIndex: 3,
   filter: "drop-shadow(0px 6px 12px rgba(0,0,0,0.12))",
+};
+
+const sideOrnamentBaseStyle = {
+  position: "absolute",
+  width: "64%",
+  height: "auto",
+  maxWidth: "none",
+  top: "50%",
+  transform: "translateY(-50%)",
+  zIndex: 1,
+  filter: "drop-shadow(0px 6px 12px rgba(0,0,0,0.1))",
 };
 
 export default function LandingPage() {
@@ -56,8 +67,8 @@ export default function LandingPage() {
               alt="bottom ornament"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.65, ease: "easeOut" }}
+              exit={{ opacity: 0, y: 260 }}
+              transition={{ duration: 0.75, ease: "easeInOut" }}
               style={bottomOrnamentStyle}
             />
 
@@ -66,9 +77,35 @@ export default function LandingPage() {
               alt="top ornament"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.65, ease: "easeOut" }}
+              exit={{ opacity: 0, y: -260 }}
+              transition={{ duration: 0.75, ease: "easeInOut" }}
               style={topOrnamentStyle}
+            />
+
+            <motion.img
+              src="/left.webp"
+              alt="left ornament"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0, x: -260 }}
+              transition={{ duration: 0.75, ease: "easeInOut" }}
+              style={{
+                ...sideOrnamentBaseStyle,
+                left: "-18%",
+              }}
+            />
+
+            <motion.img
+              src="/right.webp"
+              alt="right ornament"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0, x: 260 }}
+              transition={{ duration: 0.75, ease: "easeInOut" }}
+              style={{
+                ...sideOrnamentBaseStyle,
+                right: "-18%",
+              }}
             />
 
             <motion.button
