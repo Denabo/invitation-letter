@@ -34,7 +34,14 @@ export default function LandingPage() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.65, ease: "easeOut" }}
-              style={{ width: "140%", height: "auto", marginLeft: "-20%" }}
+              style={{
+                width: "160%",
+                height: "auto",
+                maxWidth: "none",
+                position: "relative",
+                left: "50%",
+                transform: "translateX(-50%)",
+              }}
             />
 
             <motion.button
