@@ -4,7 +4,11 @@ import MainContent from "@/features/invitation/components/main-content";
 
 const overlayStyle = {
   position: "fixed",
-  inset: 0,
+  top: 0,
+  left: "50%",
+  transform: "translateX(-50%)",
+  width: "min(100%, 390px)",
+  height: "100vh",
   zIndex: 100,
   overflow: "hidden",
   background: "var(--bg)",
@@ -40,7 +44,7 @@ export default function LandingPage() {
                 ...layerBaseStyle,
                 left: 0,
                 top: 0,
-                width: "50vw",
+                width: "50%",
                 height: "100vh",
                 zIndex: 2,
               }}
@@ -57,7 +61,7 @@ export default function LandingPage() {
                 ...layerBaseStyle,
                 right: 0,
                 top: 0,
-                width: "50vw",
+                width: "50%",
                 height: "100vh",
                 zIndex: 2,
               }}
@@ -74,7 +78,7 @@ export default function LandingPage() {
                 ...layerBaseStyle,
                 left: 0,
                 bottom: 0,
-                width: "100vw",
+                width: "100%",
                 height: "50vh",
                 zIndex: 3,
               }}
@@ -91,7 +95,7 @@ export default function LandingPage() {
                 ...layerBaseStyle,
                 left: 0,
                 top: 0,
-                width: "100vw",
+                width: "100%",
                 height: "50vh",
                 zIndex: 4,
               }}
