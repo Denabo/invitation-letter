@@ -14,9 +14,17 @@ const overlayStyle = {
   background: "var(--bg)",
 };
 
+const ornamentBaseStyle = {
+  position: "absolute",
+  left: "50%",
+  width: "160%",
+  height: "auto",
+  maxWidth: "none",
+  transform: "translateX(-50%)",
+};
+
 export default function LandingPage() {
   const [opened, setOpened] = useState(false);
-  const [topImageSrc, setTopImageSrc] = useState("/top.png");
 
   return (
     <>
@@ -29,9 +37,22 @@ export default function LandingPage() {
             style={overlayStyle}
           >
             <motion.img
-              src={topImageSrc}
+              src="/button.webp"
+              alt="bottom ornament"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.65, ease: "easeOut" }}
+              style={{
+                ...ornamentBaseStyle,
+                bottom: "-8%",
+                zIndex: 3,
+              }}
+            />
+
+            <motion.img
+              src="/top.webp"
               alt="top ornament"
-              onError={() => setTopImageSrc("/top.svg")}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
