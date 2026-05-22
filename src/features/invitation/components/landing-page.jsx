@@ -99,7 +99,7 @@ export default function LandingPage() {
                 left: 0,
                 top: 0,
                 width: "100%",
-                height: "35%",
+                height: "100%",
                 objectPosition: "top center",
                 zIndex: 4,
               }}
