@@ -22,6 +22,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- Landing overlay now uses the same side frame lines as the main invitation container for visual consistency (unreleased)
+- Decorative SVG frame pieces on landing now stretch to the container edges to align with side borders (unreleased)
 - Non-intrusive error handling that doesn't block UI interaction (5155c57)
 - Clear visual feedback for locked/unlocked name input states (afc8be6)
 

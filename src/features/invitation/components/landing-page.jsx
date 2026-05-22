@@ -3,10 +3,12 @@ import { AnimatePresence, motion } from "framer-motion";
 import MainContent from "@/features/invitation/components/main-content";
 
 const overlayStyle = {
-  position: "fixed",
+  position: "absolute",
   inset: 0,
   background: "var(--bg)",
   zIndex: 100,
+  width: "100%",
+  height: "100%",
   overflow: "hidden",
 };
 
@@ -60,7 +62,8 @@ export default function LandingPage() {
                 top: 0,
                 left: "50%",
                 transform: "translateX(-50%)",
-                width: "min(90vw, 520px)",
+                width: "100%",
+                maxWidth: "unset",
                 pointerEvents: "none",
               }}
             />
@@ -76,7 +79,8 @@ export default function LandingPage() {
                 bottom: 0,
                 left: "50%",
                 transform: "translateX(-50%)",
-                width: "min(90vw, 520px)",
+                width: "100%",
+                maxWidth: "unset",
                 pointerEvents: "none",
               }}
             />
