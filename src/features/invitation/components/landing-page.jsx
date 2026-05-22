@@ -4,16 +4,23 @@ import MainContent from "@/features/invitation/components/main-content";
 
 const overlayStyle = {
   position: "fixed",
-  inset: 0,
+  top: 0,
+  left: "50%",
+  transform: "translateX(-50%)",
+  width: "min(100%, 390px)",
+  height: "100vh",
   zIndex: 100,
   overflow: "hidden",
   background: "var(--bg)",
 };
 
-const layerBaseStyle = {
+const ornamentBaseStyle = {
   position: "absolute",
-  pointerEvents: "none",
-  objectFit: "fill",
+  left: "50%",
+  width: "160%",
+  height: "auto",
+  maxWidth: "none",
+  transform: "translateX(-50%)",
 };
 
 export default function LandingPage() {
@@ -30,70 +37,34 @@ export default function LandingPage() {
             style={overlayStyle}
           >
             <motion.img
-              src="/left.svg"
-              alt="left ornament"
-              initial={{ x: -60, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              exit={{ x: -460, opacity: 0 }}
-              transition={{ duration: 0.65, ease: "easeOut", delay: 0.1 }}
-              style={{
-                ...layerBaseStyle,
-                left: 0,
-                top: 0,
-                width: "50vw",
-                height: "100vh",
-                zIndex: 2,
-              }}
-            />
-
-            <motion.img
-              src="/right.svg"
-              alt="right ornament"
-              initial={{ x: 60, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              exit={{ x: 460, opacity: 0 }}
-              transition={{ duration: 0.65, ease: "easeOut", delay: 0.2 }}
-              style={{
-                ...layerBaseStyle,
-                right: 0,
-                top: 0,
-                width: "50vw",
-                height: "100vh",
-                zIndex: 2,
-              }}
-            />
-
-            <motion.img
-              src="/button.svg"
+              src="/button.webp"
               alt="bottom ornament"
-              initial={{ y: 50, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: 500, opacity: 0 }}
-              transition={{ duration: 0.65, ease: "easeOut", delay: 0.15 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.65, ease: "easeOut" }}
               style={{
-                ...layerBaseStyle,
-                left: 0,
-                bottom: 0,
-                width: "100vw",
-                height: "50vh",
+                ...ornamentBaseStyle,
+                bottom: "-8%",
                 zIndex: 3,
               }}
             />
 
             <motion.img
-              src="/top.svg"
+              src="/top.webp"
               alt="top ornament"
-              initial={{ y: -50, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: -500, opacity: 0 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
               transition={{ duration: 0.65, ease: "easeOut" }}
               style={{
-                ...layerBaseStyle,
-                left: 0,
-                top: 0,
-                width: "100vw",
-                height: "50vh",
-                zIndex: 4,
+                position: "absolute",
+                top: "-4%",
+                left: "50%",
+                transform: "translateX(-50%)",
+                width: "103%",
+                height: "auto",
+                maxWidth: "none",
               }}
             />
 
