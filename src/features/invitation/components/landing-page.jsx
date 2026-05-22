@@ -3,12 +3,10 @@ import { AnimatePresence, motion } from "framer-motion";
 import MainContent from "@/features/invitation/components/main-content";
 
 const overlayStyle = {
-  position: "fixed",
-  top: 0,
-  left: "50%",
-  transform: "translateX(-50%)",
-  width: "min(100%, 390px)",
-  height: "100vh",
+  position: "absolute",
+  inset: 0,
+  width: "100%",
+  minHeight: "100vh",
   zIndex: 100,
   overflow: "hidden",
   background: "var(--bg)",
@@ -17,7 +15,7 @@ const overlayStyle = {
 const layerBaseStyle = {
   position: "absolute",
   pointerEvents: "none",
-  objectFit: "contain",
+  objectFit: "fill",
 };
 
 export default function LandingPage() {
@@ -44,9 +42,8 @@ export default function LandingPage() {
                 ...layerBaseStyle,
                 left: 0,
                 top: 0,
-                width: "45%",
-                height: "60%",
-                objectPosition: "top left",
+                width: "50%",
+                height: "100vh",
                 zIndex: 2,
               }}
             />
@@ -62,9 +59,8 @@ export default function LandingPage() {
                 ...layerBaseStyle,
                 right: 0,
                 top: 0,
-                width: "45%",
-                height: "60%",
-                objectPosition: "top right",
+                width: "50%",
+                height: "100vh",
                 zIndex: 2,
               }}
             />
@@ -81,8 +77,7 @@ export default function LandingPage() {
                 left: 0,
                 bottom: 0,
                 width: "100%",
-                height: "35%",
-                objectPosition: "bottom center",
+                height: "50vh",
                 zIndex: 3,
               }}
             />
@@ -96,11 +91,10 @@ export default function LandingPage() {
               transition={{ duration: 0.65, ease: "easeOut" }}
               style={{
                 ...layerBaseStyle,
+                left: 0,
                 top: 0,
-                width: "110%",
-                height: "130%",
-                left: "-5%",
-                objectPosition: "top center",
+                width: "100%",
+                height: "50vh",
                 zIndex: 4,
               }}
             />
