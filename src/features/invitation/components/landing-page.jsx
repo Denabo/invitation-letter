@@ -14,12 +14,6 @@ const overlayStyle = {
   background: "var(--bg)",
 };
 
-const layerBaseStyle = {
-  position: "absolute",
-  pointerEvents: "none",
-  objectFit: "fill",
-};
-
 export default function LandingPage() {
   const [opened, setOpened] = useState(false);
 
@@ -36,18 +30,10 @@ export default function LandingPage() {
             <motion.img
               src="/top.svg"
               alt="top ornament"
-              initial={{ y: -50, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: -500, opacity: 0 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
               transition={{ duration: 0.65, ease: "easeOut" }}
-              style={{
-                ...layerBaseStyle,
-                left: 0,
-                top: 0,
-                width: "100vw",
-                height: "50vh",
-                zIndex: 4,
-              }}
             />
 
             <motion.button
