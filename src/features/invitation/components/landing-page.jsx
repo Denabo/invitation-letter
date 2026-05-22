@@ -10,16 +10,10 @@ const overlayStyle = {
   background: "var(--bg)",
 };
 
-const sharedSvgStyle = {
+const layerBaseStyle = {
   position: "absolute",
-  left: "50%",
-  top: "50%",
-  transform: "translate(-50%, -50%)",
-  width: "min(42vw, 300px)",
-  height: "min(42vw, 300px)",
-  maxWidth: "42vh",
-  maxHeight: "42vh",
   pointerEvents: "none",
+  objectFit: "fill",
 };
 
 export default function LandingPage() {
@@ -36,43 +30,71 @@ export default function LandingPage() {
             style={overlayStyle}
           >
             <motion.img
-              src="/top.svg"
-              alt="top ornament"
-              initial={{ scale: 0.92, opacity: 0, y: -35 }}
-              animate={{ scale: 1, opacity: 1, x: 0, y: -130 }}
-              exit={{ y: -460, opacity: 0 }}
-              transition={{ duration: 0.65, ease: "easeOut" }}
-              style={{ ...sharedSvgStyle, zIndex: 4 }}
-            />
-
-            <motion.img
               src="/left.svg"
               alt="left ornament"
-              initial={{ scale: 0.92, opacity: 0, x: -35 }}
-              animate={{ scale: 1, opacity: 1, x: -170, y: 80 }}
-              exit={{ x: -500, opacity: 0 }}
+              initial={{ x: -60, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              exit={{ x: -460, opacity: 0 }}
               transition={{ duration: 0.65, ease: "easeOut", delay: 0.1 }}
-              style={{ ...sharedSvgStyle, zIndex: 2 }}
+              style={{
+                ...layerBaseStyle,
+                left: 0,
+                top: 0,
+                width: "50vw",
+                height: "100vh",
+                zIndex: 2,
+              }}
             />
 
             <motion.img
               src="/right.svg"
               alt="right ornament"
-              initial={{ scale: 0.92, opacity: 0, x: 35 }}
-              animate={{ scale: 1, opacity: 1, x: 170, y: 80 }}
-              exit={{ x: 500, opacity: 0 }}
+              initial={{ x: 60, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              exit={{ x: 460, opacity: 0 }}
               transition={{ duration: 0.65, ease: "easeOut", delay: 0.2 }}
-              style={{ ...sharedSvgStyle, zIndex: 2 }}
+              style={{
+                ...layerBaseStyle,
+                right: 0,
+                top: 0,
+                width: "50vw",
+                height: "100vh",
+                zIndex: 2,
+              }}
             />
 
             <motion.img
               src="/button.svg"
               alt="bottom ornament"
-              initial={{ scale: 0.92, opacity: 0, y: 35 }}
-              animate={{ scale: 1, opacity: 1, x: 0, y: 170 }}
+              initial={{ y: 50, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
               exit={{ y: 500, opacity: 0 }}
               transition={{ duration: 0.65, ease: "easeOut", delay: 0.15 }}
-              style={{ ...sharedSvgStyle, zIndex: 3 }}
+              style={{
+                ...layerBaseStyle,
+                left: 0,
+                bottom: 0,
+                width: "100vw",
+                height: "50vh",
+                zIndex: 3,
+              }}
+            />
+
+            <motion.img
+              src="/top.svg"
+              alt="top ornament"
+              initial={{ y: -50, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: -500, opacity: 0 }}
+              transition={{ duration: 0.65, ease: "easeOut" }}
+              style={{
+                ...layerBaseStyle,
+                left: 0,
+                top: 0,
+                width: "100vw",
+                height: "50vh",
+                zIndex: 4,
+              }}
             />
 
             <motion.button
