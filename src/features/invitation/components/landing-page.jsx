@@ -17,7 +17,7 @@ const overlayStyle = {
 const layerBaseStyle = {
   position: "absolute",
   pointerEvents: "none",
-  objectFit: "fill",
+  objectFit: "contain",
 };
 
 export default function LandingPage() {
@@ -44,8 +44,9 @@ export default function LandingPage() {
                 ...layerBaseStyle,
                 left: 0,
                 top: 0,
-                width: "50%",
-                height: "100vh",
+                width: "45%",
+                height: "60%",
+                objectPosition: "top left",
                 zIndex: 2,
               }}
             />
@@ -61,8 +62,9 @@ export default function LandingPage() {
                 ...layerBaseStyle,
                 right: 0,
                 top: 0,
-                width: "50%",
-                height: "100vh",
+                width: "45%",
+                height: "60%",
+                objectPosition: "top right",
                 zIndex: 2,
               }}
             />
@@ -79,7 +81,8 @@ export default function LandingPage() {
                 left: 0,
                 bottom: 0,
                 width: "100%",
-                height: "50vh",
+                height: "35%",
+                objectPosition: "bottom center",
                 zIndex: 3,
               }}
             />
@@ -96,7 +99,8 @@ export default function LandingPage() {
                 left: 0,
                 top: 0,
                 width: "100%",
-                height: "50vh",
+                height: "35%",
+                objectPosition: "top center",
                 zIndex: 4,
               }}
             />
