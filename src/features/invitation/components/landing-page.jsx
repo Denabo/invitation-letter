@@ -96,10 +96,10 @@ export default function LandingPage() {
               transition={{ duration: 0.65, ease: "easeOut" }}
               style={{
                 ...layerBaseStyle,
-                left: 0,
                 top: 0,
-                width: "100%",
-                height: "110%",
+                width: "110%",
+                height: "130%",
+                left: "-5%",
                 objectPosition: "top center",
                 zIndex: 4,
               }}
