@@ -14,13 +14,25 @@ const overlayStyle = {
   background: "var(--bg)",
 };
 
-const ornamentBaseStyle = {
+const bottomOrnamentStyle = {
   position: "absolute",
   left: "50%",
   width: "103%",
   height: "auto",
   maxWidth: "none",
   transform: "translateX(-50%)",
+  bottom: "-4%",
+  zIndex: 3,
+};
+
+const topOrnamentStyle = {
+  position: "absolute",
+  left: "50%",
+  width: "103%",
+  height: "auto",
+  maxWidth: "none",
+  transform: "translateX(-50%)",
+  top: "-4%",
 };
 
 export default function LandingPage() {
@@ -43,11 +55,7 @@ export default function LandingPage() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.65, ease: "easeOut" }}
-              style={{
-                ...ornamentBaseStyle,
-                bottom: "-4%",
-                zIndex: 3,
-              }}
+              style={bottomOrnamentStyle}
             />
 
             <motion.img
@@ -57,10 +65,7 @@ export default function LandingPage() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.65, ease: "easeOut" }}
-              style={{
-                ...ornamentBaseStyle,
-                top: "-4%",
-              }}
+              style={topOrnamentStyle}
             />
 
             <motion.button
