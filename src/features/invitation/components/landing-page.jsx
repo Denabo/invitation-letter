@@ -17,12 +17,13 @@ const overlayStyle = {
 const bottomOrnamentStyle = {
   position: "absolute",
   left: "50%",
-  width: "103%",
+  width: "125%",
   height: "auto",
   maxWidth: "none",
   transform: "translateX(-50%)",
   bottom: "-4%",
   zIndex: 3,
+  filter: "drop-shadow(0px -4px 12px rgba(0,0,0,0.12))",
 };
 
 const topOrnamentStyle = {
@@ -33,6 +34,8 @@ const topOrnamentStyle = {
   maxWidth: "none",
   transform: "translateX(-50%)",
   top: "-4%",
+  zIndex: 4,
+  filter: "drop-shadow(0px 6px 12px rgba(0,0,0,0.12))",
 };
 
 export default function LandingPage() {
