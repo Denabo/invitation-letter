@@ -38,10 +38,10 @@ export default function LandingPage() {
               transition={{ duration: 0.65, ease: "easeOut" }}
               style={{
                 position: "absolute",
-                top: "-8%",
+                top: "-4%",
                 left: "50%",
                 transform: "translateX(-50%)",
-                width: "160%",
+                width: "103%",
                 height: "auto",
                 maxWidth: "none",
               }}
