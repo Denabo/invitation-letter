@@ -1,26 +1,8 @@
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Music, PauseCircle, PlayCircle } from "lucide-react";
-import { useConfig } from "@/features/invitation/hooks/use-config";
-import BottomBar from "@/components/layout/bottom-bar";
-
-/**
- * Layout component that wraps the main invitation content.
- * Handles music playback controls and navigation.
- *
- * @param {Object} props
- * @param {React.ReactNode} props.children - Child components to render
- * @param {Object} props.audioControls - Audio controls from useAudio hook
- * @param {boolean} props.audioControls.isPlaying - Whether audio is playing
- * @param {Function} props.audioControls.toggle - Toggle audio play/pause
- */
 const Layout = ({ children, audioControls }) => {
   const config = useConfig();
   const [showToast, setShowToast] = useState(false);
-
   const { isPlaying, toggle } = audioControls || {};
 
-  // Show toast when audio starts playing
   useEffect(() => {
     if (isPlaying) {
       setShowToast(true);
@@ -35,14 +17,14 @@ const Layout = ({ children, audioControls }) => {
   }, [isPlaying, config.audio?.toastDuration]);
 
   return (
-    <div className="relative min-h-screen w-full bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center">
+    <div className="relative min-h-screen w-full flex items-center justify-center" style={{ background: "var(--bg)" }}>
       <motion.div
-        className="mx-auto w-full max-w-[430px] min-h-screen bg-white relative overflow-hidden border border-gray-200 shadow-lg"
+        className="mx-auto w-full max-w-[430px] min-h-screen relative overflow-hidden"
+        style={{ background: "var(--bg)" }}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
       >
-        {/* Music Control Button with Status Indicator */}
         {toggle && (
           <motion.button
             initial={{ scale: 0 }}
@@ -66,7 +48,6 @@ const Layout = ({ children, audioControls }) => {
         <main className="relative h-full w-full pb-[100px]">{children}</main>
         <BottomBar />
 
-        {/* Music Info Toast */}
         <AnimatePresence>
           {showToast && (
             <motion.div
