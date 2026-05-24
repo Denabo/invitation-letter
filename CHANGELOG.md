@@ -22,6 +22,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- Removed white side stripe on the main invitation page by eliminating horizontal container padding in the root app shell
+
 - Non-intrusive error handling that doesn't block UI interaction (5155c57)
 - Clear visual feedback for locked/unlocked name input states (afc8be6)
 
