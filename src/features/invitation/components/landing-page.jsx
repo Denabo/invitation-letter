@@ -2,136 +2,161 @@ import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import MainContent from "@/features/invitation/components/main-content";
 
-const overlayStyle = {
-  position: "fixed",
-  top: 0,
-  left: "50%",
-  transform: "translateX(-50%)",
-  width: "min(100%, 390px)",
-  height: "100vh",
-  zIndex: 100,
-  overflow: "hidden",
-  background: "var(--bg)",
-};
-
-const bottomOrnamentStyle = {
-  position: "absolute",
-  left: "50%",
-  width: "125%",
-  height: "auto",
-  maxWidth: "none",
-  transform: "translateX(-50%)",
-  bottom: "-4%",
-  zIndex: 2,
-  filter: "drop-shadow(0px -4px 12px rgba(0,0,0,0.12))",
-};
-
-const topOrnamentStyle = {
-  position: "absolute",
-  left: "50%",
-  width: "103%",
-  height: "auto",
-  maxWidth: "none",
-  transform: "translateX(-50%)",
-  top: "-4%",
-  zIndex: 3,
-  filter: "drop-shadow(0px 6px 12px rgba(0,0,0,0.12))",
-};
-
-const sideOrnamentBaseStyle = {
-  position: "absolute",
-  width: "64%",
-  height: "auto",
-  maxWidth: "none",
-  top: "50%",
-  transform: "translateY(-50%)",
-  zIndex: 1,
-  filter: "drop-shadow(0px 6px 12px rgba(0,0,0,0.1))",
+const smoothTransition = {
+  duration: 2.8,
+  ease: [0.16, 1, 0.3, 1],
 };
 
 export default function LandingPage() {
   const [opened, setOpened] = useState(false);
 
   return (
-    <>
-      <AnimatePresence>
+    <div
+      style={{
+        background: "var(--bg)",
+        minHeight: "100vh",
+        width: "100%",
+      }}
+    >
+      <AnimatePresence initial={false} mode="wait">
         {!opened && (
           <motion.div
             initial={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.45, delay: 0.7 }}
-            style={overlayStyle}
+            animate={{ opacity: 1 }}
+            exit={{
+              opacity: 0,
+              transition: { delay: 1.6, duration: 0.5, ease: "easeOut" },
+            }}
+            style={{
+              position: "fixed",
+              top: 0,
+              left: "50%",
+              transform: "translateX(-50%)",
+              width: "min(100%, 390px)",
+              height: "100vh",
+              zIndex: 100,
+              overflow: "hidden",
+              background: "var(--bg)",
+            }}
           >
+            {/* BOTTOM */}
             <motion.img
               src="/button.webp"
-              alt="bottom ornament"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0, y: 260 }}
-              transition={{ duration: 0.75, ease: "easeInOut" }}
-              style={bottomOrnamentStyle}
-            />
-
-            <motion.img
-              src="/top.webp"
-              alt="top ornament"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0, y: -260 }}
-              transition={{ duration: 0.75, ease: "easeInOut" }}
-              style={topOrnamentStyle}
-            />
-
-            <motion.img
-              src="/left.webp"
-              alt="left ornament"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0, x: -260 }}
-              transition={{ duration: 0.75, ease: "easeInOut" }}
-              style={{
-                ...sideOrnamentBaseStyle,
-                left: "-18%",
-              }}
-            />
-
-            <motion.img
-              src="/right.webp"
-              alt="right ornament"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0, x: 260 }}
-              transition={{ duration: 0.75, ease: "easeInOut" }}
-              style={{
-                ...sideOrnamentBaseStyle,
-                right: "-18%",
-              }}
-            />
-
-            <motion.button
-              type="button"
-              onClick={() => setOpened(true)}
-              initial={{ opacity: 0, scale: 0.94 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.75, duration: 0.35 }}
-              whileTap={{ scale: 0.97 }}
-              whileHover={{ scale: 1.03 }}
+              alt=""
+              loading="eager"
+              decoding="async"
+              initial={{ opacity: 0, x: "-50%", y: 0 }}
+              animate={{ opacity: 1, x: "-50%", y: 0 }}
+              exit={{ opacity: 0, x: "-50%", y: 380 }}
+              transition={smoothTransition}
               style={{
                 position: "absolute",
                 left: "50%",
-                bottom: "9%",
-                transform: "translateX(-50%)",
+                width: "125%",
+                height: "auto",
+                maxWidth: "none",
+                bottom: "-4%",
+                zIndex: 2,
+                willChange: "transform, opacity",
+              }}
+            />
+
+            {/* TOP */}
+            <motion.img
+              src="/top.webp"
+              alt=""
+              loading="eager"
+              decoding="async"
+              initial={{ opacity: 0, x: "-50%", y: 0 }}
+              animate={{ opacity: 1, x: "-50%", y: 0 }}
+              exit={{ opacity: 0, x: "-50%", y: -380 }}
+              transition={smoothTransition}
+              style={{
+                position: "absolute",
+                left: "50%",
+                width: "103%",
+                height: "auto",
+                maxWidth: "none",
+                top: "-4%",
+                zIndex: 3,
+                willChange: "transform, opacity",
+              }}
+            />
+
+            {/* LEFT */}
+<motion.img
+  src="/left.webp"
+  alt=""
+  loading="eager"
+  decoding="async"
+  initial={{ opacity: 0, x: 0, y: "-50%" }}
+  animate={{ opacity: 1, x: 0, y: "-50%" }}
+  exit={{ opacity: 0, x: -480, y: "-50%" }}
+  transition={smoothTransition}
+  style={{
+    position: "absolute",
+    width: "60%",
+    height: "auto",
+    maxWidth: "none",
+    top: "50%",
+    left: "-8%", // вынесен за край
+    zIndex: 1,
+    willChange: "transform, opacity",
+  }}
+/>
+            {/* RIGHT */}
+            <motion.img
+              src="/right.webp"
+              alt=""
+              loading="eager"
+              decoding="async"
+              initial={{ opacity: 0, x: 0, y: "-50%" }}
+              animate={{ opacity: 1, x: 0, y: "-50%" }}
+              exit={{ opacity: 0, x: 380, y: "-50%" }}
+              transition={smoothTransition}
+              style={{
+                position: "absolute",
+                width: "52%",
+                height: "auto",
+                maxWidth: "none",
+                top: "50%",
+                right: 0,
+                zIndex: 1,
+                willChange: "transform, opacity",
+              }}
+            />
+
+            {/* КНОПКА */}
+            <motion.button
+              type="button"
+              onClick={() => setOpened(true)}
+              initial={{ opacity: 0, scale: 0.9, x: "-50%" }}
+              animate={{ opacity: 1, scale: 1, x: "-50%" }}
+              exit={{
+                opacity: 0,
+                scale: 0.9,
+                x: "-50%",
+                transition: { delay: 0, duration: 0.25 },
+              }}
+              transition={{ delay: 0.5, duration: 0.5 }}
+              whileTap={{ scale: 0.95 }}
+              whileHover={{ scale: 1.05 }}
+              style={{
+                position: "absolute",
+                left: "50%",
+                bottom: "12%",
                 border: "1px solid var(--antique-dark)",
                 color: "var(--antique-dark)",
-                background: "var(--white)",
+                background: "white",
                 borderRadius: 999,
-                padding: "14px 30px",
-                fontSize: 11,
+                padding: "14px 32px",
+                fontSize: 12,
                 letterSpacing: "0.2em",
                 textTransform: "uppercase",
                 cursor: "pointer",
-                pointerEvents: "auto",
                 zIndex: 120,
+                willChange: "transform, opacity",
+                touchAction: "manipulation",
               }}
             >
               открыть
@@ -140,15 +165,24 @@ export default function LandingPage() {
         )}
       </AnimatePresence>
 
-      {opened && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6 }}
-        >
-          <MainContent />
-        </motion.div>
-      )}
-    </>
+      <AnimatePresence>
+        {opened && (
+          <motion.div
+            key="main-content"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.9, delay: 0.3 }}
+            style={{
+              maxWidth: 390,
+              margin: "0 auto",
+              background: "var(--bg)",
+              minHeight: "100vh",
+            }}
+          >
+            <MainContent />
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
   );
 }
