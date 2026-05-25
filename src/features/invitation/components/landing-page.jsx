@@ -75,7 +75,7 @@ export default function LandingPage() {
             animate={{ opacity: 1 }}
             exit={{
               opacity: 0,
-              transition: { delay: 0, duration: 0.45, ease: "easeOut" },
+              transition: { delay: 0.8, duration: 0.45, ease: "easeOut" },
             }}
             style={overlayStyle}
           >
