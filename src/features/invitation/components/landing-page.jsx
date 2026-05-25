@@ -20,8 +20,8 @@ const innerStyle = {
   maxWidth: 390,
   height: "100vh",
   overflow: "hidden",
-  background: "var(--bg, #faf9f6)",
-  pointerEvents: "auto",
+  background: "transparent",
+  pointerEvents: "none",
 };
 
 const bottomOrnamentStyle = {
@@ -54,12 +54,12 @@ const sideOrnamentBaseStyle = {
 };
 
 const baseExitTransition = {
-  duration: 7,
+  duration: 5,
   ease: [0.22, 1, 0.36, 1],
 };
 
 const accentExitTransition = {
-  duration: 7,
+  duration: 5,
   ease: [0.22, 1, 0.36, 1],
 };
 
@@ -75,7 +75,7 @@ export default function LandingPage() {
             animate={{ opacity: 1 }}
             exit={{
               opacity: 0,
-              transition: { delay: 7, duration: 0.45, ease: "easeOut" },
+              transition: { duration: 5, ease: "linear" },
             }}
             style={overlayStyle}
           >
@@ -125,12 +125,8 @@ export default function LandingPage() {
                 onClick={() => setOpened(true)}
                 initial={{ opacity: 1, scale: 1 }}
                 animate={{ opacity: 1, scale: 1 }}
-                exit={{
-                  opacity: 0,
-                  scale: 0.9,
-                  transition: accentExitTransition,
-                }}
-                transition={{ duration: 0.25 }}
+                exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.2 } }}
+                transition={{ duration: 0.2 }}
                 whileTap={{ scale: 0.95 }}
                 whileHover={{ scale: 1.05 }}
                 style={{
@@ -163,7 +159,7 @@ export default function LandingPage() {
             key="main-content"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: 0.2, delay: 0 }}
           >
             <MainContent />
           </motion.div>
