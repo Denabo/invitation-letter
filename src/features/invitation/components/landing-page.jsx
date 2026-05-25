@@ -5,49 +5,56 @@ import MainContent from "@/features/invitation/components/main-content";
 const overlayStyle = {
   position: "fixed",
   top: 0,
-  left: "50%",
-  transform: "translateX(-50%)",
-  width: "min(100%, 390px)",
-  height: "100vh",
+  left: 0,
+  right: 0,
+  bottom: 0,
+  display: "flex",
+  justifyContent: "center",
   zIndex: 100,
+  pointerEvents: "none",
+};
+
+const innerStyle = {
+  position: "relative",
+  width: "100%",
+  maxWidth: 390,
+  height: "100vh",
   overflow: "hidden",
   background: "var(--bg, #faf9f6)",
+  pointerEvents: "auto",
 };
 
 const bottomOrnamentStyle = {
   position: "absolute",
   left: "50%",
+  bottom: 0,
   width: "125%",
   height: "auto",
   maxWidth: "none",
-  bottom: "-4%",
   zIndex: 2,
-  filter: "drop-shadow(0px -4px 12px rgba(0,0,0,0.12))",
 };
 
 const topOrnamentStyle = {
   position: "absolute",
   left: "50%",
+  top: "-4%",
   width: "103%",
   height: "auto",
   maxWidth: "none",
-  top: "-4%",
   zIndex: 3,
-  filter: "drop-shadow(0px 6px 12px rgba(0,0,0,0.12))",
 };
 
 const sideOrnamentBaseStyle = {
   position: "absolute",
-  width: "64%",
+  width: "100%",
   height: "auto",
   maxWidth: "none",
   top: "50%",
   zIndex: 1,
-  filter: "drop-shadow(0px 6px 12px rgba(0,0,0,0.1))",
 };
 
 const smoothTransition = {
-  duration: 1.15,
+  duration: 5,
   ease: [0.22, 1, 0.36, 1],
 };
 
@@ -63,160 +70,80 @@ export default function LandingPage() {
             animate={{ opacity: 1 }}
             exit={{
               opacity: 0,
-              transition: {
-                delay: 0.85,
-                duration: 0.45,
-                ease: "easeOut",
-              },
+              transition: { delay: 5, duration: 5, ease: "easeOut" },
             }}
             style={overlayStyle}
           >
-            <motion.img
-              src="/button.webp"
-              alt="bottom ornament"
-              initial={{
-                opacity: 0,
-                x: "-50%",
-                y: 0,
-                scale: 1,
-              }}
-              animate={{
-                opacity: 1,
-                x: "-50%",
-                y: 0,
-                scale: 1,
-              }}
-              exit={{
-                opacity: 0,
-                x: "-50%",
-                y: 320,
-                scale: 1.02,
-              }}
-              transition={smoothTransition}
-              style={bottomOrnamentStyle}
-            />
+            <div style={innerStyle}>
+              <motion.img
+                src="/button.webp"
+                alt="bottom ornament"
+                initial={{ x: "-50%", y: 0, scale: 1 }}
+                animate={{ x: "-50%", y: 0, scale: 1 }}
+                exit={{ x: "-50%", y: "150%", scale: 1.02 }}
+                transition={smoothTransition}
+                style={bottomOrnamentStyle}
+              />
 
-            text
+              <motion.img
+                src="/top.webp"
+                alt="top ornament"
+                initial={{ x: "-50%", y: 0, scale: 1 }}
+                animate={{ x: "-50%", y: 0, scale: 1 }}
+                exit={{ x: "-50%", y: "-150%", scale: 1.02 }}
+                transition={smoothTransition}
+                style={topOrnamentStyle}
+              />
 
-            <motion.img
-              src="/top.webp"
-              alt="top ornament"
-              initial={{
-                opacity: 0,
-                x: "-50%",
-                y: 0,
-                scale: 1,
-              }}
-              animate={{
-                opacity: 1,
-                x: "-50%",
-                y: 0,
-                scale: 1,
-              }}
-              exit={{
-                opacity: 0,
-                x: "-50%",
-                y: -320,
-                scale: 1.02,
-              }}
-              transition={smoothTransition}
-              style={topOrnamentStyle}
-            />
+              <motion.img
+                src="/left.webp"
+                alt="left ornament"
+                initial={{ x: 0, y: "-50%", scale: 1, rotate: 0 }}
+                animate={{ x: 0, y: "-50%", scale: 1, rotate: 0 }}
+                exit={{ x: "-150%", y: "-50%", scale: 1.015, rotate: -2 }}
+                transition={smoothTransition}
+                style={{ ...sideOrnamentBaseStyle, left: "-18%" }}
+              />
 
-            <motion.img
-              src="/left.webp"
-              alt="left ornament"
-              initial={{
-                opacity: 0,
-                x: 0,
-                y: "-50%",
-                scale: 1,
-                rotate: 0,
-              }}
-              animate={{
-                opacity: 1,
-                x: 0,
-                y: "-50%",
-                scale: 1,
-                rotate: 0,
-              }}
-              exit={{
-                opacity: 0,
-                x: -320,
-                y: "-50%",
-                scale: 1.015,
-                rotate: -2,
-              }}
-              transition={smoothTransition}
-              style={{
-                ...sideOrnamentBaseStyle,
-                left: "-18%",
-              }}
-            />
+              <motion.img
+                src="/right.webp"
+                alt="right ornament"
+                initial={{ x: 0, y: "-50%", scale: 1, rotate: 0 }}
+                animate={{ x: 0, y: "-50%", scale: 1, rotate: 0 }}
+                exit={{ x: "150%", y: "-50%", scale: 1.015, rotate: 2 }}
+                transition={smoothTransition}
+                style={{ ...sideOrnamentBaseStyle, right: "-18%" }}
+              />
 
-            <motion.img
-              src="/right.webp"
-              alt="right ornament"
-              initial={{
-                opacity: 0,
-                x: 0,
-                y: "-50%",
-                scale: 1,
-                rotate: 0,
-              }}
-              animate={{
-                opacity: 1,
-                x: 0,
-                y: "-50%",
-                scale: 1,
-                rotate: 0,
-              }}
-              exit={{
-                opacity: 0,
-                x: 320,
-                y: "-50%",
-                scale: 1.015,
-                rotate: 2,
-              }}
-              transition={smoothTransition}
-              style={{
-                ...sideOrnamentBaseStyle,
-                right: "-18%",
-              }}
-            />
-
-            <motion.button
-              type="button"
-              onClick={() => setOpened(true)}
-              initial={{ opacity: 0, scale: 0.9, x: "-50%" }}
-              animate={{ opacity: 1, scale: 1, x: "-50%" }}
-              exit={{
-                opacity: 0,
-                scale: 0.9,
-                x: "-50%",
-                transition: { delay: 0, duration: 0.2 },
-              }}
-              transition={{ delay: 0.5, duration: 0.4 }}
-              whileTap={{ scale: 0.95 }}
-              whileHover={{ scale: 1.05 }}
-              style={{
-                position: "absolute",
-                left: "50%",
-                bottom: "12%",
-                border: "1px solid var(--antique-dark)",
-                color: "var(--antique-dark)",
-                background: "white",
-                borderRadius: 999,
-                padding: "14px 32px",
-                fontSize: 12,
-                letterSpacing: "0.2em",
-                textTransform: "uppercase",
-                cursor: "pointer",
-                zIndex: 120,
-              }}
-            >
-              открыть
-            </motion.button>
+              <motion.button
+                type="button"
+                onClick={() => setOpened(true)}
+                initial={{ opacity: 1, scale: 1 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9, transition: { delay: 0, duration: 5 } }}
+                transition={{ duration: 5 }}
+                whileTap={{ scale: 0.95 }}
+                whileHover={{ scale: 1.05 }}
+                style={{
+                  position: "absolute",
+                  left: "50%",
+                  x: "-50%",
+                  bottom: "12%",
+                  border: "1px solid var(--antique-dark)",
+                  color: "var(--antique-dark)",
+                  background: "white",
+                  borderRadius: 999,
+                  padding: "14px 32px",
+                  fontSize: 12,
+                  letterSpacing: "0.2em",
+                  textTransform: "uppercase",
+                  cursor: "pointer",
+                  zIndex: 120,
+                }}
+              >
+                открыть
+              </motion.button>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
