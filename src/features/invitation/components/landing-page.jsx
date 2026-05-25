@@ -5,9 +5,11 @@ import MainContent from "@/features/invitation/components/main-content";
 const overlayStyle = {
   position: "fixed",
   top: 0,
-  left: "50%",
-  transform: "translateX(-50%)",
-  width: "min(100%, 390px)",
+  left: 0,
+  right: 0,
+  margin: "0 auto",
+  width: "100%",
+  maxWidth: 390,
   height: "100vh",
   zIndex: 100,
   overflow: "hidden",
@@ -17,6 +19,7 @@ const overlayStyle = {
 const bottomOrnamentStyle = {
   position: "absolute",
   left: "50%",
+  transform: "translateX(-50%)",
   width: "125%",
   height: "auto",
   maxWidth: "none",
@@ -28,6 +31,7 @@ const bottomOrnamentStyle = {
 const topOrnamentStyle = {
   position: "absolute",
   left: "50%",
+  transform: "translateX(-50%)",
   width: "103%",
   height: "auto",
   maxWidth: "none",
@@ -47,7 +51,7 @@ const sideOrnamentBaseStyle = {
 };
 
 const smoothTransition = {
-  duration: 1.15,
+  duration: 0.8,
   ease: [0.22, 1, 0.36, 1],
 };
 
@@ -76,19 +80,16 @@ export default function LandingPage() {
               alt="bottom ornament"
               initial={{
                 opacity: 0,
-                x: "-50%",
                 y: 0,
                 scale: 1,
               }}
               animate={{
                 opacity: 1,
-                x: "-50%",
                 y: 0,
                 scale: 1,
               }}
               exit={{
                 opacity: 0,
-                x: "-50%",
                 y: 320,
                 scale: 1.02,
               }}
@@ -96,26 +97,21 @@ export default function LandingPage() {
               style={bottomOrnamentStyle}
             />
 
-            text
-
             <motion.img
               src="/top.webp"
               alt="top ornament"
               initial={{
                 opacity: 0,
-                x: "-50%",
                 y: 0,
                 scale: 1,
               }}
               animate={{
                 opacity: 1,
-                x: "-50%",
                 y: 0,
                 scale: 1,
               }}
               exit={{
                 opacity: 0,
-                x: "-50%",
                 y: -320,
                 scale: 1.02,
               }}
@@ -188,12 +184,11 @@ export default function LandingPage() {
             <motion.button
               type="button"
               onClick={() => setOpened(true)}
-              initial={{ opacity: 0, scale: 0.9, x: "-50%" }}
-              animate={{ opacity: 1, scale: 1, x: "-50%" }}
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
               exit={{
                 opacity: 0,
                 scale: 0.9,
-                x: "-50%",
                 transition: { delay: 0, duration: 0.2 },
               }}
               transition={{ delay: 0.5, duration: 0.4 }}
@@ -202,6 +197,7 @@ export default function LandingPage() {
               style={{
                 position: "absolute",
                 left: "50%",
+                transform: "translateX(-50%)",
                 bottom: "12%",
                 border: "1px solid var(--antique-dark)",
                 color: "var(--antique-dark)",
