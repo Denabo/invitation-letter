@@ -54,12 +54,12 @@ const sideOrnamentBaseStyle = {
 };
 
 const baseExitTransition = {
-  duration: 0.8,
+  duration: 7,
   ease: [0.22, 1, 0.36, 1],
 };
 
 const accentExitTransition = {
-  duration: 0.8,
+  duration: 7,
   ease: [0.22, 1, 0.36, 1],
 };
 
@@ -75,7 +75,7 @@ export default function LandingPage() {
             animate={{ opacity: 1 }}
             exit={{
               opacity: 0,
-              transition: { delay: 0.8, duration: 0.45, ease: "easeOut" },
+              transition: { delay: 7, duration: 0.45, ease: "easeOut" },
             }}
             style={overlayStyle}
           >
