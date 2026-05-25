@@ -33,7 +33,7 @@ function App() {
           maxWidth: 390,
           width: "100%",
           margin: "0 auto",
-          padding: "0 0 60px",
+          padding: 0,
           background: "var(--white)",
           boxShadow: "0 0 80px rgba(0,0,0,0.1)",
           minHeight: "100vh",
