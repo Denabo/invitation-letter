@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import MainContent from "@/features/invitation/components/main-content";
 
 const overlayStyle = {
-  position: "fixed",
+  position: "absolute",
   top: 0,
   left: 0,
   right: 0,
