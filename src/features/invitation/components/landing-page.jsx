@@ -21,7 +21,7 @@ const innerStyle = {
   height: "100vh",
   overflow: "hidden",
   background: "transparent",
-  pointerEvents: "none",
+  pointerEvents: "auto",
 };
 
 const bottomOrnamentStyle = {
