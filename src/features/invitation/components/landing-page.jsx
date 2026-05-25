@@ -25,7 +25,6 @@ const bottomOrnamentStyle = {
   maxWidth: "none",
   bottom: "-4%",
   zIndex: 2,
-  filter: "drop-shadow(0px -4px 12px rgba(0,0,0,0.12))",
 };
 
 const topOrnamentStyle = {
@@ -37,7 +36,6 @@ const topOrnamentStyle = {
   maxWidth: "none",
   top: "-4%",
   zIndex: 3,
-  filter: "drop-shadow(0px 6px 12px rgba(0,0,0,0.12))",
 };
 
 const sideOrnamentBaseStyle = {
@@ -47,7 +45,6 @@ const sideOrnamentBaseStyle = {
   maxWidth: "none",
   top: "50%",
   zIndex: 1,
-  filter: "drop-shadow(0px 6px 12px rgba(0,0,0,0.1))",
 };
 
 const smoothTransition = {
