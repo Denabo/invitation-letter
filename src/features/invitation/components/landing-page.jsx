@@ -15,7 +15,9 @@ const overlayStyle = {
 const innerStyle = {
   position: "relative",
   width: "100%",
-  height: "100vh",
+  maxWidth: 390,
+  aspectRatio: "9 / 16",
+  margin: "0 auto",
   overflow: "hidden",
   background: "transparent",
   pointerEvents: "auto",
@@ -24,7 +26,7 @@ const innerStyle = {
 const bottomOrnamentStyle = {
   position: "absolute",
   left: "50%",
-  bottom: 0,
+  bottom: "0%",
   width: "125%",
   height: "auto",
   maxWidth: "none",
