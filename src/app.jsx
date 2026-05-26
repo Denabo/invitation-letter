@@ -36,8 +36,11 @@ function App() {
           padding: 0,
           background: "var(--white)",
           boxShadow: "0 0 80px rgba(0,0,0,0.1)",
-          minHeight: "100vh",
+          minHeight: "100svh",
+          height: "100dvh",
           position: "relative",
+          overflowY: "auto",
+          overscrollBehavior: "contain",
         }}
       >
         <Suspense fallback={<div style={{ minHeight: "100vh" }} />}>

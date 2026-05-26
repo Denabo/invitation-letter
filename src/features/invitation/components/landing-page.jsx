@@ -10,14 +10,13 @@ const overlayStyle = {
   bottom: 0,
   zIndex: 100,
   pointerEvents: "none",
-  overflowY: "auto",
 };
 
 const innerStyle = {
   position: "relative",
   width: "100%",
   maxWidth: 390,
-  minHeight: "100dvh",
+  minHeight: "100svh",
   height: "max(100dvh, calc(390px * 16 / 9))",
   margin: "0 auto",
   overflow: "hidden",
