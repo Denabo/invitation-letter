@@ -17,7 +17,7 @@ const innerStyle = {
   width: "100%",
   height: "100vh",
   overflow: "hidden",
-  background: "var(--white)",
+  background: "transparent",
   pointerEvents: "auto",
 };
 
@@ -154,9 +154,9 @@ export default function LandingPage() {
         {opened && (
           <motion.div
             key="main-content"
-            initial={{ opacity: 0 }}
+            initial={{ opacity: 1 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.2, delay: 0 }}
+            transition={{ duration: 0 }}
           >
             <MainContent />
           </motion.div>
