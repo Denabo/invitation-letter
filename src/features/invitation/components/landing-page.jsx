@@ -8,8 +8,6 @@ const overlayStyle = {
   left: 0,
   right: 0,
   bottom: 0,
-  display: "flex",
-  justifyContent: "center",
   zIndex: 100,
   pointerEvents: "none",
 };
@@ -17,10 +15,9 @@ const overlayStyle = {
 const innerStyle = {
   position: "relative",
   width: "100%",
-  maxWidth: 390,
   height: "100vh",
   overflow: "hidden",
-  background: "transparent",
+  background: "var(--white)",
   pointerEvents: "auto",
 };
 
