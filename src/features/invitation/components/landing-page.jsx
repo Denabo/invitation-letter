@@ -17,7 +17,7 @@ const innerStyle = {
   width: "100%",
   maxWidth: 390,
   minHeight: "100svh",
-  height: "max(100dvh, calc(390px * 16 / 9))",
+  height: "max(100svh, calc(390px * 16 / 9))",
   margin: "0 auto",
   overflow: "hidden",
   background: "transparent",
