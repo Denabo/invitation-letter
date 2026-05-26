@@ -10,14 +10,15 @@ const overlayStyle = {
   bottom: 0,
   zIndex: 100,
   pointerEvents: "none",
+  overflowY: "auto",
 };
 
 const innerStyle = {
   position: "relative",
   width: "100%",
   maxWidth: 390,
-  height: "100dvh",
-  maxHeight: "calc(390px * 16 / 9)",
+  minHeight: "100dvh",
+  height: "max(100dvh, calc(390px * 16 / 9))",
   margin: "0 auto",
   overflow: "hidden",
   background: "transparent",
@@ -27,7 +28,7 @@ const innerStyle = {
 const bottomOrnamentStyle = {
   position: "absolute",
   left: "50%",
-  bottom: "-3%",
+  top: "52%",
   width: "125%",
   height: "auto",
   maxWidth: "none",
@@ -37,7 +38,7 @@ const bottomOrnamentStyle = {
 const topOrnamentStyle = {
   position: "absolute",
   left: "50%",
-  top: "-4%",
+  top: "52%",
   width: "103%",
   height: "auto",
   maxWidth: "none",
@@ -93,9 +94,9 @@ export default function LandingPage() {
               <motion.img
                 src="/top.webp"
                 alt="top ornament"
-                initial={{ x: "-50%", y: 0, scale: 1 }}
-                animate={{ x: "-50%", y: 0, scale: 1 }}
-                exit={{ x: "-50%", y: "-150%", scale: 1.02 }}
+                initial={{ x: "-50%", y: "-100%", scale: 1 }}
+                animate={{ x: "-50%", y: "-100%", scale: 1 }}
+                exit={{ x: "-50%", y: "-250%", scale: 1.02 }}
                 transition={accentExitTransition}
                 style={topOrnamentStyle}
               />
