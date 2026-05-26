@@ -14,9 +14,9 @@ const overlayStyle = {
 
 const innerStyle = {
   position: "relative",
-  width: "100%",
-  maxWidth: 390,
-  aspectRatio: "9 / 16",
+  width: "min(100%, calc(100dvh * 9 / 16))",
+  height: "100dvh",
+  minHeight: "100vh",
   margin: "0 auto",
   overflow: "hidden",
   background: "transparent",
