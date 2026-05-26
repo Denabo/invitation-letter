@@ -29,16 +29,18 @@
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
-  overflow-y: scroll;
-  scrollbar-gutter: stable;
+  overflow-y: auto;
+  height: 100%;
 }
 
 body {
   overflow-x: hidden;
+  overflow-y: auto;
   background: var(--white);
   display: flex;
   justify-content: center;
-  min-height: 100vh;
+  min-height: 100dvh;
+  height: 100%;
   color: var(--text);
   font-family: "Montserrat", sans-serif;
   font-weight: 300;
