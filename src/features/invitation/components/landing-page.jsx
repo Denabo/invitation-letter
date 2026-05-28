@@ -114,7 +114,7 @@ export default function LandingPage() {
                 animate={{ x: 0, y: "-50%", scale: 1, rotate: 0 }}
                 exit={{ x: "-150%", y: "-50%", scale: 1.015, rotate: -2 }}
                 transition={ornamentExitTransition}
-                style={{ ...sideOrnamentBaseStyle, left: "-18%", top: "55%" }}
+                style={{ ...sideOrnamentBaseStyle, left: "-18%", top: "57%" }}
               />
 
               <motion.img
