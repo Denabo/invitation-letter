@@ -53,14 +53,9 @@ const sideOrnamentBaseStyle = {
   zIndex: 1,
 };
 
-const baseExitTransition = {
-  duration: 7,
-  ease: [0.22, 1, 0.36, 1],
-};
-
-const accentExitTransition = {
-  duration: 7,
-  ease: [0.22, 1, 0.36, 1],
+const ornamentExitTransition = {
+  duration: 8,
+  ease: [0.76, 0, 0.24, 1],
 };
 
 export default function LandingPage() {
@@ -75,7 +70,7 @@ export default function LandingPage() {
             animate={{ opacity: 1 }}
             exit={{
               opacity: 0,
-              transition: { delay: 7, duration: 0.01, ease: "linear" },
+              transition: { delay: 8, duration: 0.01, ease: "linear" },
             }}
             style={overlayStyle}
           >
@@ -86,7 +81,7 @@ export default function LandingPage() {
                 initial={{ x: "-50%", y: 0, scale: 1 }}
                 animate={{ x: "-50%", y: 0, scale: 1 }}
                 exit={{ x: "-50%", y: "150%", scale: 1.02 }}
-                transition={baseExitTransition}
+                transition={ornamentExitTransition}
                 style={bottomOrnamentStyle}
               />
 
@@ -96,7 +91,7 @@ export default function LandingPage() {
                 initial={{ x: "-50%", y: "-100%", scale: 1 }}
                 animate={{ x: "-50%", y: "-100%", scale: 1 }}
                 exit={{ x: "-50%", y: "-250%", scale: 1.02 }}
-                transition={accentExitTransition}
+                transition={ornamentExitTransition}
                 style={topOrnamentStyle}
               />
 
@@ -106,7 +101,7 @@ export default function LandingPage() {
                 initial={{ x: 0, y: "-50%", scale: 1, rotate: 0 }}
                 animate={{ x: 0, y: "-50%", scale: 1, rotate: 0 }}
                 exit={{ x: "-150%", y: "-50%", scale: 1.015, rotate: -2 }}
-                transition={accentExitTransition}
+                transition={ornamentExitTransition}
                 style={{ ...sideOrnamentBaseStyle, left: "-18%" }}
               />
 
@@ -116,7 +111,7 @@ export default function LandingPage() {
                 initial={{ x: 0, y: "-50%", scale: 1, rotate: 0 }}
                 animate={{ x: 0, y: "-50%", scale: 1, rotate: 0 }}
                 exit={{ x: "150%", y: "-50%", scale: 1.015, rotate: 2 }}
-                transition={accentExitTransition}
+                transition={ornamentExitTransition}
                 style={{ ...sideOrnamentBaseStyle, right: "-18%" }}
               />
 
