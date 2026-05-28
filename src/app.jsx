@@ -30,13 +30,14 @@ function App() {
       </Helmet>
       <div
         style={{
-          maxWidth: 390,
-          width: "100%",
+          position: "relative",
+          width: "min(100%, 390px)",
+          minHeight: "100dvh",
           margin: "0 auto",
-          padding: "0 0 60px",
+          padding: 0,
           background: "var(--white)",
-          boxShadow: "0 0 80px rgba(0,0,0,0.1)",
-          minHeight: "100vh",
+          boxShadow: "none",
+          overflow: "visible",
         }}
       >
         <Suspense fallback={<div style={{ minHeight: "100vh" }} />}>

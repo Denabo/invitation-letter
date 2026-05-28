@@ -6,10 +6,8 @@ const overlayStyle = {
   position: "fixed",
   top: 0,
   left: 0,
-  right: 0,
-  bottom: 0,
-  display: "flex",
-  justifyContent: "center",
+  width: "100vw",
+  height: "100dvh",
   zIndex: 100,
   pointerEvents: "none",
 };
@@ -18,16 +16,20 @@ const innerStyle = {
   position: "relative",
   width: "100%",
   maxWidth: 390,
-  height: "100vh",
+  minHeight: "100dvh",
+  margin: "0 auto",
   overflow: "hidden",
-  background: "var(--bg, #faf9f6)",
+  isolation: "isolate",
+  contain: "paint",
+  background: "transparent",
+  boxShadow: "0 0 80px rgba(0,0,0,0.1)",
   pointerEvents: "auto",
 };
 
 const bottomOrnamentStyle = {
   position: "absolute",
   left: "50%",
-  bottom: 0,
+  top: "35.5%",
   width: "125%",
   height: "auto",
   maxWidth: "none",
@@ -37,7 +39,7 @@ const bottomOrnamentStyle = {
 const topOrnamentStyle = {
   position: "absolute",
   left: "50%",
-  top: "-4%",
+  top: "52%",
   width: "103%",
   height: "auto",
   maxWidth: "none",
@@ -53,13 +55,19 @@ const sideOrnamentBaseStyle = {
   zIndex: 1,
 };
 
-const smoothTransition = {
-  duration: 5,
-  ease: [0.22, 1, 0.36, 1],
+const ORNAMENT_EXIT_DURATION = 8;
+
+const ornamentExitTransition = {
+  duration: ORNAMENT_EXIT_DURATION,
+  ease: [0.76, 0, 0.24, 1],
 };
 
 export default function LandingPage() {
   const [opened, setOpened] = useState(false);
+
+  const handleOpen = () => {
+    setOpened(true);
+  };
 
   return (
     <div style={{ "--bg": "#faf9f6", "--antique-dark": "#5d4037" }}>
@@ -70,7 +78,11 @@ export default function LandingPage() {
             animate={{ opacity: 1 }}
             exit={{
               opacity: 0,
-              transition: { delay: 5, duration: 5, ease: "easeOut" },
+              transition: {
+                delay: ORNAMENT_EXIT_DURATION,
+                duration: 0.01,
+                ease: "linear",
+              },
             }}
             style={overlayStyle}
           >
@@ -81,17 +93,17 @@ export default function LandingPage() {
                 initial={{ x: "-50%", y: 0, scale: 1 }}
                 animate={{ x: "-50%", y: 0, scale: 1 }}
                 exit={{ x: "-50%", y: "150%", scale: 1.02 }}
-                transition={smoothTransition}
+                transition={ornamentExitTransition}
                 style={bottomOrnamentStyle}
               />
 
               <motion.img
                 src="/top.webp"
                 alt="top ornament"
-                initial={{ x: "-50%", y: 0, scale: 1 }}
-                animate={{ x: "-50%", y: 0, scale: 1 }}
-                exit={{ x: "-50%", y: "-150%", scale: 1.02 }}
-                transition={smoothTransition}
+                initial={{ x: "-50%", y: "-100%", scale: 1 }}
+                animate={{ x: "-50%", y: "-100%", scale: 1 }}
+                exit={{ x: "-50%", y: "-250%", scale: 1.02 }}
+                transition={ornamentExitTransition}
                 style={topOrnamentStyle}
               />
 
@@ -101,8 +113,8 @@ export default function LandingPage() {
                 initial={{ x: 0, y: "-50%", scale: 1, rotate: 0 }}
                 animate={{ x: 0, y: "-50%", scale: 1, rotate: 0 }}
                 exit={{ x: "-150%", y: "-50%", scale: 1.015, rotate: -2 }}
-                transition={smoothTransition}
-                style={{ ...sideOrnamentBaseStyle, left: "-18%" }}
+                transition={ornamentExitTransition}
+                style={{ ...sideOrnamentBaseStyle, left: "-18%", top: "57%" }}
               />
 
               <motion.img
@@ -111,17 +123,17 @@ export default function LandingPage() {
                 initial={{ x: 0, y: "-50%", scale: 1, rotate: 0 }}
                 animate={{ x: 0, y: "-50%", scale: 1, rotate: 0 }}
                 exit={{ x: "150%", y: "-50%", scale: 1.015, rotate: 2 }}
-                transition={smoothTransition}
+                transition={ornamentExitTransition}
                 style={{ ...sideOrnamentBaseStyle, right: "-18%" }}
               />
 
               <motion.button
                 type="button"
-                onClick={() => setOpened(true)}
+                onClick={handleOpen}
                 initial={{ opacity: 1, scale: 1 }}
                 animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9, transition: { delay: 0, duration: 5 } }}
-                transition={{ duration: 5 }}
+                exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.2 } }}
+                transition={{ duration: 0.2 }}
                 whileTap={{ scale: 0.95 }}
                 whileHover={{ scale: 1.05 }}
                 style={{
@@ -152,9 +164,9 @@ export default function LandingPage() {
         {opened && (
           <motion.div
             key="main-content"
-            initial={{ opacity: 0 }}
+            initial={{ opacity: 1 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: 0 }}
           >
             <MainContent />
           </motion.div>

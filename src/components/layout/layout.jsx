@@ -19,7 +19,7 @@ const Layout = ({ children, audioControls }) => {
   return (
     <div className="relative min-h-screen w-full flex items-center justify-center" style={{ background: "var(--bg)" }}>
       <motion.div
-        className="mx-auto w-full max-w-[430px] min-h-screen relative overflow-hidden"
+        className="mx-auto w-full max-w-[390px] min-h-screen relative overflow-hidden"
         style={{ background: "var(--bg)" }}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
