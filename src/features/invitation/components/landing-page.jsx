@@ -1,13 +1,14 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import MainContent from "@/features/invitation/components/main-content";
 
 const overlayStyle = {
-  position: "absolute",
+  position: "fixed",
   top: 0,
-  left: 0,
-  right: 0,
-  bottom: 0,
+  left: "50%",
+  width: "min(100%, 390px)",
+  height: "100dvh",
+  transform: "translateX(-50%)",
   zIndex: 100,
   pointerEvents: "none",
 };
@@ -27,7 +28,7 @@ const innerStyle = {
 const bottomOrnamentStyle = {
   position: "absolute",
   left: "50%",
-  top: "47.5%",
+  top: "44.5%",
   width: "125%",
   height: "auto",
   maxWidth: "none",
@@ -62,64 +63,9 @@ const ornamentExitTransition = {
 
 export default function LandingPage() {
   const [opened, setOpened] = useState(false);
-  const [isScrollLocked, setIsScrollLocked] = useState(true);
-  const unlockScrollTimerRef = useRef(null);
-
-  useEffect(() => {
-    if (!isScrollLocked) {
-      return undefined;
-    }
-
-    const scrollY = window.scrollY;
-    const html = document.documentElement;
-    const { body } = document;
-    const previousStyles = {
-      htmlOverflow: html.style.overflow,
-      htmlOverscrollBehavior: html.style.overscrollBehavior,
-      bodyOverflow: body.style.overflow,
-      bodyOverscrollBehavior: body.style.overscrollBehavior,
-      bodyPosition: body.style.position,
-      bodyTop: body.style.top,
-      bodyWidth: body.style.width,
-      bodyTouchAction: body.style.touchAction,
-    };
-
-    html.style.overflow = "hidden";
-    html.style.overscrollBehavior = "none";
-    body.style.overflow = "hidden";
-    body.style.overscrollBehavior = "none";
-    body.style.position = "fixed";
-    body.style.top = `-${scrollY}px`;
-    body.style.width = "100%";
-    body.style.touchAction = "none";
-
-    return () => {
-      html.style.overflow = previousStyles.htmlOverflow;
-      html.style.overscrollBehavior = previousStyles.htmlOverscrollBehavior;
-      body.style.overflow = previousStyles.bodyOverflow;
-      body.style.overscrollBehavior = previousStyles.bodyOverscrollBehavior;
-      body.style.position = previousStyles.bodyPosition;
-      body.style.top = previousStyles.bodyTop;
-      body.style.width = previousStyles.bodyWidth;
-      body.style.touchAction = previousStyles.bodyTouchAction;
-      window.scrollTo(0, scrollY);
-    };
-  }, [isScrollLocked]);
-
-  useEffect(
-    () => () => {
-      if (unlockScrollTimerRef.current) {
-        window.clearTimeout(unlockScrollTimerRef.current);
-      }
-    },
-    [],
-  );
 
   const handleOpen = () => {
     setOpened(true);
-    unlockScrollTimerRef.current = window.setTimeout(() => {
-      setIsScrollLocked(false);
-    }, ORNAMENT_EXIT_DURATION * 1000);
   };
 
   return (
@@ -167,7 +113,7 @@ export default function LandingPage() {
                 animate={{ x: 0, y: "-50%", scale: 1, rotate: 0 }}
                 exit={{ x: "-150%", y: "-50%", scale: 1.015, rotate: -2 }}
                 transition={ornamentExitTransition}
-                style={{ ...sideOrnamentBaseStyle, left: "-18%", top: "52%" }}
+                style={{ ...sideOrnamentBaseStyle, left: "-18%", top: "60%" }}
               />
 
               <motion.img
