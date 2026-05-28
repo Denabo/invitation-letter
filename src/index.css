@@ -7,6 +7,7 @@
 :root {
   --white: #ffffff;
   --bg: #faf9f6;
+  --safe-area-bg: #f5f0eb;
   --blush: #f0c4cb;
   --antique: #c87d87;
   --antique-dark: #8b4f58;
@@ -27,6 +28,7 @@
 }
 
 html {
+  background-color: var(--safe-area-bg);
   scroll-behavior: smooth;
   overflow-x: hidden;
   overflow-y: auto;
@@ -36,7 +38,8 @@ html {
 body {
   overflow-x: hidden;
   overflow-y: auto;
-  background: var(--white);
+  background-color: var(--safe-area-bg);
+  padding-bottom: env(safe-area-inset-bottom);
   display: flex;
   justify-content: center;
   min-height: 100dvh;
@@ -49,6 +52,8 @@ body {
 
 #root {
   width: 100%;
+  min-height: 100dvh;
+  background-color: var(--safe-area-bg);
   display: flex;
   justify-content: center;
   overflow-x: hidden;
