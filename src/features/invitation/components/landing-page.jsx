@@ -27,7 +27,7 @@ const innerStyle = {
 const bottomOrnamentStyle = {
   position: "absolute",
   left: "50%",
-  top: "52%",
+  top: "50.5%",
   width: "125%",
   height: "auto",
   maxWidth: "none",
