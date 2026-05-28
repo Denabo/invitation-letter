@@ -19,7 +19,7 @@ const innerStyle = {
   minHeight: "100dvh",
   margin: "0 auto",
   overflow: "visible",
-  background: "var(--bg, #faf9f6)",
+  background: "transparent",
   pointerEvents: "auto",
 };
 
