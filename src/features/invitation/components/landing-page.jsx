@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import MainContent from "@/features/invitation/components/main-content";
 
@@ -27,7 +27,7 @@ const innerStyle = {
 const bottomOrnamentStyle = {
   position: "absolute",
   left: "50%",
-  top: "50.5%",
+  top: "47.5%",
   width: "125%",
   height: "auto",
   maxWidth: "none",
@@ -53,13 +53,74 @@ const sideOrnamentBaseStyle = {
   zIndex: 1,
 };
 
+const ORNAMENT_EXIT_DURATION = 8;
+
 const ornamentExitTransition = {
-  duration: 8,
+  duration: ORNAMENT_EXIT_DURATION,
   ease: [0.76, 0, 0.24, 1],
 };
 
 export default function LandingPage() {
   const [opened, setOpened] = useState(false);
+  const [isScrollLocked, setIsScrollLocked] = useState(true);
+  const unlockScrollTimerRef = useRef(null);
+
+  useEffect(() => {
+    if (!isScrollLocked) {
+      return undefined;
+    }
+
+    const scrollY = window.scrollY;
+    const html = document.documentElement;
+    const { body } = document;
+    const previousStyles = {
+      htmlOverflow: html.style.overflow,
+      htmlOverscrollBehavior: html.style.overscrollBehavior,
+      bodyOverflow: body.style.overflow,
+      bodyOverscrollBehavior: body.style.overscrollBehavior,
+      bodyPosition: body.style.position,
+      bodyTop: body.style.top,
+      bodyWidth: body.style.width,
+      bodyTouchAction: body.style.touchAction,
+    };
+
+    html.style.overflow = "hidden";
+    html.style.overscrollBehavior = "none";
+    body.style.overflow = "hidden";
+    body.style.overscrollBehavior = "none";
+    body.style.position = "fixed";
+    body.style.top = `-${scrollY}px`;
+    body.style.width = "100%";
+    body.style.touchAction = "none";
+
+    return () => {
+      html.style.overflow = previousStyles.htmlOverflow;
+      html.style.overscrollBehavior = previousStyles.htmlOverscrollBehavior;
+      body.style.overflow = previousStyles.bodyOverflow;
+      body.style.overscrollBehavior = previousStyles.bodyOverscrollBehavior;
+      body.style.position = previousStyles.bodyPosition;
+      body.style.top = previousStyles.bodyTop;
+      body.style.width = previousStyles.bodyWidth;
+      body.style.touchAction = previousStyles.bodyTouchAction;
+      window.scrollTo(0, scrollY);
+    };
+  }, [isScrollLocked]);
+
+  useEffect(
+    () => () => {
+      if (unlockScrollTimerRef.current) {
+        window.clearTimeout(unlockScrollTimerRef.current);
+      }
+    },
+    [],
+  );
+
+  const handleOpen = () => {
+    setOpened(true);
+    unlockScrollTimerRef.current = window.setTimeout(() => {
+      setIsScrollLocked(false);
+    }, ORNAMENT_EXIT_DURATION * 1000);
+  };
 
   return (
     <div style={{ "--bg": "#faf9f6", "--antique-dark": "#5d4037" }}>
@@ -70,7 +131,11 @@ export default function LandingPage() {
             animate={{ opacity: 1 }}
             exit={{
               opacity: 0,
-              transition: { delay: 8, duration: 0.01, ease: "linear" },
+              transition: {
+                delay: ORNAMENT_EXIT_DURATION,
+                duration: 0.01,
+                ease: "linear",
+              },
             }}
             style={overlayStyle}
           >
@@ -102,7 +167,7 @@ export default function LandingPage() {
                 animate={{ x: 0, y: "-50%", scale: 1, rotate: 0 }}
                 exit={{ x: "-150%", y: "-50%", scale: 1.015, rotate: -2 }}
                 transition={ornamentExitTransition}
-                style={{ ...sideOrnamentBaseStyle, left: "-18%" }}
+                style={{ ...sideOrnamentBaseStyle, left: "-18%", top: "52%" }}
               />
 
               <motion.img
@@ -117,7 +182,7 @@ export default function LandingPage() {
 
               <motion.button
                 type="button"
-                onClick={() => setOpened(true)}
+                onClick={handleOpen}
                 initial={{ opacity: 1, scale: 1 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.2 } }}
