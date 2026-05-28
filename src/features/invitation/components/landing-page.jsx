@@ -29,7 +29,7 @@ const innerStyle = {
 const bottomOrnamentStyle = {
   position: "absolute",
   left: "50%",
-  top: "44.5%",
+  top: "35.5%",
   width: "125%",
   height: "auto",
   maxWidth: "none",
@@ -114,7 +114,7 @@ export default function LandingPage() {
                 animate={{ x: 0, y: "-50%", scale: 1, rotate: 0 }}
                 exit={{ x: "-150%", y: "-50%", scale: 1.015, rotate: -2 }}
                 transition={ornamentExitTransition}
-                style={{ ...sideOrnamentBaseStyle, left: "-18%", top: "60%" }}
+                style={{ ...sideOrnamentBaseStyle, left: "-18%", top: "55%" }}
               />
 
               <motion.img
