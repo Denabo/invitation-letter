@@ -31,13 +31,13 @@ html {
   background-color: var(--safe-area-bg);
   scroll-behavior: smooth;
   overflow-x: hidden;
-  overflow-y: auto;
+  overflow-y: scroll;
   min-height: 100%;
 }
 
 body {
   overflow-x: hidden;
-  overflow-y: auto;
+  overflow-y: visible;
   background-color: var(--safe-area-bg);
   padding-bottom: env(safe-area-inset-bottom);
   display: flex;

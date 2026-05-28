@@ -5,10 +5,9 @@ import MainContent from "@/features/invitation/components/main-content";
 const overlayStyle = {
   position: "fixed",
   top: 0,
-  left: "50%",
-  width: "min(100%, 390px)",
+  left: 0,
+  width: "100vw",
   height: "100dvh",
-  transform: "translateX(-50%)",
   zIndex: 100,
   pointerEvents: "none",
 };

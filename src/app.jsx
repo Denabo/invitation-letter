@@ -30,18 +30,14 @@ function App() {
       </Helmet>
       <div
         style={{
-          position: "fixed",
-          top: 0,
-          left: "50%",
-          transform: "translateX(-50%)",
+          position: "relative",
           width: "min(100%, 390px)",
-          height: "100dvh",
+          minHeight: "100dvh",
+          margin: "0 auto",
           padding: 0,
           background: "var(--white)",
           boxShadow: "0 0 80px rgba(0,0,0,0.1)",
-          overflowX: "hidden",
-          overflowY: "auto",
-          WebkitOverflowScrolling: "touch",
+          overflow: "visible",
         }}
       >
         <Suspense fallback={<div style={{ minHeight: "100vh" }} />}>
