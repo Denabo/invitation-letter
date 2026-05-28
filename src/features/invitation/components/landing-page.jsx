@@ -46,6 +46,32 @@ const topOrnamentStyle = {
   zIndex: 3,
 };
 
+const topOrnamentImageStyle = {
+  display: "block",
+  width: "100%",
+  height: "auto",
+  maxWidth: "none",
+  pointerEvents: "none",
+};
+
+const sealButtonStyle = {
+  position: "absolute",
+  left: "50%",
+  top: "87%",
+  width: "24%",
+  height: "19%",
+  transform: "translate(-50%, -50%)",
+  appearance: "none",
+  border: 0,
+  borderRadius: "999px",
+  padding: 0,
+  background: "transparent",
+  color: "transparent",
+  cursor: "pointer",
+  zIndex: 1,
+  WebkitTapHighlightColor: "transparent",
+};
+
 const sideOrnamentBaseStyle = {
   position: "absolute",
   width: "100%",
@@ -97,15 +123,26 @@ export default function LandingPage() {
                 style={bottomOrnamentStyle}
               />
 
-              <motion.img
-                src="/top.webp"
-                alt="top ornament"
+              <motion.div
                 initial={{ x: "-50%", y: "-100%", scale: 1 }}
                 animate={{ x: "-50%", y: "-100%", scale: 1 }}
                 exit={{ x: "-50%", y: "-250%", scale: 1.02 }}
                 transition={ornamentExitTransition}
                 style={topOrnamentStyle}
-              />
+              >
+                <img
+                  src="/top.webp"
+                  alt="top ornament"
+                  draggable="false"
+                  style={topOrnamentImageStyle}
+                />
+                <button
+                  type="button"
+                  aria-label="Открыть приглашение"
+                  onClick={handleOpen}
+                  style={sealButtonStyle}
+                />
+              </motion.div>
 
               <motion.img
                 src="/left.webp"
@@ -126,35 +163,6 @@ export default function LandingPage() {
                 transition={ornamentExitTransition}
                 style={{ ...sideOrnamentBaseStyle, right: "-18%" }}
               />
-
-              <motion.button
-                type="button"
-                onClick={handleOpen}
-                initial={{ opacity: 1, scale: 1 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.2 } }}
-                transition={{ duration: 0.2 }}
-                whileTap={{ scale: 0.95 }}
-                whileHover={{ scale: 1.05 }}
-                style={{
-                  position: "absolute",
-                  left: "50%",
-                  x: "-50%",
-                  bottom: "12%",
-                  border: "1px solid var(--antique-dark)",
-                  color: "var(--antique-dark)",
-                  background: "white",
-                  borderRadius: 999,
-                  padding: "14px 32px",
-                  fontSize: 12,
-                  letterSpacing: "0.2em",
-                  textTransform: "uppercase",
-                  cursor: "pointer",
-                  zIndex: 120,
-                }}
-              >
-                открыть
-              </motion.button>
             </div>
           </motion.div>
         )}
