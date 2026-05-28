@@ -8,6 +8,7 @@ const overlayStyle = {
   left: 0,
   width: "100vw",
   height: "100dvh",
+  overflow: "hidden",
   zIndex: 100,
   pointerEvents: "none",
 };
@@ -16,7 +17,7 @@ const innerStyle = {
   position: "relative",
   width: "100%",
   maxWidth: 390,
-  minHeight: "100dvh",
+  height: "100dvh",
   margin: "0 auto",
   overflow: "hidden",
   isolation: "isolate",
@@ -112,7 +113,7 @@ export default function LandingPage() {
             }}
             style={overlayStyle}
           >
-            <div style={innerStyle}>
+            <div className="animation-scene" style={innerStyle}>
               <motion.img
                 src="/button.webp"
                 alt="bottom ornament"
@@ -172,6 +173,7 @@ export default function LandingPage() {
         {opened && (
           <motion.div
             key="main-content"
+            className="content-scroll"
             initial={{ opacity: 1 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0 }}
