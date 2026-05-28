@@ -36,7 +36,7 @@ function App() {
           margin: "0 auto",
           padding: 0,
           background: "var(--white)",
-          boxShadow: "0 0 80px rgba(0,0,0,0.1)",
+          boxShadow: "none",
           overflow: "visible",
         }}
       >

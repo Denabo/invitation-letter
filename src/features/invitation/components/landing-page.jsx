@@ -18,8 +18,11 @@ const innerStyle = {
   maxWidth: 390,
   minHeight: "100dvh",
   margin: "0 auto",
-  overflow: "visible",
+  overflow: "hidden",
+  isolation: "isolate",
+  contain: "paint",
   background: "transparent",
+  boxShadow: "0 0 80px rgba(0,0,0,0.1)",
   pointerEvents: "auto",
 };
 
