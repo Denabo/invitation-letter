@@ -35,6 +35,12 @@ const innerStyle = {
   pointerEvents: "none",
 };
 
+const bottomOrnamentContourShadow = 
+  "drop-shadow(0 8px 16px rgba(38, 26, 18, 0.3))";
+
+const topOrnamentContourShadow = 
+  "drop-shadow(0 4px 8px rgba(38, 26, 18, 0.35))";
+  
 const bottomOrnamentStyle = {
   position: "absolute",
   left: "50%",
@@ -43,6 +49,7 @@ const bottomOrnamentStyle = {
   height: "auto",
   maxWidth: "none",
   zIndex: 2,
+  filter: bottomOrnamentContourShadow,
 };
 
 const topOrnamentStyle = {
@@ -61,6 +68,7 @@ const topOrnamentImageStyle = {
   height: "auto",
   maxWidth: "none",
   pointerEvents: "none",
+  filter: topOrnamentContourShadow,
 };
 
 const sealButtonStyle = {
