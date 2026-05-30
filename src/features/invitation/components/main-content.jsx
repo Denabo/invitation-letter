@@ -12,23 +12,17 @@ function Greeting() {
   const config = useConfig();
   const guestName = getGuestName();
   return (
-    <section id="greeting" style={{ marginBottom: 44, textAlign: "center" }}>
+    <section id="greeting" className="invitation-greeting">
       <RevealOnScroll>
-        <p
-          style={{
-            fontSize: 11,
-            fontWeight: 500,
-            letterSpacing: "0.2em",
-            textTransform: "uppercase",
-            color: "var(--text)",
-            marginBottom: 14,
-          }}
-        >
-          Дорогой {guestName || "гость"}!
-        </p>
-        <p style={{ fontSize: 13, color: "var(--muted)", lineHeight: 1.9 }}>
-          {config.greeting}
-        </p>
+        <p className="invitation-greeting__title">Дорогие друзья!</p>
+        <div className="invitation-greeting__copy">
+          <p>
+            {guestName
+              ? `${guestName}, совсем скоро наступит очень важный и особенный для нас день.`
+              : "Совсем скоро наступит очень важный и особенный для нас день."}
+          </p>
+          <p>{config.greeting}</p>
+        </div>
       </RevealOnScroll>
     </section>
   );
