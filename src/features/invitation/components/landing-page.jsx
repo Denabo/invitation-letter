@@ -13,6 +13,14 @@ const overlayStyle = {
   pointerEvents: "none",
 };
 
+const landingRootStyle = {
+  position: "relative",
+  height: "100%",
+  overflow: "visible",
+  "--bg": "#faf9f6",
+  "--antique-dark": "#5d4037",
+};
+
 const innerStyle = {
   position: "relative",
   width: "100%",
@@ -24,7 +32,7 @@ const innerStyle = {
   contain: "paint",
   background: "transparent",
   boxShadow: "0 0 80px rgba(0,0,0,0.1)",
-  pointerEvents: "auto",
+  pointerEvents: "none",
 };
 
 const bottomOrnamentStyle = {
@@ -70,6 +78,7 @@ const sealButtonStyle = {
   color: "transparent",
   cursor: "pointer",
   zIndex: 1,
+  pointerEvents: "auto",
   WebkitTapHighlightColor: "transparent",
 };
 
@@ -97,7 +106,7 @@ export default function LandingPage() {
   };
 
   return (
-    <div style={{ "--bg": "#faf9f6", "--antique-dark": "#5d4037" }}>
+    <div style={landingRootStyle}>
       <AnimatePresence initial={false} mode="wait">
         {!opened && (
           <motion.div
