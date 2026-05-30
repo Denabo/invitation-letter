@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Full-screen photo header with a torn-edge CSS mask, dark readability gradient, and configurable wedding names/date.
+- `public/photos/` asset directory documentation for the future `/photos/hero.jpg` landing photo.
+
 - **Name input lock**: Guest name field automatically disabled when detected from invitation URL/localStorage to prevent impersonation (afc8be6)
 - **Inline error messages**: Beautiful animated error banners replacing browser alert() dialogs for better UX (5155c57)
 - AlertCircle icon for error state visualization in wishes form (5155c57)
