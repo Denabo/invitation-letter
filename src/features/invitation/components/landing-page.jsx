@@ -35,18 +35,12 @@ const innerStyle = {
   pointerEvents: "none",
 };
 
-const bottomOrnamentContourShadow = [
-  "drop-shadow(0 10px 12px rgba(38, 26, 18, 0.34))",
-  "drop-shadow(0 18px 22px rgba(38, 26, 18, 0.24))",
-  "drop-shadow(0 20px 34px rgba(38, 26, 18, 0.16))",
-].join(" ");
+const bottomOrnamentContourShadow = 
+  "drop-shadow(0 8px 16px rgba(38, 26, 18, 0.3))";
 
-const topOrnamentContourShadow = [
-  "drop-shadow(0 18px 20px rgba(38, 26, 18, 0.4))",
-  "drop-shadow(0 32px 40px rgba(38, 26, 18, 0.28))",
-  "drop-shadow(0 38px 60px rgba(38, 26, 18, 0.18))",
-].join(" ");
-
+const topOrnamentContourShadow = 
+  "drop-shadow(0 4px 8px rgba(38, 26, 18, 0.35))";
+  
 const bottomOrnamentStyle = {
   position: "absolute",
   left: "50%",

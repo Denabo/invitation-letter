@@ -7,7 +7,7 @@
 :root {
   --white: #ffffff;
   --bg: #faf9f6;
-  --safe-area-bg: #111111;
+  --safe-area-bg: #f5f0eb;
   --blush: #f0c4cb;
   --antique: #c87d87;
   --antique-dark: #8b4f58;
@@ -56,17 +56,13 @@ body {
 
 .main-screen {
   position: relative;
-  width: min(100%, 390px);
+  width: 100%;
+  max-width: 390px;
   height: 100dvh;
   margin: 0 auto;
   padding: 0;
   background: var(--white);
-  border: 8px solid #1a1a1a;
-  border-radius: 40px;
-  box-shadow:
-    0 0 0 1px #333,
-    0 30px 80px rgba(0, 0, 0, 0.5),
-    0 10px 30px rgba(0, 0, 0, 0.3);
+  box-shadow: none;
   overflow: hidden;
   isolation: isolate;
 }
