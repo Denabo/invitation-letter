@@ -8,22 +8,31 @@ const overlayStyle = {
   left: 0,
   width: "100vw",
   height: "100dvh",
+  overflow: "hidden",
   zIndex: 100,
   pointerEvents: "none",
+};
+
+const landingRootStyle = {
+  position: "relative",
+  height: "100%",
+  overflow: "visible",
+  "--bg": "#faf9f6",
+  "--antique-dark": "#5d4037",
 };
 
 const innerStyle = {
   position: "relative",
   width: "100%",
   maxWidth: 390,
-  minHeight: "100dvh",
+  height: "100dvh",
   margin: "0 auto",
   overflow: "hidden",
   isolation: "isolate",
   contain: "paint",
   background: "transparent",
   boxShadow: "0 0 80px rgba(0,0,0,0.1)",
-  pointerEvents: "auto",
+  pointerEvents: "none",
 };
 
 const bottomOrnamentStyle = {
@@ -44,6 +53,33 @@ const topOrnamentStyle = {
   height: "auto",
   maxWidth: "none",
   zIndex: 3,
+};
+
+const topOrnamentImageStyle = {
+  display: "block",
+  width: "100%",
+  height: "auto",
+  maxWidth: "none",
+  pointerEvents: "none",
+};
+
+const sealButtonStyle = {
+  position: "absolute",
+  left: "50%",
+  top: "87%",
+  width: "24%",
+  height: "19%",
+  transform: "translate(-50%, -50%)",
+  appearance: "none",
+  border: 0,
+  borderRadius: "999px",
+  padding: 0,
+  background: "transparent",
+  color: "transparent",
+  cursor: "pointer",
+  zIndex: 1,
+  pointerEvents: "auto",
+  WebkitTapHighlightColor: "transparent",
 };
 
 const sideOrnamentBaseStyle = {
@@ -70,7 +106,7 @@ export default function LandingPage() {
   };
 
   return (
-    <div style={{ "--bg": "#faf9f6", "--antique-dark": "#5d4037" }}>
+    <div style={landingRootStyle}>
       <AnimatePresence initial={false} mode="wait">
         {!opened && (
           <motion.div
@@ -86,7 +122,7 @@ export default function LandingPage() {
             }}
             style={overlayStyle}
           >
-            <div style={innerStyle}>
+            <div className="animation-scene" style={innerStyle}>
               <motion.img
                 src="/button.webp"
                 alt="bottom ornament"
@@ -97,15 +133,26 @@ export default function LandingPage() {
                 style={bottomOrnamentStyle}
               />
 
-              <motion.img
-                src="/top.webp"
-                alt="top ornament"
+              <motion.div
                 initial={{ x: "-50%", y: "-100%", scale: 1 }}
                 animate={{ x: "-50%", y: "-100%", scale: 1 }}
                 exit={{ x: "-50%", y: "-250%", scale: 1.02 }}
                 transition={ornamentExitTransition}
                 style={topOrnamentStyle}
-              />
+              >
+                <img
+                  src="/top.webp"
+                  alt="top ornament"
+                  draggable="false"
+                  style={topOrnamentImageStyle}
+                />
+                <button
+                  type="button"
+                  aria-label="Открыть приглашение"
+                  onClick={handleOpen}
+                  style={sealButtonStyle}
+                />
+              </motion.div>
 
               <motion.img
                 src="/left.webp"
@@ -126,35 +173,6 @@ export default function LandingPage() {
                 transition={ornamentExitTransition}
                 style={{ ...sideOrnamentBaseStyle, right: "-18%" }}
               />
-
-              <motion.button
-                type="button"
-                onClick={handleOpen}
-                initial={{ opacity: 1, scale: 1 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.2 } }}
-                transition={{ duration: 0.2 }}
-                whileTap={{ scale: 0.95 }}
-                whileHover={{ scale: 1.05 }}
-                style={{
-                  position: "absolute",
-                  left: "50%",
-                  x: "-50%",
-                  bottom: "12%",
-                  border: "1px solid var(--antique-dark)",
-                  color: "var(--antique-dark)",
-                  background: "white",
-                  borderRadius: 999,
-                  padding: "14px 32px",
-                  fontSize: 12,
-                  letterSpacing: "0.2em",
-                  textTransform: "uppercase",
-                  cursor: "pointer",
-                  zIndex: 120,
-                }}
-              >
-                открыть
-              </motion.button>
             </div>
           </motion.div>
         )}
@@ -164,6 +182,7 @@ export default function LandingPage() {
         {opened && (
           <motion.div
             key="main-content"
+            className="content-scroll"
             initial={{ opacity: 1 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0 }}

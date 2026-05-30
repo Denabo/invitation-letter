@@ -11,11 +11,11 @@ function App() {
   const { config, isLoading, error } = useInvitation();
   const activeConfig = config || staticConfig.data;
 
-  if (isLoading) return <div style={{ minHeight: "100vh" }} />;
+  if (isLoading) return <div style={{ minHeight: "100dvh" }} />;
   if (error)
     return (
       <div
-        style={{ minHeight: "100vh", display: "grid", placeItems: "center" }}
+        style={{ minHeight: "100dvh", display: "grid", placeItems: "center" }}
       >
         {error}
       </div>
@@ -28,19 +28,8 @@ function App() {
         <meta name="description" content={activeConfig.description} />
         <link rel="icon" type="image/x-icon" href={activeConfig.favicon} />
       </Helmet>
-      <div
-        style={{
-          position: "relative",
-          width: "min(100%, 390px)",
-          minHeight: "100dvh",
-          margin: "0 auto",
-          padding: 0,
-          background: "var(--white)",
-          boxShadow: "none",
-          overflow: "visible",
-        }}
-      >
-        <Suspense fallback={<div style={{ minHeight: "100vh" }} />}>
+      <div className="main-screen">
+        <Suspense fallback={<div style={{ minHeight: "100dvh" }} />}>
           <LandingPage />
         </Suspense>
       </div>

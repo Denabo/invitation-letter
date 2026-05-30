@@ -1,3 +1,9 @@
+import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { Music, PauseCircle, PlayCircle } from "lucide-react";
+import BottomBar from "@/components/layout/bottom-bar";
+import { useConfig } from "@/features/invitation/hooks/use-config";
+
 const Layout = ({ children, audioControls }) => {
   const config = useConfig();
   const [showToast, setShowToast] = useState(false);
@@ -17,7 +23,10 @@ const Layout = ({ children, audioControls }) => {
   }, [isPlaying, config.audio?.toastDuration]);
 
   return (
-    <div className="relative min-h-screen w-full flex items-center justify-center" style={{ background: "var(--bg)" }}>
+    <div
+      className="relative min-h-screen w-full flex items-center justify-center"
+      style={{ background: "var(--bg)" }}
+    >
       <motion.div
         className="mx-auto w-full max-w-[390px] min-h-screen relative overflow-hidden"
         style={{ background: "var(--bg)" }}
