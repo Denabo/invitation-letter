@@ -315,7 +315,7 @@ body {
 .hero-photo {
   /* Tune the SVG paper edge here: height, overlap, and width. */
   --hero-torn-edge-height: clamp(92px, 18vh, 160px);
-  --hero-torn-edge-overlap: -2px;
+  --hero-torn-edge-overlap: 0px;
   --hero-torn-edge-width: calc(100% + 18px);
 
   position: relative;
@@ -355,7 +355,7 @@ body {
   width: var(--hero-torn-edge-width);
   height: var(--hero-torn-edge-height);
   max-width: none;
-  transform: translateX(-50%);
+  transform: translateX(-50%) rotate(180deg);
   object-fit: fill;
   pointer-events: none;
 }
