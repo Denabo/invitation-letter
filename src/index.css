@@ -319,10 +319,14 @@ body {
    * - boundary-offset controls where the paper tear is pinned vertically.
    *   Use negative values to pull it into the photo, positive values to push it down.
    * - opacity controls how visible the fibers/paper texture are over the photo.
+   * - source-brightness + fiber-contrast keep white paper transparent in multiply mode
+   *   while making the gray fibers visible against the photo.
    */
   --hero-torn-edge-height: clamp(92px, 18vh, 160px);
   --hero-torn-edge-boundary-offset: 0px;
-  --hero-torn-edge-opacity: 0.92;
+  --hero-torn-edge-opacity: 1;
+  --hero-torn-edge-source-brightness: 0.82;
+  --hero-torn-edge-fiber-contrast: 2.4;
   --hero-torn-edge-width: calc(100% + 18px);
 
   position: relative;
@@ -365,6 +369,8 @@ body {
   transform: translateX(-50%) rotate(180deg);
   object-fit: fill;
   mix-blend-mode: multiply;
+  filter: brightness(var(--hero-torn-edge-source-brightness))
+    contrast(var(--hero-torn-edge-fiber-contrast));
   opacity: var(--hero-torn-edge-opacity);
   pointer-events: none;
 }
