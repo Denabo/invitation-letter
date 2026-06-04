@@ -8,4 +8,4 @@ Expected production asset:
 
 Binary image assets are intentionally not committed by this change. Until `hero.jpg` is added, the app falls back to the existing `/wedding-photo.jpg` asset at runtime.
 
-The torn-paper edge asset should live at `public/torn-edge.png`, is referenced by the app as `/torn-edge.png`, and is applied directly as the photo CSS mask.
+The torn-paper edge asset should live at `public/torn-edge.svg`, is referenced by the app as `/torn-edge.svg`, and is overlaid across the bottom of the hero photo. Tune its size in `src/index.css` via `--hero-torn-edge-height`, `--hero-torn-edge-overlap`, and `--hero-torn-edge-width`.

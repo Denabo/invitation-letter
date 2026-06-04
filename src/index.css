@@ -313,7 +313,10 @@ body {
 }
 
 .hero-photo {
-  --torn-mask-width: calc(100% + 8px);
+  /* Tune the SVG paper edge here: height, overlap, and width. */
+  --hero-torn-edge-height: clamp(92px, 18vh, 160px);
+  --hero-torn-edge-overlap: -2px;
+  --hero-torn-edge-width: calc(100% + 18px);
 
   position: relative;
   width: 100%;
@@ -334,18 +337,6 @@ body {
   filter: saturate(0.96) contrast(1.02);
 }
 
-.hero-photo__image,
-.hero-photo__shade {
-  -webkit-mask-image: url("/torn-edge.png");
-  mask-image: url("/torn-edge.png");
-  -webkit-mask-size: var(--torn-mask-width) 120%;
-  mask-size: var(--torn-mask-width) 120%;
-  -webkit-mask-position: center bottom;
-  mask-position: center bottom;
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-}
-
 .hero-photo__shade {
   position: absolute;
   inset: 0;
@@ -354,6 +345,19 @@ body {
   background:
     linear-gradient(180deg, rgba(0, 0, 0, 0.06) 0%, transparent 38%),
     linear-gradient(180deg, transparent 48%, rgba(0, 0, 0, 0.58) 100%);
+}
+
+.hero-photo__torn-edge {
+  position: absolute;
+  left: 50%;
+  bottom: var(--hero-torn-edge-overlap);
+  z-index: 3;
+  width: var(--hero-torn-edge-width);
+  height: var(--hero-torn-edge-height);
+  max-width: none;
+  transform: translateX(-50%);
+  object-fit: fill;
+  pointer-events: none;
 }
 
 .hero-photo__content {

@@ -45,6 +45,13 @@ export default function HeroPhoto() {
 
       <div className="hero-photo__shade" />
 
+      <img
+        className="hero-photo__torn-edge"
+        src="/torn-edge.svg"
+        alt=""
+        aria-hidden="true"
+      />
+
       <motion.div
         className="hero-photo__content"
         initial={{ opacity: 0, y: 18 }}
