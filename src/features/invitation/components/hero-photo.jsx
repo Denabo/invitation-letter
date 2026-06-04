@@ -4,11 +4,6 @@ import { useConfig } from "@/features/invitation/hooks/use-config";
 const HERO_PHOTO_SRC = "/photos/hero.jpg";
 const HERO_PHOTO_FALLBACK_SRC = "/wedding-photo.jpg";
 
-const photoMaskStyle = {
-  clipPath:
-    "polygon(0 0, 100% 0, 100% 88%, 96% 91%, 91% 87%, 86% 92%, 80% 89%, 74% 94%, 67% 90%, 61% 95%, 54% 91%, 48% 96%, 40% 90%, 33% 94%, 26% 89%, 19% 93%, 12% 88%, 6% 92%, 0 89%)",
-};
-
 function getWeddingDateLabel(config) {
   const day = String(config.weddingDay || 12).padStart(2, "0");
   const month = config.weddingMonth || "сентября";
@@ -42,14 +37,20 @@ export default function HeroPhoto() {
         className="hero-photo__image"
         src={HERO_PHOTO_SRC}
         alt="Фото пары"
-        style={photoMaskStyle}
         onError={handleHeroPhotoError}
         initial={{ opacity: 0, scale: 1.04 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.9, ease: "easeOut" }}
       />
 
-      <div className="hero-photo__shade" style={photoMaskStyle} />
+      <div className="hero-photo__shade" />
+
+      <img
+        className="hero-photo__torn-edge"
+        src="/torn-edge.png"
+        alt=""
+        aria-hidden="true"
+      />
 
       <motion.div
         className="hero-photo__content"
