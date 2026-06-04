@@ -357,6 +357,7 @@ body {
   max-width: none;
   transform: translateX(-50%) rotate(180deg);
   object-fit: fill;
+  mix-blend-mode: multiply;
   pointer-events: none;
 }
 
