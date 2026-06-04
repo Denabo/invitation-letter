@@ -319,11 +319,13 @@ body {
    * - boundary-offset controls where the paper tear is pinned vertically.
    *   Use negative values to pull it into the photo, positive values to push it down.
    * - opacity starts intentionally low; increase it slowly if the edge is too subtle.
+   * - fiber-mask makes transparency follow the torn contour instead of a flat line.
    */
   --hero-torn-edge-height: clamp(92px, 18vh, 160px);
   --hero-torn-edge-boundary-offset: 0px;
-  --hero-torn-edge-opacity: 0.18;
+  --hero-torn-edge-opacity: 0.28;
   --hero-torn-edge-width: calc(100% + 18px);
+  --hero-torn-edge-fiber-mask: url("/torn-edge-fiber-mask.svg");
 
   position: relative;
   width: 100%;
@@ -365,6 +367,14 @@ body {
   transform: translateX(-50%) rotate(180deg);
   object-fit: fill;
   opacity: var(--hero-torn-edge-opacity);
+  -webkit-mask-image: var(--hero-torn-edge-fiber-mask);
+  mask-image: var(--hero-torn-edge-fiber-mask);
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
   pointer-events: none;
 }
 
