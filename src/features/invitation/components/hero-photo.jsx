@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import TornPhoto from "@/components/ui/torn-photo";
 import { useConfig } from "@/features/invitation/hooks/use-config";
 
 const HERO_PHOTO_SRC = "/photos/hero.jpg";
@@ -33,24 +34,22 @@ export default function HeroPhoto() {
       className="hero-photo"
       aria-label="Фото пары в шапке приглашения"
     >
-      <motion.img
-        className="hero-photo__image"
-        src={HERO_PHOTO_SRC}
-        alt="Фото пары"
-        onError={handleHeroPhotoError}
+      <motion.div
+        className="hero-photo__torn-photo"
         initial={{ opacity: 0, scale: 1.04 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.9, ease: "easeOut" }}
-      />
-
-      <div className="hero-photo__shade" />
-
-      <img
-        className="hero-photo__torn-edge"
-        src="/torn-edge.svg"
-        alt=""
-        aria-hidden="true"
-      />
+      >
+        <TornPhoto
+          src={HERO_PHOTO_SRC}
+          alt="Фото пары"
+          imageClassName="hero-photo__image"
+          edgeClassName="hero-photo__torn-edge"
+          onError={handleHeroPhotoError}
+        >
+          <div className="hero-photo__shade" />
+        </TornPhoto>
+      </motion.div>
 
       <motion.div
         className="hero-photo__content"
