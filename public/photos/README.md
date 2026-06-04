@@ -8,4 +8,4 @@ Expected production asset:
 
 Binary image assets are intentionally not committed by this change. Until `hero.jpg` is added, the app falls back to the existing `/wedding-photo.jpg` asset at runtime.
 
-The torn-paper edge asset should live at `public/torn-edge.png` and is referenced by the app as `/torn-edge.png`.
+The torn-paper edge asset should live at `public/torn-edge.png`, is referenced by the app as `/torn-edge.png`, and is applied directly as the photo CSS mask.

@@ -31,16 +31,16 @@ html,
 body {
   width: 100%;
   min-height: 100%;
-  overflow: hidden;
   background-color: var(--safe-area-bg);
-  overscroll-behavior: none;
 }
 
 html {
+  overflow-y: scroll;
   scroll-behavior: smooth;
 }
 
 body {
+  overflow: visible;
   color: var(--text);
   font-family: "Montserrat", sans-serif;
   font-weight: 300;
@@ -51,6 +51,7 @@ body {
 #root {
   width: 100%;
   min-height: 100%;
+  overflow: visible;
   background-color: var(--safe-area-bg);
 }
 
@@ -58,12 +59,12 @@ body {
   position: relative;
   width: 100%;
   max-width: 390px;
-  height: 100dvh;
+  min-height: 100dvh;
   margin: 0 auto;
   padding: 0;
   background: var(--white);
   box-shadow: none;
-  overflow: hidden;
+  overflow: visible;
   isolation: isolate;
 }
 
@@ -77,14 +78,9 @@ body {
 }
 
 .content-scroll {
-  position: absolute;
-  inset: 0;
-  overflow-x: hidden;
-  overflow-y: auto;
-  height: 100%;
-  -webkit-overflow-scrolling: touch;
-  overscroll-behavior: contain;
-  scroll-behavior: smooth;
+  position: relative;
+  min-height: 100dvh;
+  overflow: visible;
   background: var(--bg);
 }
 
@@ -317,7 +313,7 @@ body {
 }
 
 .hero-photo {
-  --torn-edge-height: 78px;
+  --torn-mask-width: calc(100% + 8px);
 
   position: relative;
   width: 100%;
@@ -340,16 +336,12 @@ body {
 
 .hero-photo__image,
 .hero-photo__shade {
-  -webkit-mask-image: linear-gradient(#000, #000), url("/torn-edge.png");
-  mask-image: linear-gradient(#000, #000), url("/torn-edge.png");
-  -webkit-mask-size:
-    100% calc(100% - var(--torn-edge-height)),
-    100% var(--torn-edge-height);
-  mask-size:
-    100% calc(100% - var(--torn-edge-height)),
-    100% var(--torn-edge-height);
-  -webkit-mask-position: top, bottom;
-  mask-position: top, bottom;
+  -webkit-mask-image: url("/torn-edge.png");
+  mask-image: url("/torn-edge.png");
+  -webkit-mask-size: var(--torn-mask-width) 120%;
+  mask-size: var(--torn-mask-width) 120%;
+  -webkit-mask-position: center bottom;
+  mask-position: center bottom;
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
 }
@@ -362,19 +354,6 @@ body {
   background:
     linear-gradient(180deg, rgba(0, 0, 0, 0.06) 0%, transparent 38%),
     linear-gradient(180deg, transparent 48%, rgba(0, 0, 0, 0.58) 100%);
-}
-
-.hero-photo__torn-edge {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -1px;
-  z-index: 3;
-  width: 100%;
-  height: var(--torn-edge-height);
-  object-fit: fill;
-  pointer-events: none;
-  filter: drop-shadow(0 -8px 12px rgba(0, 0, 0, 0.18));
 }
 
 .hero-photo__content {
