@@ -19,7 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Hero photo now uses the transparent torn-edge variant instead of mutating the original torn-edge SVG asset.
+- Transparent torn-edge mask now uses a rotation-aware 90px contour offset so the rendered area above the imaginary line is transparent and the lower strip remains visible.
 - Wish form errors now display as inline rose-colored banners instead of blocking alert() dialogs (5155c57)
 - Error messages auto-dismiss after 5 seconds with manual close option (5155c57)
 - Name input styling updated to show disabled state with gray background and reduced opacity (afc8be6)
