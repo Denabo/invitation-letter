@@ -47,7 +47,7 @@ export default function HeroPhoto() {
 
       <img
         className="hero-photo__torn-edge"
-        src="/torn-edge.svg"
+        src="/torn-edge-transparent.svg"
         alt=""
         aria-hidden="true"
       />
