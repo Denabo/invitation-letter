@@ -313,9 +313,16 @@ body {
 }
 
 .hero-photo {
-  /* Tune the SVG paper edge here: height, overlap, and width. */
+  /*
+   * Torn photo controls:
+   * - height controls how deep the torn texture reaches into the photo.
+   * - boundary-offset controls where the paper tear is pinned vertically.
+   *   Use negative values to pull it into the photo, positive values to push it down.
+   * - opacity is full by default so the edge stays visible.
+   */
   --hero-torn-edge-height: clamp(92px, 18vh, 160px);
-  --hero-torn-edge-overlap: -2px;
+  --hero-torn-edge-boundary-offset: 0px;
+  --hero-torn-edge-opacity: 1;
   --hero-torn-edge-width: calc(100% + 18px);
 
   position: relative;
@@ -350,13 +357,14 @@ body {
 .hero-photo__torn-edge {
   position: absolute;
   left: 50%;
-  bottom: var(--hero-torn-edge-overlap);
+  bottom: var(--hero-torn-edge-boundary-offset);
   z-index: 3;
   width: var(--hero-torn-edge-width);
   height: var(--hero-torn-edge-height);
   max-width: none;
-  transform: translateX(-50%);
+  transform: translateX(-50%) rotate(180deg);
   object-fit: fill;
+  opacity: var(--hero-torn-edge-opacity);
   pointer-events: none;
 }
 
