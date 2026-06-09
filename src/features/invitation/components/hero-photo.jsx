@@ -33,6 +33,7 @@ export default function HeroPhoto() {
       className="hero-photo"
       aria-label="Фото пары в шапке приглашения"
     >
+      {/* Фото на весь экран */}
       <motion.img
         className="hero-photo__image"
         src={HERO_PHOTO_SRC}
@@ -43,15 +44,10 @@ export default function HeroPhoto() {
         transition={{ duration: 0.9, ease: "easeOut" }}
       />
 
+      {/* Тёмный градиент снизу */}
       <div className="hero-photo__shade" />
 
-      <img
-        className="hero-photo__torn-edge"
-        src="/torn-edge.svg"
-        alt=""
-        aria-hidden="true"
-      />
-
+      {/* Имена и дата */}
       <motion.div
         className="hero-photo__content"
         initial={{ opacity: 0, y: 18 }}
