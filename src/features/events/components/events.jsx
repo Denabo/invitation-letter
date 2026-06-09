@@ -232,11 +232,10 @@ export default function Events() {
       <RevealOnScroll>
         <figure
           style={{
-            width: "calc(100% - 48px)",
-            maxWidth: 420,
-            margin: "0 auto 28px",
+            width: "100%",
+            maxWidth: "100%",
+            margin: "36px 0 40px",
             overflow: "hidden",
-            borderRadius: 28,
             lineHeight: 0,
           }}
         >
