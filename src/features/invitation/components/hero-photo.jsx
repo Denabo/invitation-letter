@@ -45,6 +45,9 @@ export default function HeroPhoto() {
 
       <div className="hero-photo__shade" />
 
+      {/* Белая заплатка снизу — перекрывает нижнюю часть фото */}
+      <div className="hero-photo__patch" aria-hidden="true" />
+
       <img
         className="hero-photo__torn-edge"
         src="/torn-edge-transparent.svg"
