@@ -335,19 +335,15 @@ body {
   object-fit: cover;
   object-position: center top;
   display: block;
-  filter: saturate(0.96) contrast(1.02);
+  filter: saturate(1.04) contrast(1.04) brightness(1.06);
 }
 
-/* Тёмный градиент снизу — имена читаются на фото */
+/* Прозрачный слой оставлен для структуры, без затемнения фото. */
 .hero-photo__shade {
   position: absolute;
   inset: 0;
   z-index: 1;
-  background: linear-gradient(
-    to bottom,
-    transparent 45%,
-    rgba(0, 0, 0, 0.42) 100%
-  );
+  background: transparent;
   pointer-events: none;
 }
 

@@ -44,7 +44,7 @@ export default function HeroPhoto() {
         transition={{ duration: 0.9, ease: "easeOut" }}
       />
 
-      {/* Тёмный градиент снизу */}
+      {/* Прозрачный слой без затемнения фото */}
       <div className="hero-photo__shade" />
 
       {/* Имена и дата */}
