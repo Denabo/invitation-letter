@@ -30,7 +30,9 @@
 html,
 body {
   width: 100%;
+  max-width: 100%;
   min-height: 100%;
+  overflow-x: hidden;
   background-color: var(--safe-area-bg);
 }
 
@@ -40,7 +42,7 @@ html {
 }
 
 body {
-  overflow: visible;
+  overflow-y: visible;
   color: var(--text);
   font-family: "Montserrat", sans-serif;
   font-weight: 300;
@@ -50,21 +52,24 @@ body {
 
 #root {
   width: 100%;
+  max-width: 100%;
   min-height: 100%;
-  overflow: visible;
+  overflow-x: hidden;
+  overflow-y: visible;
   background-color: var(--safe-area-bg);
 }
 
 .main-screen {
   position: relative;
   width: 100%;
-  max-width: 490px;
+  max-width: min(490px, 100vw);
   min-height: 100dvh;
   margin: 0 auto;
   padding: 0;
   background: var(--white);
   box-shadow: none;
-  overflow: visible;
+  overflow-x: hidden;
+  overflow-y: visible;
   isolation: isolate;
 }
 
@@ -80,7 +85,8 @@ body {
 .content-scroll {
   position: relative;
   min-height: 100dvh;
-  overflow: visible;
+  overflow-x: hidden;
+  overflow-y: visible;
   background: var(--bg);
 }
 
@@ -348,60 +354,20 @@ body {
 .hero-photo {
   position: relative;
   width: 100%;
-  height: 100dvh;
-  min-height: 620px;
+  max-width: 100%;
+  height: auto;
   overflow: hidden;
-  color: var(--white);
+  line-height: 0;
   background: var(--bg);
   isolation: isolate;
 }
 
 .hero-photo__image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center top;
   display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+  object-position: center top;
   filter: saturate(1.04) contrast(1.04) brightness(1.06);
-}
-
-/* Прозрачный слой оставлен для структуры, без затемнения фото. */
-.hero-photo__shade {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  background: transparent;
-  pointer-events: none;
-}
-
-/* Имена и дата поверх фото */
-.hero-photo__content {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 12%;
-  z-index: 2;
-  padding: 0 24px;
-  text-align: center;
-  text-shadow: 0 10px 28px rgba(0, 0, 0, 0.34);
-}
-
-.hero-photo__names {
-  margin-bottom: 12px;
-  font-family: "Pinyon Script", cursive;
-  font-size: clamp(64px, 18vw, 82px);
-  line-height: 1;
-}
-
-.hero-photo__date {
-  font-family: "Cormorant Garamond", serif;
-  font-size: 13px;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-}
-
-@supports (height: 100svh) {
-  .hero-photo {
-    height: 100svh;
-  }
 }
