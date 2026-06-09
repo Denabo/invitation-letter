@@ -10,6 +10,34 @@ const iconMap = {
   Банкет: UtensilsCrossed,
 };
 
+const calendarCardStyle = {
+  width: "calc(100% - 48px)",
+  maxWidth: 420,
+  margin: "0 auto",
+  padding: "28px 24px 30px",
+  background: "var(--champagne)",
+  borderRadius: 34,
+  border: "10px solid rgba(255, 255, 255, 0.82)",
+  boxShadow:
+    "inset 0 0 0 1px rgba(139, 79, 88, 0.08), 0 10px 30px rgba(93, 64, 55, 0.08)",
+};
+
+const calendarGridStyle = {
+  display: "grid",
+  gridTemplateColumns: "repeat(7, minmax(0, 1fr))",
+  columnGap: 8,
+  rowGap: 10,
+};
+
+const calendarDayStyle = {
+  minWidth: 0,
+  height: 32,
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  fontSize: 15,
+};
+
 export default function Events() {
   const config = useConfig();
   const [timeLeft, setTimeLeft] = useState({
@@ -43,59 +71,46 @@ export default function Events() {
     <section id="event" style={{ marginBottom: 44 }}>
       <RevealOnScroll>
         <div style={{ textAlign: "center", marginBottom: 44 }}>
-          <p
-            style={{
-              fontSize: 11,
-              fontWeight: 500,
-              letterSpacing: "0.25em",
-              textTransform: "uppercase",
-              color: "var(--text)",
-              marginBottom: 16,
-            }}
-          >
-            {config.weddingMonth || "Сентябрь"}
-          </p>
-          <div
-            style={{
-              display: "inline-block",
-              background: "var(--champagne)",
-              padding: "16px 20px",
-              width: "100%",
-            }}
-          >
+          <div style={calendarCardStyle}>
+            <p
+              style={{
+                fontFamily: "Pinyon Script, cursive",
+                fontSize: 44,
+                lineHeight: 1,
+                color: "var(--antique-dark)",
+                marginBottom: 22,
+              }}
+            >
+              {config.weddingMonth || "Сентябрь"}
+            </p>
             <div
               style={{
-                display: "grid",
-                gridTemplateColumns: "repeat(7, 34px)",
-                gap: 4,
+                ...calendarGridStyle,
+                paddingBottom: 10,
                 marginBottom: 8,
+                borderBottom: "1px solid rgba(90, 58, 58, 0.16)",
               }}
             >
               {["пн", "вт", "ср", "чт", "пт", "сб", "вс"].map((d) => (
                 <span
                   key={d}
                   style={{
-                    fontSize: 10,
                     color: "var(--muted)",
-                    letterSpacing: "0.05em",
+                    fontSize: 12,
+                    fontWeight: 500,
+                    letterSpacing: "0.08em",
                     textAlign: "center",
+                    textTransform: "uppercase",
                   }}
                 >
                   {d}
                 </span>
               ))}
             </div>
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "repeat(7, 34px)",
-                gap: 4,
-                justifyContent: "center",
-              }}
-            >
+            <div style={calendarGridStyle}>
               {Array.from({ length: config.calendarFirstDay ?? 1 }).map(
                 (_, i) => (
-                  <div key={`e-${i}`} style={{ width: 34, height: 34 }} />
+                  <div key={`e-${i}`} style={calendarDayStyle} />
                 ),
               )}
               {Array.from({ length: config.calendarDaysInMonth ?? 30 }).map(
@@ -106,21 +121,32 @@ export default function Events() {
                     <div
                       key={day}
                       style={{
-                        width: 34,
-                        height: 34,
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        fontSize: 12,
+                        ...calendarDayStyle,
+                        position: "relative",
                         color: active ? "var(--white)" : "var(--muted)",
-                        background: active
-                          ? "var(--antique-dark)"
-                          : "transparent",
-                        borderRadius: active ? "50%" : 0,
                         fontWeight: active ? 500 : 300,
                       }}
                     >
-                      {day}
+                      {active && (
+                        <span
+                          aria-hidden="true"
+                          style={{
+                            position: "absolute",
+                            top: "50%",
+                            left: "50%",
+                            zIndex: 0,
+                            color: "var(--antique-dark)",
+                            fontSize: 42,
+                            lineHeight: 1,
+                            transform: "translate(-50%, -45%)",
+                          }}
+                        >
+                          ♥
+                        </span>
+                      )}
+                      <span style={{ position: "relative", zIndex: 1 }}>
+                        {day}
+                      </span>
                     </div>
                   );
                 },
