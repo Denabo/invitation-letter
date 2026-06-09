@@ -10,11 +10,13 @@ const iconMap = {
   Банкет: UtensilsCrossed,
 };
 
+const RUKI_PHOTO_SRC = "/photos/ruki.jpg";
+
 const calendarCardStyle = {
   width: "calc(100% - 48px)",
   maxWidth: 420,
   margin: "0 auto",
-  padding: "28px 24px 30px",
+  padding: "24px 22px 26px",
   background: "var(--champagne)",
   borderRadius: 34,
   border: "10px solid rgba(255, 255, 255, 0.82)",
@@ -25,13 +27,13 @@ const calendarCardStyle = {
 const calendarGridStyle = {
   display: "grid",
   gridTemplateColumns: "repeat(7, minmax(0, 1fr))",
-  columnGap: 8,
-  rowGap: 10,
+  columnGap: 7,
+  rowGap: 8,
 };
 
 const calendarDayStyle = {
   minWidth: 0,
-  height: 32,
+  height: 30,
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
@@ -68,9 +70,9 @@ export default function Events() {
   }, []);
 
   return (
-    <section id="event" style={{ marginBottom: 44 }}>
+    <section id="event" style={{ marginBottom: 34 }}>
       <RevealOnScroll>
-        <div style={{ textAlign: "center", marginBottom: 44 }}>
+        <div style={{ textAlign: "center", marginBottom: 24 }}>
           <div style={calendarCardStyle}>
             <p
               style={{
@@ -78,7 +80,7 @@ export default function Events() {
                 fontSize: 44,
                 lineHeight: 1,
                 color: "var(--antique-dark)",
-                marginBottom: 22,
+                marginBottom: 16,
               }}
             >
               {config.weddingMonth || "Сентябрь"}
@@ -86,8 +88,8 @@ export default function Events() {
             <div
               style={{
                 ...calendarGridStyle,
-                paddingBottom: 10,
-                marginBottom: 8,
+                paddingBottom: 8,
+                marginBottom: 6,
                 borderBottom: "1px solid rgba(90, 58, 58, 0.16)",
               }}
             >
@@ -164,7 +166,7 @@ export default function Events() {
             textTransform: "uppercase",
             color: "var(--muted)",
             textAlign: "center",
-            marginBottom: 12,
+            marginBottom: 8,
           }}
         >
           До свадьбы осталось
@@ -175,7 +177,7 @@ export default function Events() {
             justifyContent: "center",
             alignItems: "baseline",
             gap: 0,
-            marginBottom: 44,
+            marginBottom: 22,
           }}
         >
           {[
@@ -227,7 +229,31 @@ export default function Events() {
         </div>
       </RevealOnScroll>
 
-      <section style={{ marginBottom: 44 }}>
+      <RevealOnScroll>
+        <figure
+          style={{
+            width: "calc(100% - 48px)",
+            maxWidth: 420,
+            margin: "0 auto 28px",
+            overflow: "hidden",
+            borderRadius: 28,
+            lineHeight: 0,
+          }}
+        >
+          <img
+            src={RUKI_PHOTO_SRC}
+            alt="Руки пары"
+            loading="lazy"
+            style={{
+              display: "block",
+              width: "100%",
+              height: "auto",
+            }}
+          />
+        </figure>
+      </RevealOnScroll>
+
+      <section style={{ marginBottom: 34 }}>
         <h3
           style={{
             fontSize: 11,
@@ -236,7 +262,7 @@ export default function Events() {
             textTransform: "uppercase",
             color: "var(--text)",
             textAlign: "center",
-            marginBottom: 20,
+            marginBottom: 14,
           }}
         >
           Тайминг
