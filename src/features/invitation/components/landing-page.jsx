@@ -17,14 +17,14 @@ const landingRootStyle = {
   position: "relative",
   minHeight: "100dvh",
   overflow: "visible",
-  "--bg": "#faf9f6",
+  "--bg": "#ffffff",
   "--antique-dark": "#5d4037",
 };
 
 const innerStyle = {
   position: "relative",
   width: "100%",
-  maxWidth: 390,
+  maxWidth: 490,
   height: "100dvh",
   margin: "0 auto",
   overflow: "hidden",
