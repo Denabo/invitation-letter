@@ -291,9 +291,12 @@ body {
   padding: 34px 22px 36px;
   text-align: center;
   color: #2d2d2d;
-  background: rgba(255, 255, 255, 0.72);
+  /* FIX: fully opaque so greeting doesn't bleed into photo above */
+  background: rgba(255, 255, 255, 0.98);
   border: 1px solid rgba(224, 112, 96, 0.14);
   box-shadow: 0 18px 48px rgba(93, 64, 55, 0.08);
+  position: relative;
+  z-index: 1;
 }
 
 .invitation-greeting__title {
@@ -312,6 +315,19 @@ body {
   line-height: 1.9;
 }
 
+/* ─────────────────────────────────────────
+   Hero Photo
+   ───────────────────────────────────────── */
+.hero-photo {
+  position: relative;
+  width: 100%;
+  height: 100dvh;
+  min-height: 620px;
+  overflow: hidden;
+  color: var(--white);
+  background: var(--bg);
+  isolation: isolate;
+}
 
 .hero-photo__image {
   width: 100%;
@@ -322,28 +338,26 @@ body {
   filter: saturate(0.96) contrast(1.02);
 }
 
-
-
-.hero-photo__torn-edge {
+/* Тёмный градиент снизу — имена читаются на фото */
+.hero-photo__shade {
   position: absolute;
-  left: 50%;
-  bottom: var(--hero-torn-edge-boundary-offset);
-  z-index: 3;
-  width: var(--hero-torn-edge-width);
-  height: var(--hero-torn-edge-height);
-  max-width: none;
-  transform: translateX(-50%) rotate(180deg);
-  object-fit: fill;
-  opacity: var(--hero-torn-edge-opacity);
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    to bottom,
+    transparent 45%,
+    rgba(0, 0, 0, 0.42) 100%
+  );
   pointer-events: none;
 }
 
+/* Имена и дата поверх фото */
 .hero-photo__content {
   position: absolute;
   left: 0;
   right: 0;
   bottom: 12%;
-  z-index: 4;
+  z-index: 2;
   padding: 0 24px;
   text-align: center;
   text-shadow: 0 10px 28px rgba(0, 0, 0, 0.34);
