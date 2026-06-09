@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Full-screen photo header with `/torn-edge.svg` overlaid across the bottom photo edge, dark readability gradient, and configurable wedding names/date.
+- `public/photos/` asset directory documentation for the future `/photos/hero.jpg` landing photo.
+
 - **Name input lock**: Guest name field automatically disabled when detected from invitation URL/localStorage to prevent impersonation (afc8be6)
 - **Inline error messages**: Beautiful animated error banners replacing browser alert() dialogs for better UX (5155c57)
 - AlertCircle icon for error state visualization in wishes form (5155c57)
@@ -21,6 +24,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Simplified UX by removing explanatory helper text from disabled name input (f341de1)
 
 ### Fixed
+
+- Page-level scrolling now stays on the browser edge instead of inside the invitation content container.
 
 - Removed white side stripe on the main invitation page by eliminating horizontal container padding in the root app shell
 

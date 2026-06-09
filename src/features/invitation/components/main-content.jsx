@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import Hero from "@/features/invitation/components/hero";
+import HeroPhoto from "@/features/invitation/components/hero-photo";
 import { Events } from "@/features/events";
 import { Location } from "@/features/location";
 import { Wishes } from "@/features/wishes";
@@ -59,7 +59,7 @@ function Footer() {
 export default function MainContent() {
   return (
     <>
-      <Hero />
+      <HeroPhoto />
       <Greeting />
       <Events />
       <Location />

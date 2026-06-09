@@ -31,16 +31,16 @@ html,
 body {
   width: 100%;
   min-height: 100%;
-  overflow: hidden;
   background-color: var(--safe-area-bg);
-  overscroll-behavior: none;
 }
 
 html {
+  overflow-y: scroll;
   scroll-behavior: smooth;
 }
 
 body {
+  overflow: visible;
   color: var(--text);
   font-family: "Montserrat", sans-serif;
   font-weight: 300;
@@ -51,6 +51,7 @@ body {
 #root {
   width: 100%;
   min-height: 100%;
+  overflow: visible;
   background-color: var(--safe-area-bg);
 }
 
@@ -58,12 +59,12 @@ body {
   position: relative;
   width: 100%;
   max-width: 390px;
-  height: 100dvh;
+  min-height: 100dvh;
   margin: 0 auto;
   padding: 0;
   background: var(--white);
   box-shadow: none;
-  overflow: hidden;
+  overflow: visible;
   isolation: isolate;
 }
 
@@ -77,14 +78,9 @@ body {
 }
 
 .content-scroll {
-  position: absolute;
-  inset: 0;
-  overflow-x: hidden;
-  overflow-y: auto;
-  height: 100%;
-  -webkit-overflow-scrolling: touch;
-  overscroll-behavior: contain;
-  scroll-behavior: smooth;
+  position: relative;
+  min-height: 100dvh;
+  overflow: visible;
   background: var(--bg);
 }
 
@@ -314,4 +310,83 @@ body {
   color: rgba(45, 45, 45, 0.78);
   font-size: 13px;
   line-height: 1.9;
+}
+
+.hero-photo {
+  /* Tune the SVG paper edge here: height, overlap, and width. */
+  --hero-torn-edge-height: clamp(92px, 18vh, 160px);
+  --hero-torn-edge-overlap: -2px;
+  --hero-torn-edge-width: calc(100% + 18px);
+
+  position: relative;
+  width: 100%;
+  height: 100dvh;
+  min-height: 620px;
+  overflow: hidden;
+  color: var(--white);
+  background: var(--bg);
+  isolation: isolate;
+}
+
+.hero-photo__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  filter: saturate(0.96) contrast(1.02);
+}
+
+.hero-photo__shade {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.06) 0%, transparent 38%),
+    linear-gradient(180deg, transparent 48%, rgba(0, 0, 0, 0.58) 100%);
+}
+
+.hero-photo__torn-edge {
+  position: absolute;
+  left: 50%;
+  bottom: var(--hero-torn-edge-overlap);
+  z-index: 3;
+  width: var(--hero-torn-edge-width);
+  height: var(--hero-torn-edge-height);
+  max-width: none;
+  transform: translateX(-50%);
+  object-fit: fill;
+  pointer-events: none;
+}
+
+.hero-photo__content {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 12%;
+  z-index: 4;
+  padding: 0 24px;
+  text-align: center;
+  text-shadow: 0 10px 28px rgba(0, 0, 0, 0.34);
+}
+
+.hero-photo__names {
+  margin-bottom: 12px;
+  font-family: "Pinyon Script", cursive;
+  font-size: clamp(64px, 18vw, 82px);
+  line-height: 1;
+}
+
+.hero-photo__date {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 13px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+}
+
+@supports (height: 100svh) {
+  .hero-photo {
+    height: 100svh;
+  }
 }

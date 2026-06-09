@@ -15,7 +15,7 @@ const overlayStyle = {
 
 const landingRootStyle = {
   position: "relative",
-  height: "100%",
+  minHeight: "100dvh",
   overflow: "visible",
   "--bg": "#faf9f6",
   "--antique-dark": "#5d4037",
@@ -35,12 +35,12 @@ const innerStyle = {
   pointerEvents: "none",
 };
 
-const bottomOrnamentContourShadow = 
+const bottomOrnamentContourShadow =
   "drop-shadow(0 8px 16px rgba(38, 26, 18, 0.3))";
 
-const topOrnamentContourShadow = 
+const topOrnamentContourShadow =
   "drop-shadow(0 4px 8px rgba(38, 26, 18, 0.35))";
-  
+
 const bottomOrnamentStyle = {
   position: "absolute",
   left: "50%",
