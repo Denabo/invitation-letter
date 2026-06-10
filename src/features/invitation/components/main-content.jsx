@@ -9,23 +9,6 @@ import { useConfig } from "@/features/invitation/hooks/use-config";
 import { getGuestName } from "@/lib/invitation-storage";
 import RevealOnScroll from "@/components/ui/reveal-on-scroll";
 
-function getWeddingDateLabel(config) {
-  const date = config.weddingDate ? new Date(config.weddingDate) : null;
-
-  if (date && !Number.isNaN(date.getTime())) {
-    const day = String(date.getDate()).padStart(2, "0");
-    const month = String(date.getMonth() + 1).padStart(2, "0");
-    const year = date.getFullYear();
-
-    return `${day}.${month}.${year}`;
-  }
-
-  const day = String(config.weddingDay || 12).padStart(2, "0");
-  const month = config.weddingMonth || "09";
-
-  return `${day}.${month}`;
-}
-
 function Greeting() {
   const config = useConfig();
   const guestName = getGuestName();
@@ -52,9 +35,6 @@ function Greeting() {
             в день нашей свадьбы, которая состоится:
           </p>
         </div>
-        <p className="invitation-greeting__date">
-          {getWeddingDateLabel(config)}
-        </p>
       </RevealOnScroll>
     </section>
   );
