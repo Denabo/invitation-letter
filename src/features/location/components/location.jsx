@@ -19,10 +19,8 @@ export default function Location() {
           Локация
         </p>
         <p
+          className="invitation-info-text"
           style={{
-            fontSize: 13,
-            color: "var(--muted)",
-            lineHeight: 1.9,
             marginBottom: 18,
           }}
         >

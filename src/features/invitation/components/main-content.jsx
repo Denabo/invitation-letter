@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import HeroPhoto from "@/features/invitation/components/hero-photo";
 import { Events } from "@/features/events";
+import Countdown from "@/features/events/components/countdown";
 import { Location } from "@/features/location";
 import { Wishes } from "@/features/wishes";
 import { Gifts } from "@/features/gifts";
@@ -37,7 +38,11 @@ function Greeting() {
   return (
     <section id="greeting" className="invitation-greeting">
       <RevealOnScroll>
-        <p className="invitation-greeting__names">{names}</p>
+        <img
+          src="/Zagalovok.webp"
+          alt={names}
+          className="invitation-greeting__names-image"
+        />
         <p className="invitation-greeting__title">{salutation}</p>
         <div className="invitation-greeting__copy">
           <p>В нашей жизни предстоят счастливые перемены!</p>
@@ -92,6 +97,7 @@ export default function MainContent() {
       <Location />
       <Wishes />
       <Gifts />
+      <Countdown />
       <Footer />
     </>
   );

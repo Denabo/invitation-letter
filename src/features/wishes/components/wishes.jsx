@@ -41,12 +41,9 @@ export default function Wishes() {
           анкета
         </motion.h3>
         <p
+          className="invitation-info-text"
           style={{
-            fontSize: 12,
-            fontWeight: 300,
-            color: "var(--muted)",
             textAlign: "center",
-            lineHeight: 1.8,
             marginBottom: 20,
           }}
         >

@@ -20,11 +20,9 @@ export default function Gifts() {
             дресс код
           </h3>
           <p
+            className="invitation-info-text"
             style={{
-              fontSize: 12,
-              color: "var(--muted)",
               textAlign: "center",
-              lineHeight: 1.8,
               marginBottom: 20,
             }}
           >
@@ -70,11 +68,9 @@ export default function Gifts() {
             детали
           </h3>
           <p
+            className="invitation-info-text"
             style={{
-              fontSize: 12,
-              color: "var(--muted)",
               textAlign: "center",
-              lineHeight: 1.9,
               marginBottom: 14,
             }}
           >
