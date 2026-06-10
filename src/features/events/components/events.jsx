@@ -74,7 +74,7 @@ function TimelinePiece({ src, side, left, width, cy, alt, delay }) {
 
 export default function Events() {
   return (
-    <section id="event" style={{ marginBottom: 34 }}>
+    <section id="event" style={{ marginTop: -8, marginBottom: 34 }}>
       <RevealOnScroll>
         <div
           style={{
