@@ -16,34 +16,34 @@ const timeline = [
   {
     cy: 33.7,
     alt: "11:00 — Венчание, ул. Осенняя, 24",
-    icon: { src: "/taiming/кольца.webp", side: "left", left: 6, width: 30 },
+    icon: { src: "/taiming/кольца.webp", side: "left", left: 4, width: 26 },
     text: {
       src: "/taiming/кольца время.webp",
       side: "right",
-      left: 52,
-      width: 42,
+      left: 57,
+      width: 37,
     },
   },
   {
     cy: 62.4,
     alt: "15:00 — Велком, Парк-отель Лукоморье",
-    icon: { src: "/taiming/стаканы.webp", side: "right", left: 64, width: 32 },
+    icon: { src: "/taiming/стаканы.webp", side: "right", left: 64, width: 28 },
     text: {
       src: "/taiming/стаканы время.webp",
       side: "left",
-      left: 4,
-      width: 42,
+      left: 2,
+      width: 35,
     },
   },
   {
     cy: 82.1,
     alt: "16:00 — Банкет, Парк-отель Лукоморье",
-    icon: { src: "/taiming/ьанкет.webp", side: "left", left: 4, width: 34 },
+    icon: { src: "/taiming/ьанкет.webp", side: "left", left: 4, width: 30 },
     text: {
       src: "/taiming/Банкет время.webp",
       side: "right",
-      left: 52,
-      width: 42,
+      left: 57,
+      width: 37,
     },
   },
 ];
