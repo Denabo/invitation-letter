@@ -17,6 +17,8 @@
   --text: #1a0f0f;
   --muted: #5a3a3a;
   --border: #e8d5ce;
+  --rose-line: #d24b5e;
+  --heart-red: #c8102e;
 }
 
 *,
@@ -314,6 +316,14 @@ body {
   letter-spacing: 0.01em;
   line-height: 1;
   text-transform: none;
+}
+
+.invitation-greeting__names-image {
+  display: block;
+  width: 100%;
+  max-width: 360px;
+  height: auto;
+  margin: 0 auto 20px;
 }
 
 .invitation-greeting__title {

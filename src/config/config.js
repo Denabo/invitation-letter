@@ -18,9 +18,9 @@ const config = {
       mapsUrl: "https://maps.google.com",
     },
     schedule: [
-      { time: "15:30", name: "Welcome", icon: "🥂" },
-      { time: "16:00", name: "Церемония", icon: "💍" },
-      { time: "17:00", name: "Банкет", icon: "🍽" },
+      { time: "11:00", name: "Венчание", place: "ул. Осенняя, 24" },
+      { time: "15:00", name: "Велком", place: "на турбазе" },
+      { time: "16:00", name: "Банкет", place: "" },
     ],
     dressCode: {
       text: "Мы будем благодарны, если вы поддержите цветовую гамму нашего торжества.",
