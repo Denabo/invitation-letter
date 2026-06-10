@@ -358,6 +358,15 @@ body {
   line-height: 1;
 }
 
+/* Shared readable informational text (matches greeting copy) */
+.invitation-info-text {
+  font-family: "Montserrat", sans-serif;
+  font-size: clamp(14px, 3.8vw, 18px);
+  font-weight: 500;
+  line-height: 1.45;
+  color: rgba(45, 45, 45, 0.86);
+}
+
 /* ─────────────────────────────────────────
    Hero Photo
    ───────────────────────────────────────── */
