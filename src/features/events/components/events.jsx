@@ -3,9 +3,6 @@ import RevealOnScroll from "@/components/ui/reveal-on-scroll";
 
 const RUKI_PHOTO_SRC = "/photos/ruki.jpg";
 
-// Aspect ratio of the backbone illustration (896 x 1728)
-const LINE_ASPECT = (1728 / 896) * 100;
-
 /*
  * Each stop is pinned to one of the three dots on the red line.
  * cy = vertical center of the dot (% of the illustration height).
@@ -14,36 +11,36 @@ const LINE_ASPECT = (1728 / 896) * 100;
  */
 const timeline = [
   {
-    cy: 33.7,
+    cy: 29.7,
     alt: "11:00 — Венчание, ул. Осенняя, 24",
-    icon: { src: "/taiming/кольца.webp", side: "left", left: 4, width: 26 },
+    icon: { src: "/taiming/кольца.webp", side: "left", left: 13, width: 26 },
     text: {
       src: "/taiming/кольца время.webp",
       side: "right",
-      left: 57,
-      width: 37,
+      left: 54,
+      width: 25,
     },
   },
   {
-    cy: 62.4,
+    cy: 56.4,
     alt: "15:00 — Велком, Парк-отель Лукоморье",
-    icon: { src: "/taiming/стаканы.webp", side: "right", left: 64, width: 28 },
+    icon: { src: "/taiming/стаканы.webp", side: "right", left: 54, width: 28 },
     text: {
       src: "/taiming/стаканы время.webp",
       side: "left",
-      left: 2,
-      width: 35,
+      left: 20,
+      width: 23,
     },
   },
   {
-    cy: 82.1,
+    cy: 73.1,
     alt: "16:00 — Банкет, Парк-отель Лукоморье",
-    icon: { src: "/taiming/ьанкет.webp", side: "left", left: 4, width: 30 },
+    icon: { src: "/taiming/ьанкет.webp", side: "left", left: 13, width: 30 },
     text: {
       src: "/taiming/Банкет время.webp",
       side: "right",
       left: 57,
-      width: 37,
+      width: 25,
     },
   },
 ];
@@ -82,19 +79,19 @@ export default function Events() {
             width: "100%",
             maxWidth: 440,
             margin: "0 auto 8px",
-            paddingTop: `${LINE_ASPECT}%`,
           }}
         >
-          {/* The hand-drawn red backbone with the date header */}
+          {/* The hand-drawn red backbone with the date header.
+             It sits in normal flow so it dictates the container height,
+             guaranteeing the absolutely-positioned stops stay pinned to
+             the dots at every screen width. */}
           <img
             src="/taiming/red line.webp"
             alt="12 сентября — план дня"
             style={{
-              position: "absolute",
-              inset: 0,
+              display: "block",
               width: "100%",
-              height: "100%",
-              objectFit: "contain",
+              height: "auto",
             }}
           />
 
