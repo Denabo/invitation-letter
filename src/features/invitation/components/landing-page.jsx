@@ -16,15 +16,18 @@ const overlayStyle = {
 const landingRootStyle = {
   position: "relative",
   minHeight: "100dvh",
-  overflow: "visible",
-  "--bg": "#faf9f6",
+  width: "100%",
+  maxWidth: "100vw",
+  overflowX: "hidden",
+  overflowY: "visible",
+  "--bg": "#ffffff",
   "--antique-dark": "#5d4037",
 };
 
 const innerStyle = {
   position: "relative",
   width: "100%",
-  maxWidth: 390,
+  maxWidth: "min(490px, 100vw)",
   height: "100dvh",
   margin: "0 auto",
   overflow: "hidden",

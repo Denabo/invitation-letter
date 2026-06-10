@@ -8,21 +8,48 @@ import { useConfig } from "@/features/invitation/hooks/use-config";
 import { getGuestName } from "@/lib/invitation-storage";
 import RevealOnScroll from "@/components/ui/reveal-on-scroll";
 
+function getWeddingDateLabel(config) {
+  const date = config.weddingDate ? new Date(config.weddingDate) : null;
+
+  if (date && !Number.isNaN(date.getTime())) {
+    const day = String(date.getDate()).padStart(2, "0");
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const year = date.getFullYear();
+
+    return `${day}.${month}.${year}`;
+  }
+
+  const day = String(config.weddingDay || 12).padStart(2, "0");
+  const month = config.weddingMonth || "09";
+
+  return `${day}.${month}`;
+}
+
 function Greeting() {
   const config = useConfig();
   const guestName = getGuestName();
+  const names =
+    config.coupleNames || `${config.brideName} & ${config.groomName}`;
+  const salutation = guestName
+    ? `${guestName}, дорогие родные и близкие!`
+    : "Дорогие родные и близкие!";
+
   return (
     <section id="greeting" className="invitation-greeting">
       <RevealOnScroll>
-        <p className="invitation-greeting__title">Дорогие друзья!</p>
+        <p className="invitation-greeting__names">{names}</p>
+        <p className="invitation-greeting__title">{salutation}</p>
         <div className="invitation-greeting__copy">
+          <p>В нашей жизни предстоят счастливые перемены!</p>
           <p>
-            {guestName
-              ? `${guestName}, совсем скоро наступит очень важный и особенный для нас день.`
-              : "Совсем скоро наступит очень важный и особенный для нас день."}
+            Мы хотим, чтобы в этот день рядом с нами были самые близкие и
+            дорогие для нас люди. Будем рады разделить с вами чудесный праздник
+            в день нашей свадьбы, которая состоится:
           </p>
-          <p>{config.greeting}</p>
         </div>
+        <p className="invitation-greeting__date">
+          {getWeddingDateLabel(config)}
+        </p>
       </RevealOnScroll>
     </section>
   );

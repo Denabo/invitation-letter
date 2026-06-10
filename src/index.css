@@ -6,8 +6,8 @@
 
 :root {
   --white: #ffffff;
-  --bg: #faf9f6;
-  --safe-area-bg: #f5f0eb;
+  --bg: #ffffff;
+  --safe-area-bg: #ffffff;
   --blush: #f0c4cb;
   --antique: #c87d87;
   --antique-dark: #8b4f58;
@@ -30,7 +30,9 @@
 html,
 body {
   width: 100%;
+  max-width: 100%;
   min-height: 100%;
+  overflow-x: hidden;
   background-color: var(--safe-area-bg);
 }
 
@@ -40,7 +42,7 @@ html {
 }
 
 body {
-  overflow: visible;
+  overflow-y: visible;
   color: var(--text);
   font-family: "Montserrat", sans-serif;
   font-weight: 300;
@@ -50,21 +52,24 @@ body {
 
 #root {
   width: 100%;
+  max-width: 100%;
   min-height: 100%;
-  overflow: visible;
+  overflow-x: hidden;
+  overflow-y: visible;
   background-color: var(--safe-area-bg);
 }
 
 .main-screen {
   position: relative;
   width: 100%;
-  max-width: 390px;
+  max-width: min(490px, 100vw);
   min-height: 100dvh;
   margin: 0 auto;
   padding: 0;
   background: var(--white);
   box-shadow: none;
-  overflow: visible;
+  overflow-x: hidden;
+  overflow-y: visible;
   isolation: isolate;
 }
 
@@ -80,7 +85,8 @@ body {
 .content-scroll {
   position: relative;
   min-height: 100dvh;
-  overflow: visible;
+  overflow-x: hidden;
+  overflow-y: visible;
   background: var(--bg);
 }
 
@@ -287,32 +293,59 @@ body {
 }
 
 .invitation-greeting {
-  margin: 0 22px 44px;
-  padding: 34px 22px 36px;
+  width: 100%;
+  margin: 0 0 18px;
+  padding: 44px clamp(28px, 8vw, 48px) 26px;
   text-align: center;
   color: #2d2d2d;
-  /* FIX: fully opaque so greeting doesn't bleed into photo above */
-  background: rgba(255, 255, 255, 0.98);
-  border: 1px solid rgba(224, 112, 96, 0.14);
-  box-shadow: 0 18px 48px rgba(93, 64, 55, 0.08);
+  background: transparent;
+  border: 0;
+  box-shadow: none;
   position: relative;
   z-index: 1;
 }
 
+.invitation-greeting__names {
+  margin-bottom: 24px;
+  color: var(--muted);
+  font-family: "Montserrat", sans-serif;
+  font-size: clamp(12px, 3.2vw, 15px);
+  font-weight: 400;
+  letter-spacing: 0.24em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
 .invitation-greeting__title {
-  margin-bottom: 18px;
-  color: #e07060;
-  font-family: "Pinyon Script", cursive;
-  font-size: 54px;
-  line-height: 0.95;
+  max-width: 360px;
+  margin: 0 auto 22px;
+  color: var(--thyme);
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(28px, 7.2vw, 38px);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  line-height: 1.08;
+  text-transform: uppercase;
 }
 
 .invitation-greeting__copy {
   display: grid;
-  gap: 14px;
-  color: rgba(45, 45, 45, 0.78);
-  font-size: 13px;
-  line-height: 1.9;
+  gap: 16px;
+  max-width: 360px;
+  margin: 0 auto;
+  color: rgba(45, 45, 45, 0.86);
+  font-size: clamp(14px, 3.8vw, 18px);
+  font-weight: 500;
+  line-height: 1.45;
+}
+
+.invitation-greeting__date {
+  margin-top: 24px;
+  color: var(--thyme);
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(34px, 9vw, 48px);
+  font-weight: 400;
+  line-height: 1;
 }
 
 /* ─────────────────────────────────────────
@@ -321,64 +354,20 @@ body {
 .hero-photo {
   position: relative;
   width: 100%;
-  height: 100dvh;
-  min-height: 620px;
+  max-width: 100%;
+  height: auto;
   overflow: hidden;
-  color: var(--white);
+  line-height: 0;
   background: var(--bg);
   isolation: isolate;
 }
 
 .hero-photo__image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center top;
   display: block;
-  filter: saturate(0.96) contrast(1.02);
-}
-
-/* Тёмный градиент снизу — имена читаются на фото */
-.hero-photo__shade {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  background: linear-gradient(
-    to bottom,
-    transparent 45%,
-    rgba(0, 0, 0, 0.42) 100%
-  );
-  pointer-events: none;
-}
-
-/* Имена и дата поверх фото */
-.hero-photo__content {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 12%;
-  z-index: 2;
-  padding: 0 24px;
-  text-align: center;
-  text-shadow: 0 10px 28px rgba(0, 0, 0, 0.34);
-}
-
-.hero-photo__names {
-  margin-bottom: 12px;
-  font-family: "Pinyon Script", cursive;
-  font-size: clamp(64px, 18vw, 82px);
-  line-height: 1;
-}
-
-.hero-photo__date {
-  font-family: "Cormorant Garamond", serif;
-  font-size: 13px;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-}
-
-@supports (height: 100svh) {
-  .hero-photo {
-    height: 100svh;
-  }
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+  object-position: center top;
+  filter: saturate(1.04) contrast(1.04) brightness(1.06);
 }
