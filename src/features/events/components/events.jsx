@@ -11,7 +11,7 @@ const RUKI_PHOTO_SRC = "/photos/ruki.jpg";
  */
 const timeline = [
   {
-    cy: 29.7,
+    cy: 27.7,
     alt: "11:00 — Венчание, ул. Осенняя, 24",
     icon: { src: "/taiming/кольца.webp", side: "left", left: 13, width: 26 },
     text: {
@@ -33,7 +33,7 @@ const timeline = [
     },
   },
   {
-    cy: 73.1,
+    cy: 75.1,
     alt: "16:00 — Банкет, Парк-отель Лукоморье",
     icon: { src: "/taiming/ьанкет.webp", side: "left", left: 13, width: 30 },
     text: {
