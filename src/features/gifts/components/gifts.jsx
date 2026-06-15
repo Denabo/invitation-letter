@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import RevealOnScroll from "@/components/ui/reveal-on-scroll";
 import { useConfig } from "@/features/invitation/hooks/use-config";
 
@@ -36,12 +35,9 @@ export default function Gifts() {
               marginTop: 16,
             }}
           >
-            {config.dressCode?.colors?.map((c, index) => (
-              <motion.div
+            {config.dressCode?.colors?.map((c) => (
+              <div
                 key={c}
-                initial={{ opacity: 0, scale: 0 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
                 style={{
                   width: 38,
                   height: 38,
