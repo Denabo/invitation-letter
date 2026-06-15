@@ -1,32 +1,12 @@
 import { motion } from "framer-motion";
-import RevealOnScroll from "@/components/ui/reveal-on-scroll";
 import { useConfig } from "@/features/invitation/hooks/use-config";
-
-/* ── Custom inline SVG icons (identical on every device) ── */
 
 function RingsIcon() {
   return (
     <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
-      <circle
-        cx="9"
-        cy="15"
-        r="5.2"
-        fill="none"
-        stroke="var(--rose-line)"
-        strokeWidth="1.6"
-      />
-      <circle
-        cx="15"
-        cy="15"
-        r="5.2"
-        fill="none"
-        stroke="var(--rose-line)"
-        strokeWidth="1.6"
-      />
-      <path
-        d="M12 9.4l-1.7-3a1 1 0 0 1 .9-1.5h1.6a1 1 0 0 1 .9 1.5z"
-        fill="var(--rose-line)"
-      />
+      <circle cx="9" cy="15" r="5.2" fill="none" stroke="var(--rose-line)" strokeWidth="1.6" />
+      <circle cx="15" cy="15" r="5.2" fill="none" stroke="var(--rose-line)" strokeWidth="1.6" />
+      <path d="M12 9.4l-1.7-3a1 1 0 0 1 .9-1.5h1.6a1 1 0 0 1 .9 1.5z" fill="var(--rose-line)" />
     </svg>
   );
 }
@@ -34,20 +14,8 @@ function RingsIcon() {
 function GlassIcon() {
   return (
     <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
-      <path
-        d="M5 4h14l-6 8v6"
-        fill="none"
-        stroke="var(--rose-line)"
-        strokeWidth="1.6"
-        strokeLinejoin="round"
-        strokeLinecap="round"
-      />
-      <path
-        d="M8 18h10"
-        stroke="var(--rose-line)"
-        strokeWidth="1.6"
-        strokeLinecap="round"
-      />
+      <path d="M5 4h14l-6 8v6" fill="none" stroke="var(--rose-line)" strokeWidth="1.6" strokeLinejoin="round" strokeLinecap="round" />
+      <path d="M8 18h10" stroke="var(--rose-line)" strokeWidth="1.6" strokeLinecap="round" />
       <circle cx="16" cy="6" r="1.5" fill="var(--rose-line)" />
     </svg>
   );
@@ -56,25 +24,10 @@ function GlassIcon() {
 function PlateIcon() {
   return (
     <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
-      <circle
-        cx="12"
-        cy="13"
-        r="6"
-        fill="none"
-        stroke="var(--rose-line)"
-        strokeWidth="1.6"
-      />
+      <circle cx="12" cy="13" r="6" fill="none" stroke="var(--rose-line)" strokeWidth="1.6" />
       <circle cx="12" cy="13" r="2.4" fill="var(--rose-line)" />
-      <path
-        d="M5 3v6M3.4 3v3.2M6.6 3v3.2"
-        stroke="var(--rose-line)"
-        strokeWidth="1.4"
-        strokeLinecap="round"
-      />
-      <path
-        d="M19 3c-1.4 0-2 1.8-2 3.4 0 1.2.7 2 2 2.2V3z"
-        fill="var(--rose-line)"
-      />
+      <path d="M5 3v6M3.4 3v3.2M6.6 3v3.2" stroke="var(--rose-line)" strokeWidth="1.4" strokeLinecap="round" />
+      <path d="M19 3c-1.4 0-2 1.8-2 3.4 0 1.2.7 2 2 2.2V3z" fill="var(--rose-line)" />
     </svg>
   );
 }
@@ -85,7 +38,6 @@ const iconByName = {
   Банкет: PlateIcon,
 };
 
-/* viewBox geometry — nodes & connecting serpentine line */
 const VIEW_W = 300;
 const VIEW_H = 540;
 
@@ -109,7 +61,7 @@ export default function Timeline() {
 
   return (
     <section style={{ marginBottom: 34 }}>
-      <RevealOnScroll>
+      <div>
         <h3
           style={{
             fontSize: 11,
@@ -133,7 +85,6 @@ export default function Timeline() {
             aspectRatio: `${VIEW_W} / ${VIEW_H}`,
           }}
         >
-          {/* Rose serpentine connecting line */}
           <svg
             viewBox={`0 0 ${VIEW_W} ${VIEW_H}`}
             preserveAspectRatio="xMidYMid meet"
@@ -152,13 +103,11 @@ export default function Timeline() {
               strokeWidth="2"
               strokeLinecap="round"
               initial={{ pathLength: 0 }}
-              whileInView={{ pathLength: 1 }}
-              viewport={{ once: true, amount: 0.3 }}
+              animate={{ pathLength: 1 }}
               transition={{ duration: 2, ease: "easeInOut" }}
             />
           </svg>
 
-          {/* Event nodes */}
           {schedule.map((item, index) => {
             const node = NODES[index] || NODES[NODES.length - 1];
             const Icon = iconByName[item.name] || RingsIcon;
@@ -179,11 +128,9 @@ export default function Timeline() {
                   gap: 12,
                 }}
               >
-                {/* Animated icon bubble */}
                 <motion.div
                   initial={{ scale: 0, opacity: 0 }}
-                  whileInView={{ scale: 1, opacity: 1 }}
-                  viewport={{ once: true, amount: 0.6 }}
+                  animate={{ scale: 1, opacity: 1 }}
                   transition={{
                     type: "spring",
                     stiffness: 260,
@@ -206,11 +153,9 @@ export default function Timeline() {
                   <Icon />
                 </motion.div>
 
-                {/* Label */}
                 <motion.div
                   initial={{ opacity: 0, y: 8 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.6 }}
+                  animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.7 + index * 0.45 }}
                   style={{
                     textAlign: node.side === "right" ? "left" : "right",
@@ -256,7 +201,7 @@ export default function Timeline() {
             );
           })}
         </div>
-      </RevealOnScroll>
+      </div>
     </section>
   );
 }
