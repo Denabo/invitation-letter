@@ -1,17 +1,14 @@
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
 import RevealOnScroll from "@/components/ui/reveal-on-scroll";
+
 const RUKI_PHOTO_SRC = "/photos/ruki.jpg";
 
-const PIECE_DURATION = 1;
-const LINE_DURATION = 0.9;
-const GENTLE_EASE = [0.25, 0.1, 0.25, 1];
-
-/** Срабатывает только когда блок реально доскроллили (не при открытии страницы) */
-const SCROLL_VIEWPORT = {
-  once: true,
-  amount: 0.35,
-  margin: "0px 0px -35% 0px",
+const PIECE_DURATION = 0.72;
+const GENTLE_EASE = [0.22, 1, 0.36, 1];
+const TIMELINE_VIEWPORT = {
+  rootMargin: "0px 0px -25% 0px",
+  threshold: 0.2,
 };
 
 const timeline = [
@@ -50,8 +47,57 @@ const timeline = [
   },
 ];
 
-function TimelinePiece({ isInView, src, side, left, width, cy, alt, delay }) {
-  const fromX = side === "left" ? -28 : 28;
+function isElementInsideViewport(element) {
+  const rect = element.getBoundingClientRect();
+  const triggerLine = window.innerHeight * 0.75;
+
+  return rect.top <= triggerLine && rect.bottom >= 0;
+}
+
+function useRevealWhenScrolledTo(ref) {
+  const [hasRevealed, setHasRevealed] = useState(false);
+
+  useEffect(() => {
+    const element = ref.current;
+
+    if (!element || hasRevealed) return undefined;
+
+    if (typeof IntersectionObserver === "undefined") {
+      const checkVisibility = () => {
+        if (isElementInsideViewport(element)) {
+          setHasRevealed(true);
+          window.removeEventListener("scroll", checkVisibility);
+          window.removeEventListener("resize", checkVisibility);
+        }
+      };
+
+      checkVisibility();
+      window.addEventListener("scroll", checkVisibility, { passive: true });
+      window.addEventListener("resize", checkVisibility);
+
+      return () => {
+        window.removeEventListener("scroll", checkVisibility);
+        window.removeEventListener("resize", checkVisibility);
+      };
+    }
+
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) return;
+
+      setHasRevealed(true);
+      observer.disconnect();
+    }, TIMELINE_VIEWPORT);
+
+    observer.observe(element);
+
+    return () => observer.disconnect();
+  }, [hasRevealed, ref]);
+
+  return hasRevealed;
+}
+
+function TimelinePiece({ isVisible, src, side, left, width, cy, alt, delay }) {
+  const fromX = side === "left" ? -18 : 18;
 
   return (
     <div
@@ -68,11 +114,11 @@ function TimelinePiece({ isInView, src, side, left, width, cy, alt, delay }) {
         src={src}
         alt={alt}
         loading="lazy"
-        initial={{ opacity: 0, x: fromX, scale: 0.94 }}
+        initial={{ opacity: 0, x: fromX, scale: 0.96, filter: "blur(6px)" }}
         animate={
-          isInView
-            ? { opacity: 1, x: 0, scale: 1 }
-            : { opacity: 0, x: fromX, scale: 0.94 }
+          isVisible
+            ? { opacity: 1, x: 0, scale: 1, filter: "blur(0px)" }
+            : { opacity: 0, x: fromX, scale: 0.96, filter: "blur(6px)" }
         }
         transition={{
           duration: PIECE_DURATION,
@@ -83,14 +129,16 @@ function TimelinePiece({ isInView, src, side, left, width, cy, alt, delay }) {
           display: "block",
           width: "100%",
           height: "auto",
+          willChange: "opacity, transform, filter",
         }}
       />
     </div>
   );
 }
+
 export default function Events() {
   const timelineRef = useRef(null);
-  const isInView = useInView(timelineRef, SCROLL_VIEWPORT);
+  const isTimelineVisible = useRevealWhenScrolledTo(timelineRef);
 
   return (
     <section id="event" style={{ marginTop: -8, marginBottom: 34 }}>
@@ -103,46 +151,35 @@ export default function Events() {
           margin: "0 auto 8px",
         }}
       >
-        <motion.img
+        <img
           src="/taiming/red line.webp"
           alt="12 сентября — план дня"
-          initial={{ opacity: 0, clipPath: "inset(0 0 100% 0)" }}
-          animate={
-            isInView
-              ? { opacity: 1, clipPath: "inset(0 0 0% 0)" }
-              : { opacity: 0, clipPath: "inset(0 0 100% 0)" }
-          }
-          transition={{
-            duration: LINE_DURATION,
-            delay: 0,
-            ease: GENTLE_EASE,
-          }}
+          loading="lazy"
           style={{
             display: "block",
             width: "100%",
             height: "auto",
-            transformOrigin: "center top",
           }}
         />
 
         {timeline.map((stop, index) => {
-          const baseDelay = 0.15 + index * 0.22;
+          const baseDelay = index * 0.16;
 
           return (
             <div key={stop.alt}>
               <TimelinePiece
-                isInView={isInView}
+                isVisible={isTimelineVisible}
                 {...stop.icon}
                 cy={stop.cy}
                 alt={stop.alt}
                 delay={baseDelay}
               />
               <TimelinePiece
-                isInView={isInView}
+                isVisible={isTimelineVisible}
                 {...stop.text}
                 cy={stop.cy}
                 alt=""
-                delay={baseDelay + 0.12}
+                delay={baseDelay + 0.08}
               />
             </div>
           );
