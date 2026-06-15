@@ -1,15 +1,11 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import { motion } from "framer-motion";
-import RevealOnScroll from "@/components/ui/reveal-on-scroll";
+import RevealOnScroll, { useReveal } from "@/components/ui/reveal-on-scroll";
 
 const RUKI_PHOTO_SRC = "/photos/ruki.jpg";
 
 const PIECE_DURATION = 0.72;
 const GENTLE_EASE = [0.22, 1, 0.36, 1];
-const TIMELINE_VIEWPORT = {
-  rootMargin: "0px 0px -25% 0px",
-  threshold: 0.2,
-};
 
 const timeline = [
   {
@@ -46,55 +42,6 @@ const timeline = [
     },
   },
 ];
-
-function isElementInsideViewport(element) {
-  const rect = element.getBoundingClientRect();
-  const triggerLine = window.innerHeight * 0.75;
-
-  return rect.top <= triggerLine && rect.bottom >= 0;
-}
-
-function useRevealWhenScrolledTo(ref) {
-  const [hasRevealed, setHasRevealed] = useState(false);
-
-  useEffect(() => {
-    const element = ref.current;
-
-    if (!element || hasRevealed) return undefined;
-
-    if (typeof IntersectionObserver === "undefined") {
-      const checkVisibility = () => {
-        if (isElementInsideViewport(element)) {
-          setHasRevealed(true);
-          window.removeEventListener("scroll", checkVisibility);
-          window.removeEventListener("resize", checkVisibility);
-        }
-      };
-
-      checkVisibility();
-      window.addEventListener("scroll", checkVisibility, { passive: true });
-      window.addEventListener("resize", checkVisibility);
-
-      return () => {
-        window.removeEventListener("scroll", checkVisibility);
-        window.removeEventListener("resize", checkVisibility);
-      };
-    }
-
-    const observer = new IntersectionObserver(([entry]) => {
-      if (!entry.isIntersecting) return;
-
-      setHasRevealed(true);
-      observer.disconnect();
-    }, TIMELINE_VIEWPORT);
-
-    observer.observe(element);
-
-    return () => observer.disconnect();
-  }, [hasRevealed, ref]);
-
-  return hasRevealed;
-}
 
 function TimelinePiece({ isVisible, src, side, left, width, cy, alt, delay }) {
   const fromX = side === "left" ? -18 : 18;
@@ -138,7 +85,7 @@ function TimelinePiece({ isVisible, src, side, left, width, cy, alt, delay }) {
 
 export default function Events() {
   const timelineRef = useRef(null);
-  const isTimelineVisible = useRevealWhenScrolledTo(timelineRef);
+  const isTimelineVisible = useReveal(timelineRef);
 
   return (
     <section id="event" style={{ marginTop: -8, marginBottom: 34 }}>
