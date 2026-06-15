@@ -33,7 +33,7 @@ const TRIGGER_RATIO = 0.92;
  * element the same way — including the very first paint and the elements at the
  * bottom of the page.
  */
-export function useReveal(ref) {
+export function useReveal(ref, triggerRatio = TRIGGER_RATIO) {
   const [revealed, setRevealed] = useState(false);
 
   useEffect(() => {
@@ -48,7 +48,7 @@ export function useReveal(ref) {
       const rect = element.getBoundingClientRect();
       const viewportHeight =
         window.innerHeight || document.documentElement.clientHeight;
-      const triggerLine = viewportHeight * TRIGGER_RATIO;
+      const triggerLine = viewportHeight * triggerRatio;
 
       // Visible if any part of the element is within (or above) the trigger line
       // and it has not fully scrolled past the top.
@@ -79,7 +79,7 @@ export function useReveal(ref) {
       window.removeEventListener("scroll", onScrollOrResize, { capture: true });
       window.removeEventListener("resize", onScrollOrResize);
     };
-  }, [ref, revealed]);
+  }, [ref, revealed, triggerRatio]);
 
   return revealed;
 }
@@ -94,9 +94,10 @@ export default function RevealOnScroll({
   className,
   style,
   ready = true,
+  triggerRatio = TRIGGER_RATIO,
 }) {
   const ref = useRef(null);
-  const revealed = useReveal(ref);
+  const revealed = useReveal(ref, triggerRatio);
 
   return (
     <motion.div

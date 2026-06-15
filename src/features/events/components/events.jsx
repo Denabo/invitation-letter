@@ -2,6 +2,7 @@ import { useState } from "react";
 import RevealOnScroll from "@/components/ui/reveal-on-scroll";
 
 const RUKI_PHOTO_SRC = "/photos/ruki.jpg";
+const TIMELINE_REVEAL_RATIO = 0.68;
 
 const timeline = [
   {
@@ -42,6 +43,7 @@ function TimelinePiece({ src, left, width, cy, alt }) {
   return (
     <RevealOnScroll
       ready={imageReady}
+      triggerRatio={TIMELINE_REVEAL_RATIO}
       style={{
         position: "absolute",
         top: `${cy}%`,
