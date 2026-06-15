@@ -1,11 +1,6 @@
-import { useRef } from "react";
-import { motion } from "framer-motion";
-import RevealOnScroll, { useReveal } from "@/components/ui/reveal-on-scroll";
+import RevealOnScroll from "@/components/ui/reveal-on-scroll";
 
 const RUKI_PHOTO_SRC = "/photos/ruki.jpg";
-
-const PIECE_DURATION = 0.72;
-const GENTLE_EASE = [0.22, 1, 0.36, 1];
 
 const timeline = [
   {
@@ -43,54 +38,36 @@ const timeline = [
   },
 ];
 
-function TimelinePiece({ isVisible, src, side, left, width, cy, alt, delay }) {
-  const fromX = side === "left" ? -18 : 18;
-
+function TimelinePiece({ src, left, width, cy, alt }) {
   return (
-    <div
+    <RevealOnScroll
       style={{
         position: "absolute",
         top: `${cy}%`,
         left: `${left}%`,
         width: `${width}%`,
-        transform: "translateY(-50%)",
         pointerEvents: "none",
       }}
     >
-      <motion.img
+      <img
         src={src}
         alt={alt}
         loading="lazy"
-        initial={{ opacity: 0, x: fromX, scale: 0.96, filter: "blur(6px)" }}
-        animate={
-          isVisible
-            ? { opacity: 1, x: 0, scale: 1, filter: "blur(0px)" }
-            : { opacity: 0, x: fromX, scale: 0.96, filter: "blur(6px)" }
-        }
-        transition={{
-          duration: PIECE_DURATION,
-          delay,
-          ease: GENTLE_EASE,
-        }}
         style={{
           display: "block",
           width: "100%",
+          transform: "translateY(-50%)",
           height: "auto",
-          willChange: "opacity, transform, filter",
         }}
       />
-    </div>
+    </RevealOnScroll>
   );
 }
 
 export default function Events() {
-  const timelineRef = useRef(null);
-  const isTimelineVisible = useReveal(timelineRef);
-
   return (
     <section id="event" style={{ marginTop: -8, marginBottom: 34 }}>
       <div
-        ref={timelineRef}
         style={{
           position: "relative",
           width: "100%",
@@ -109,28 +86,12 @@ export default function Events() {
           }}
         />
 
-        {timeline.map((stop, index) => {
-          const baseDelay = index * 0.16;
-
-          return (
-            <div key={stop.alt}>
-              <TimelinePiece
-                isVisible={isTimelineVisible}
-                {...stop.icon}
-                cy={stop.cy}
-                alt={stop.alt}
-                delay={baseDelay}
-              />
-              <TimelinePiece
-                isVisible={isTimelineVisible}
-                {...stop.text}
-                cy={stop.cy}
-                alt=""
-                delay={baseDelay + 0.08}
-              />
-            </div>
-          );
-        })}
+        {timeline.map((stop) => (
+          <div key={stop.alt}>
+            <TimelinePiece {...stop.icon} cy={stop.cy} alt={stop.alt} />
+            <TimelinePiece {...stop.text} cy={stop.cy} alt="" />
+          </div>
+        ))}
       </div>
 
       <RevealOnScroll>
