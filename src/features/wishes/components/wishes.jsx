@@ -26,10 +26,7 @@ export default function Wishes() {
   return (
     <section id="wishes" style={{ marginBottom: 44 }}>
       <RevealOnScroll>
-        <motion.h3
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+        <h3
           style={{
             fontFamily: "Pinyon Script, cursive",
             fontSize: 72,
@@ -39,7 +36,7 @@ export default function Wishes() {
           }}
         >
           анкета
-        </motion.h3>
+        </h3>
         <p
           className="invitation-info-text"
           style={{
