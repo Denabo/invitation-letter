@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import MainContent from "@/features/invitation/components/main-content";
 
@@ -113,23 +113,6 @@ export default function LandingPage() {
   const [opened, setOpened] = useState(false);
 
   const handleOpen = () => {
-    // #region agent log
-    fetch("http://127.0.0.1:7845/ingest/4bef384a-8e96-47be-98e1-0b78e8505595", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "X-Debug-Session-Id": "93f2b8",
-      },
-      body: JSON.stringify({
-        sessionId: "93f2b8",
-        hypothesisId: "H1",
-        location: "landing-page.jsx:handleOpen",
-        message: "invitation opened",
-        data: { scrollY: window.scrollY, innerHeight: window.innerHeight },
-        timestamp: Date.now(),
-      }),
-    }).catch(() => {});
-    // #endregion
     setOpened(true);
   };
 

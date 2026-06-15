@@ -22,6 +22,14 @@ import App from "./app.jsx";
 import "./index.css";
 import { InvitationProvider } from "./features/invitation";
 
+// Replay scroll-reveal animations on every page reload: stop the browser from
+// restoring the previous scroll position and always start from the top, so the
+// user scrolls through the content fresh and each element animates in again.
+if (typeof window !== "undefined" && "scrollRestoration" in window.history) {
+  window.history.scrollRestoration = "manual";
+  window.scrollTo(0, 0);
+}
+
 // Create a client
 const queryClient = new QueryClient({
   defaultOptions: {
