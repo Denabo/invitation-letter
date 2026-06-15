@@ -1,3 +1,4 @@
+import { useState } from "react";
 import RevealOnScroll from "@/components/ui/reveal-on-scroll";
 
 const RUKI_PHOTO_SRC = "/photos/ruki.jpg";
@@ -6,10 +7,9 @@ const timeline = [
   {
     cy: 27.7,
     alt: "11:00 — Венчание, ул. Осенняя, 24",
-    icon: { src: "/taiming/кольца.webp", side: "left", left: 13, width: 26 },
+    icon: { src: "/taiming/кольца.webp", left: 13, width: 26 },
     text: {
       src: "/taiming/кольца время.webp",
-      side: "right",
       left: 54,
       width: 25,
     },
@@ -17,10 +17,9 @@ const timeline = [
   {
     cy: 56.4,
     alt: "15:00 — Велком, Парк-отель Лукоморье",
-    icon: { src: "/taiming/стаканы.webp", side: "right", left: 54, width: 28 },
+    icon: { src: "/taiming/стаканы.webp", left: 54, width: 28 },
     text: {
       src: "/taiming/стаканы время.webp",
-      side: "left",
       left: 20,
       width: 23,
     },
@@ -28,10 +27,9 @@ const timeline = [
   {
     cy: 75.1,
     alt: "16:00 — Банкет, Парк-отель Лукоморье",
-    icon: { src: "/taiming/ьанкет.webp", side: "left", left: 13, width: 30 },
+    icon: { src: "/taiming/ьанкет.webp", left: 13, width: 30 },
     text: {
       src: "/taiming/Банкет время.webp",
-      side: "right",
       left: 57,
       width: 25,
     },
@@ -39,8 +37,11 @@ const timeline = [
 ];
 
 function TimelinePiece({ src, left, width, cy, alt }) {
+  const [imageReady, setImageReady] = useState(false);
+
   return (
     <RevealOnScroll
+      ready={imageReady}
       style={{
         position: "absolute",
         top: `${cy}%`,
@@ -52,7 +53,9 @@ function TimelinePiece({ src, left, width, cy, alt }) {
       <img
         src={src}
         alt={alt}
-        loading="lazy"
+        loading="eager"
+        onLoad={() => setImageReady(true)}
+        onError={() => setImageReady(true)}
         style={{
           display: "block",
           width: "100%",
@@ -78,7 +81,7 @@ export default function Events() {
         <img
           src="/taiming/red line.webp"
           alt="12 сентября — план дня"
-          loading="lazy"
+          loading="eager"
           style={{
             display: "block",
             width: "100%",

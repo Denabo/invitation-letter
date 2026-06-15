@@ -93,6 +93,7 @@ export default function RevealOnScroll({
   delay = 0,
   className,
   style,
+  ready = true,
 }) {
   const ref = useRef(null);
   const revealed = useReveal(ref);
@@ -103,7 +104,7 @@ export default function RevealOnScroll({
       className={className}
       style={style}
       initial={HIDDEN}
-      animate={revealed ? VISIBLE : HIDDEN}
+      animate={revealed && ready ? VISIBLE : HIDDEN}
       transition={{ ...REVEAL_TRANSITION, delay }}
     >
       {children}
