@@ -9,14 +9,16 @@ import { useConfig } from "@/features/invitation/hooks/use-config";
 import { getGuestName } from "@/lib/invitation-storage";
 import RevealOnScroll from "@/components/ui/reveal-on-scroll";
 
+
 function Greeting() {
   const config = useConfig();
   const guestName = getGuestName();
-  const names =
-    config.coupleNames || `${config.brideName} & ${config.groomName}`;
+  const names = config.coupleNames || `${config.brideName} & ${config.groomName}`;
+  
+  // Текст с Заглавной буквы
   const salutation = guestName
-    ? `${guestName}, дорогие родные и близкие!`
-    : "Дорогие родные и близкие!";
+    ? `${guestName}, дорогие родные и друзья!`
+    : "Дорогие родные и друзья!";
 
   return (
     <section id="greeting" className="invitation-greeting">
@@ -25,9 +27,28 @@ function Greeting() {
           src="/Zagalovok.webp"
           alt={names}
           className="invitation-greeting__names-image"
+          style={{ display: 'block', margin: '0 auto', maxWidth: '80%' }}
         />
-        <p className="invitation-greeting__title">{salutation}</p>
-        <div className="invitation-greeting__copy">
+        
+        <h3
+          style={{
+            /* КОПИРУЕМ ИЗ ТВОЕЙ АНКЕТЫ */
+            fontFamily: "Pinyon Script, cursive", 
+            color: "var(--antique-dark)",
+            textAlign: "center",
+            
+            /* НАСТРОЙКИ РАЗМЕРА И ПЛОТНОСТИ */
+            fontSize: 45,        // Чуть меньше 72, чтобы фраза влезла
+            lineHeight: 1,     // СБЛИЖАЕМ СТРОКИ (чем меньше число, тем ближе)
+            marginTop: 15,
+            marginBottom: 10,
+            fontWeight: "normal"
+          }}
+        >
+          {salutation}
+        </h3>
+
+        <div className="invitation-greeting__copy" style={{ textAlign: "center" }}>
           <p>В нашей жизни предстоят счастливые перемены!</p>
           <p>
             Мы хотим, чтобы в этот день рядом с нами были самые близкие и
