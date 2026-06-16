@@ -34,7 +34,8 @@ const innerStyle = {
   isolation: "isolate",
   contain: "paint",
   background: "transparent",
-  boxShadow: "0 0 80px rgba(0,0,0,0.1)",
+  // УДАЛЕНО: boxShadow здесь создавал ту самую тень по бокам
+  boxShadow: "none", 
   pointerEvents: "none",
 };
 
