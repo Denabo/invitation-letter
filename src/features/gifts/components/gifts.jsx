@@ -35,7 +35,6 @@ export default function Gifts() {
             style={{
               display: "block",
               width: "100%",
-              borderRadius: 16,
               marginTop: 8,
             }}
           />
@@ -67,25 +66,24 @@ export default function Gifts() {
           </p>
 
           <a
-            href="https://t.me"
-            target="_blank"
-            rel="noreferrer"
+            href="tel:+79107421348"
             style={{
-              display: "block",
-              width: "100%",
               border: "1px solid var(--antique)",
-              color: "var(--antique)",
-              padding: 14,
+              borderRadius: 40,
+              padding: "12px 36px",
               fontSize: 10,
-              fontWeight: 400,
               letterSpacing: "0.2em",
               textTransform: "uppercase",
+              color: "var(--antique)",
               background: "transparent",
+              display: "block",
+              width: "fit-content",
+              margin: "0 auto",
               textAlign: "center",
               textDecoration: "none",
             }}
           >
-            Телеграм
+            контакты
           </a>
         </RevealOnScroll>
       </section>

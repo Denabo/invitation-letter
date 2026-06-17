@@ -17,7 +17,7 @@ function Star({ size = 16, color = "var(--antique)" }) {
 
 // Positions are offset from the horizontal centre so the sparkles flank the
 // (centred) heading text regardless of its width.
-const SPARKLES = [
+const HEADING_SPARKLES = [
   {
     top: -10,
     left: "calc(50% - 150px)",
@@ -52,14 +52,69 @@ const SPARKLES = [
   },
 ];
 
+// Spread across the whole wrapped area (e.g. the timeline image), as
+// percentages so it scales with the container.
+const SCATTER_SPARKLES = [
+  {
+    top: "4%",
+    left: "12%",
+    size: 16,
+    dur: 3.4,
+    delay: 0,
+    color: "var(--antique)",
+  },
+  {
+    top: "9%",
+    left: "82%",
+    size: 12,
+    dur: 3.0,
+    delay: 0.8,
+    color: "var(--bisque)",
+  },
+  {
+    top: "33%",
+    left: "88%",
+    size: 18,
+    dur: 3.8,
+    delay: 0.4,
+    color: "var(--bisque)",
+  },
+  {
+    top: "46%",
+    left: "6%",
+    size: 13,
+    dur: 2.9,
+    delay: 1.1,
+    color: "var(--antique)",
+  },
+  {
+    top: "68%",
+    left: "84%",
+    size: 15,
+    dur: 3.5,
+    delay: 0.6,
+    color: "var(--antique)",
+  },
+  {
+    top: "80%",
+    left: "10%",
+    size: 12,
+    dur: 3.1,
+    delay: 1.4,
+    color: "var(--bisque)",
+  },
+];
+
 /**
- * Wraps centred content (typically a heading) with a few gently twinkling
- * sparkles around it. Adds a soft, festive accent without affecting layout.
+ * Wraps content with a few gently twinkling sparkles. `variant="heading"`
+ * flanks a centred heading; `variant="scatter"` spreads them across the whole
+ * wrapped area. Purely cosmetic, never affects layout.
  */
-export default function Sparkles({ children, style }) {
+export default function Sparkles({ children, style, variant = "heading" }) {
+  const sparkles = variant === "scatter" ? SCATTER_SPARKLES : HEADING_SPARKLES;
   return (
     <div style={{ position: "relative", ...style }}>
-      {SPARKLES.map((s, i) => (
+      {sparkles.map((s, i) => (
         <motion.span
           key={i}
           aria-hidden
