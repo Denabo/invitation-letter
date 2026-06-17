@@ -11,18 +11,25 @@ import { useState, useRef, useEffect, useCallback } from "react";
  * @returns {Object} Audio state and controls
  */
 export function useAudio(options = {}) {
-  const { src = "/audio/fulfilling-humming.mp3", loop = true } = options;
+  const {
+    src = "/audio/fulfilling-humming.mp3",
+    loop = true,
+    initialVolume = 0.7,
+  } = options;
 
   const [isPlaying, setIsPlaying] = useState(false);
   const [isReady, setIsReady] = useState(false);
+  const [volume, setVolumeState] = useState(initialVolume);
   const audioRef = useRef(null);
   const wasPlayingRef = useRef(false);
+  const volumeRef = useRef(initialVolume);
 
   // Initialize audio element
   useEffect(() => {
     audioRef.current = new Audio(src);
     audioRef.current.loop = loop;
     audioRef.current.preload = "auto";
+    audioRef.current.volume = volumeRef.current;
 
     const handleCanPlay = () => setIsReady(true);
     const handlePlay = () => {
@@ -118,6 +125,16 @@ export function useAudio(options = {}) {
     wasPlayingRef.current = false;
   }, []);
 
+  // Set volume (0..1)
+  const setVolume = useCallback((value) => {
+    const clamped = Math.min(1, Math.max(0, value));
+    volumeRef.current = clamped;
+    setVolumeState(clamped);
+    if (audioRef.current) {
+      audioRef.current.volume = clamped;
+    }
+  }, []);
+
   // Toggle play/pause
   const toggle = useCallback(async () => {
     if (!audioRef.current) return;
@@ -131,6 +148,8 @@ export function useAudio(options = {}) {
   return {
     isPlaying,
     isReady,
+    volume,
+    setVolume,
     play,
     pause,
     toggle,

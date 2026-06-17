@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import HeroPhoto from "@/features/invitation/components/hero-photo";
 import { Events } from "@/features/events";
 import Countdown from "@/features/events/components/countdown";
+import MusicPlayer from "@/features/invitation/components/music-player";
 import { Location } from "@/features/location";
 import { Wishes } from "@/features/wishes";
 import { Gifts } from "@/features/gifts";
@@ -105,6 +106,7 @@ export default function MainContent() {
     <>
       <HeroPhoto />
       <Greeting />
+      <MusicPlayer />
       <Events />
       <Location />
       <Gifts />

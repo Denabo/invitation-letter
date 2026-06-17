@@ -1,6 +1,8 @@
+import { useRef, useState } from "react";
 import RevealOnScroll from "@/components/ui/reveal-on-scroll";
 import Sparkles from "@/components/ui/sparkles";
 import { useConfig } from "@/features/invitation/hooks/use-config";
+import BouquetFlower from "./bouquet-flower";
 import EnvelopeHeart from "./envelope-heart";
 
 const headingStyle = {
@@ -10,6 +12,110 @@ const headingStyle = {
   textAlign: "center",
   marginBottom: 14,
 };
+
+const contacts = [
+  { name: "Даниил", phone: "+79107421348" },
+  { name: "Дарья", phone: "+79521023266" },
+];
+
+function ContactsCarousel() {
+  const [current, setCurrent] = useState(0);
+  const touchStartX = useRef(null);
+
+  const handleTouchStart = (e) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (e) => {
+    if (touchStartX.current === null) return;
+    const diff = e.changedTouches[0].clientX - touchStartX.current;
+    if (diff > 50 && current > 0) {
+      setCurrent(current - 1);
+    } else if (diff < -50 && current < contacts.length - 1) {
+      setCurrent(current + 1);
+    }
+    touchStartX.current = null;
+  };
+
+  return (
+    <div>
+      <div
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+        style={{ overflow: "hidden", width: "100%" }}
+      >
+        <div
+          style={{
+            display: "flex",
+            transition: "transform 0.4s ease",
+            transform: `translateX(-${current * 100}%)`,
+          }}
+        >
+          {contacts.map((contact) => (
+            <div
+              key={contact.phone}
+              style={{
+                minWidth: "100%",
+                boxSizing: "border-box",
+                padding: "0 4px",
+                textAlign: "center",
+              }}
+            >
+              <a
+                href={`tel:${contact.phone}`}
+                style={{
+                  display: "inline-block",
+                  border: "1px solid var(--antique)",
+                  borderRadius: 999,
+                  padding: "12px 36px",
+                  fontSize: 10,
+                  fontWeight: 400,
+                  letterSpacing: "0.2em",
+                  textTransform: "uppercase",
+                  color: "var(--antique)",
+                  background: "transparent",
+                  textAlign: "center",
+                  textDecoration: "none",
+                }}
+              >
+                {contact.name}
+              </a>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          gap: 6,
+          marginTop: 16,
+        }}
+      >
+        {contacts.map((contact, index) => (
+          <button
+            key={contact.phone}
+            type="button"
+            onClick={() => setCurrent(index)}
+            aria-label={contact.name}
+            style={{
+              width: 6,
+              height: 6,
+              borderRadius: "50%",
+              border: "none",
+              padding: 0,
+              cursor: "pointer",
+              background: "var(--antique)",
+              opacity: current === index ? 1 : 0.3,
+              transition: "opacity 0.3s",
+            }}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
 
 export default function Gifts() {
   const config = useConfig();
@@ -65,26 +171,11 @@ export default function Gifts() {
             {config.gifts?.flowers}
           </p>
 
-          <a
-            href="tel:+79107421348"
-            style={{
-              border: "1px solid var(--antique)",
-              borderRadius: 40,
-              padding: "12px 36px",
-              fontSize: 10,
-              letterSpacing: "0.2em",
-              textTransform: "uppercase",
-              color: "var(--antique)",
-              background: "transparent",
-              display: "block",
-              width: "fit-content",
-              margin: "0 auto",
-              textAlign: "center",
-              textDecoration: "none",
-            }}
-          >
-            контакты
-          </a>
+          <div style={{ margin: "26px 0" }}>
+            <BouquetFlower />
+          </div>
+
+          <ContactsCarousel />
         </RevealOnScroll>
       </section>
     </>
