@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import RevealOnScroll from "@/components/ui/reveal-on-scroll";
+import Sparkles from "@/components/ui/sparkles";
 import { useInvitation } from "@/features/invitation";
 import { getGuestName } from "@/lib/invitation-storage";
 import { api } from "@/lib/api";
@@ -182,17 +183,19 @@ export default function Wishes() {
   return (
     <section id="wishes" style={{ marginBottom: 44 }}>
       <RevealOnScroll>
-        <h3
-          style={{
-            fontFamily: "var(--font-script)",
-            fontSize: 72,
-            color: "var(--heading-script)",
-            textAlign: "center",
-            marginBottom: 8,
-          }}
-        >
-          анкета
-        </h3>
+        <Sparkles>
+          <h3
+            style={{
+              fontFamily: "var(--font-script)",
+              fontSize: 72,
+              color: "var(--heading-script)",
+              textAlign: "center",
+              marginBottom: 8,
+            }}
+          >
+            анкета
+          </h3>
+        </Sparkles>
         <p
           className="invitation-info-text"
           style={{ textAlign: "center", marginBottom: 20 }}

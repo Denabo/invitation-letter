@@ -2,6 +2,7 @@
 
 import { useRef, useState } from "react";
 import RevealOnScroll from "@/components/ui/reveal-on-scroll";
+import Sparkles from "@/components/ui/sparkles";
 import { useConfig } from "@/features/invitation/hooks/use-config";
 
 export default function Location() {
@@ -47,19 +48,21 @@ export default function Location() {
   return (
     <section id="location" style={{ textAlign: "center", marginBottom: 44 }}>
       <RevealOnScroll>
-        <h3
-          style={{
-            fontFamily: "var(--font-script)",
-            fontSize: 72,
-            color: "var(--heading-script)",
-            textAlign: "center",
-            marginBottom: 8,
-            lineHeight: 1,
-            fontWeight: 400,
-          }}
-        >
-          локация
-        </h3>
+        <Sparkles>
+          <h3
+            style={{
+              fontFamily: "var(--font-script)",
+              fontSize: 72,
+              color: "var(--heading-script)",
+              textAlign: "center",
+              marginBottom: 8,
+              lineHeight: 1,
+              fontWeight: 400,
+            }}
+          >
+            локация
+          </h3>
+        </Sparkles>
 
         <p
           style={{

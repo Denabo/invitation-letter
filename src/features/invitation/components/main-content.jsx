@@ -8,6 +8,7 @@ import { Gifts } from "@/features/gifts";
 import { useConfig } from "@/features/invitation/hooks/use-config";
 import { getGuestName } from "@/lib/invitation-storage";
 import RevealOnScroll from "@/components/ui/reveal-on-scroll";
+import Sparkles from "@/components/ui/sparkles";
 
 function Greeting() {
   const config = useConfig();
@@ -35,23 +36,25 @@ function Greeting() {
           }}
         />
 
-        <h3
-          style={{
-            /* КОПИРУЕМ ИЗ ТВОЕЙ АНКЕТЫ */
-            fontFamily: "var(--font-script)",
-            color: "var(--heading-script)",
-            textAlign: "center",
+        <Sparkles>
+          <h3
+            style={{
+              /* КОПИРУЕМ ИЗ ТВОЕЙ АНКЕТЫ */
+              fontFamily: "var(--font-script)",
+              color: "var(--heading-script)",
+              textAlign: "center",
 
-            /* НАСТРОЙКИ РАЗМЕРА И ПЛОТНОСТИ */
-            fontSize: 45, // Чуть меньше 72, чтобы фраза влезла
-            lineHeight: 1, // СБЛИЖАЕМ СТРОКИ (чем меньше число, тем ближе)
-            marginTop: 15,
-            marginBottom: 10,
-            fontWeight: "normal",
-          }}
-        >
-          {salutation}
-        </h3>
+              /* НАСТРОЙКИ РАЗМЕРА И ПЛОТНОСТИ */
+              fontSize: 45, // Чуть меньше 72, чтобы фраза влезла
+              lineHeight: 1, // СБЛИЖАЕМ СТРОКИ (чем меньше число, тем ближе)
+              marginTop: 15,
+              marginBottom: 10,
+              fontWeight: "normal",
+            }}
+          >
+            {salutation}
+          </h3>
+        </Sparkles>
 
         <div
           className="invitation-greeting__copy"
@@ -82,15 +85,17 @@ function Footer() {
       >
         ♡
       </motion.span>
-      <p
-        style={{
-          fontFamily: "var(--font-script)",
-          fontSize: 48,
-          color: "var(--heading-script)",
-        }}
-      >
-        ждём вас!
-      </p>
+      <Sparkles>
+        <p
+          style={{
+            fontFamily: "var(--font-script)",
+            fontSize: 48,
+            color: "var(--heading-script)",
+          }}
+        >
+          ждём вас!
+        </p>
+      </Sparkles>
     </section>
   );
 }

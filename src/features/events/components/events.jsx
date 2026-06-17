@@ -1,8 +1,9 @@
 import RevealOnScroll from "@/components/ui/reveal-on-scroll";
+import Sparkles from "@/components/ui/sparkles";
 
 const RUKI_PHOTO_SRC = "/photos/ruki.jpg";
 
-// Коэффициент появления: 0.5 — это середина экрана. 
+// Коэффициент появления: 0.5 — это середина экрана.
 // Попробуйте 0.2 или 0.3 для более раннего появления снизу.
 const TRIGGER_RATIO = 0.9;
 
@@ -80,7 +81,8 @@ function TimelineItem({ item }) {
 export default function Events() {
   return (
     <section id="event" style={{ marginTop: 1, marginBottom: 34 }}>
-      <div
+      <Sparkles
+        variant="scatter"
         style={{
           position: "relative",
           width: "100%",
@@ -88,7 +90,7 @@ export default function Events() {
           margin: "0 auto 8px",
           // ВАЖНО: Укажите здесь соотношение сторон вашей картинки red line.webp
           // Это зафиксирует высоту контейнера и уберет "дергание" анимации.
-          aspectRatio: "440 / 920", 
+          aspectRatio: "440 / 920",
         }}
       >
         {/* Фоновая картинка (линия) */}
@@ -110,7 +112,7 @@ export default function Events() {
         {timeline.map((item, index) => (
           <TimelineItem key={index} item={item} />
         ))}
-      </div>
+      </Sparkles>
 
       {/* Фото рук в конце секции */}
       <div style={{ marginTop: -40 }}>
