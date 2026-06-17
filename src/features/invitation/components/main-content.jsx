@@ -8,6 +8,7 @@ import { Gifts } from "@/features/gifts";
 import { useConfig } from "@/features/invitation/hooks/use-config";
 import { getGuestName } from "@/lib/invitation-storage";
 import RevealOnScroll from "@/components/ui/reveal-on-scroll";
+import Sparkles from "@/components/ui/sparkles";
 
 function Greeting() {
   const config = useConfig();
@@ -82,15 +83,17 @@ function Footer() {
       >
         ♡
       </motion.span>
-      <p
-        style={{
-          fontFamily: "var(--font-script)",
-          fontSize: 48,
-          color: "var(--heading-script)",
-        }}
-      >
-        ждём вас!
-      </p>
+      <Sparkles>
+        <p
+          style={{
+            fontFamily: "var(--font-script)",
+            fontSize: 48,
+            color: "var(--heading-script)",
+          }}
+        >
+          ждём вас!
+        </p>
+      </Sparkles>
     </section>
   );
 }
