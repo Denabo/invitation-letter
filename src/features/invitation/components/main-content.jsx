@@ -99,8 +99,8 @@ export default function MainContent() {
       <Greeting />
       <Events />
       <Location />
-      <Wishes />
       <Gifts />
+      <Wishes />
       <Countdown />
       <Footer />
     </>
