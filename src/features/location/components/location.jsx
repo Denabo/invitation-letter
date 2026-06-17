@@ -51,14 +51,14 @@ export default function Location() {
           style={{
             fontFamily: "var(--font-script)",
             fontSize: 72,
-            color: "var(--antique-dark)",
+            color: "var(--heading-script)",
             textAlign: "center",
             marginBottom: 8,
             lineHeight: 1,
             fontWeight: 400,
           }}
         >
-          Локация
+          локация
         </h3>
 
         <p
@@ -118,14 +118,14 @@ export default function Location() {
                   rel="noreferrer"
                   style={{
                     display: "inline-block",
-                    border: "1px solid var(--antique-dark)",
+                    border: "1px solid var(--antique)",
                     borderRadius: 999,
                     padding: "12px 36px",
                     fontSize: 10,
                     fontWeight: 400,
                     letterSpacing: "0.2em",
                     textTransform: "uppercase",
-                    color: "var(--antique-dark)",
+                    color: "var(--antique)",
                     background: "transparent",
                     cursor: "pointer",
                     textAlign: "center",
@@ -160,7 +160,7 @@ export default function Location() {
                 border: "none",
                 padding: 0,
                 cursor: "pointer",
-                background: "var(--antique-dark)",
+                background: "var(--antique)",
                 opacity: current === index ? 1 : 0.3,
                 transition: "opacity 0.3s",
               }}

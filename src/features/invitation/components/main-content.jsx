@@ -27,14 +27,19 @@ function Greeting() {
           src="/Zagalovok.webp"
           alt={names}
           className="invitation-greeting__names-image"
-          style={{ display: "block", margin: "0 auto", maxWidth: "80%" }}
+          style={{
+            display: "block",
+            margin: "0 auto",
+            width: "100%",
+            maxWidth: "100%",
+          }}
         />
 
         <h3
           style={{
             /* КОПИРУЕМ ИЗ ТВОЕЙ АНКЕТЫ */
             fontFamily: "var(--font-script)",
-            color: "var(--antique-dark)",
+            color: "var(--heading-script)",
             textAlign: "center",
 
             /* НАСТРОЙКИ РАЗМЕРА И ПЛОТНОСТИ */
@@ -83,10 +88,10 @@ function Footer() {
         style={{
           fontFamily: "var(--font-script)",
           fontSize: 48,
-          color: "var(--antique-dark)",
+          color: "var(--heading-script)",
         }}
       >
-        Ждём вас!
+        ждём вас!
       </p>
     </section>
   );

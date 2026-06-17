@@ -35,7 +35,8 @@
   --safe-area-bg: #ffffff;
   --blush: #f0c4cb;
   --antique: #c87d87;
-  --antique-dark: #8b4f58;
+  /* Тёмный оттенок розового из палитры (для наведения/рамок). Без коричневого. */
+  --antique-dark: #a85d68;
   --champagne: #fbead6;
   --thyme: #6b7556;
   --bisque: #e5bca9;
@@ -51,8 +52,9 @@
      --------------------------------------------------------------------------- */
   --text: #1a0f0f;
   --muted: #5a3a3a;
-  --heading-script: var(--antique-dark);
-  --heading-serif: var(--antique-dark);
+  /* Единый цвет всех заголовков — розовый из палитры (как у заголовка «анкета»). */
+  --heading-script: var(--antique);
+  --heading-serif: var(--antique);
 
   /* Цвета верхнего экрана (hero):
      - hero-names — крупные имена на обложке.

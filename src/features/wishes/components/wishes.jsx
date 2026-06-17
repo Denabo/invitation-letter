@@ -207,13 +207,13 @@ export default function Wishes() {
         <button
           onClick={() => setOpen((v) => !v)}
           style={{
-            border: "1px solid var(--antique-dark)",
+            border: "1px solid var(--antique)",
             borderRadius: 40,
             padding: "12px 36px",
             fontSize: 10,
             letterSpacing: "0.2em",
             textTransform: "uppercase",
-            color: "var(--antique-dark)",
+            color: "var(--antique)",
             background: "transparent",
             display: "block",
             margin: "0 auto",
@@ -384,7 +384,7 @@ export default function Wishes() {
                             borderRadius: 40,
                             padding: "8px 20px",
                             fontSize: 11,
-                            color: "var(--antique-dark)",
+                            color: "var(--antique)",
                             background: "transparent",
                             cursor: "pointer",
                           }}
@@ -459,15 +459,16 @@ export default function Wishes() {
                   type="submit"
                   disabled={sending}
                   style={{
-                    border: "1px solid var(--antique-dark)",
-                    color: "var(--white)",
-                    background: "var(--antique-dark)",
-                    padding: "14px",
-                    width: "100%",
-                    marginTop: 8,
+                    border: "1px solid var(--antique)",
+                    borderRadius: 40,
+                    padding: "12px 36px",
                     fontSize: 10,
                     letterSpacing: "0.2em",
                     textTransform: "uppercase",
+                    color: "var(--antique)",
+                    background: "transparent",
+                    display: "block",
+                    margin: "24px auto 0",
                     cursor: sending ? "default" : "pointer",
                     opacity: sending ? 0.7 : 1,
                   }}

@@ -66,7 +66,7 @@ export default function Countdown() {
                     fontFamily: "var(--font-serif)",
                     fontSize: 44,
                     fontWeight: 300,
-                    color: "var(--antique-dark)",
+                    color: "var(--heading-script)",
                     lineHeight: 1,
                   }}
                 >
