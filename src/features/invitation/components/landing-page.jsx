@@ -21,7 +21,6 @@ const landingRootStyle = {
   overflowX: "hidden",
   overflowY: "visible",
   "--bg": "#ffffff",
-  "--antique-dark": "#5d4037",
 };
 
 const innerStyle = {
@@ -35,7 +34,7 @@ const innerStyle = {
   contain: "paint",
   background: "transparent",
   // УДАЛЕНО: boxShadow здесь создавал ту самую тень по бокам
-  boxShadow: "none", 
+  boxShadow: "none",
   pointerEvents: "none",
 };
 

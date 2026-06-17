@@ -11,7 +11,7 @@ export default function Gifts() {
             style={{
               fontFamily: "var(--font-script)",
               fontSize: 72,
-              color: "var(--antique-dark)",
+              color: "var(--heading-script)",
               textAlign: "center",
               marginBottom: 14,
             }}
@@ -56,7 +56,7 @@ export default function Gifts() {
             style={{
               fontFamily: "var(--font-script)",
               fontSize: 72,
-              color: "var(--antique-dark)",
+              color: "var(--heading-script)",
               textAlign: "center",
               marginBottom: 14,
             }}
@@ -79,8 +79,8 @@ export default function Gifts() {
             style={{
               display: "block",
               width: "100%",
-              border: "1px solid var(--antique-dark)",
-              color: "var(--antique-dark)",
+              border: "1px solid var(--antique)",
+              color: "var(--antique)",
               padding: 14,
               fontSize: 10,
               fontWeight: 400,
