@@ -9,12 +9,12 @@ import { useConfig } from "@/features/invitation/hooks/use-config";
 import { getGuestName } from "@/lib/invitation-storage";
 import RevealOnScroll from "@/components/ui/reveal-on-scroll";
 
-
 function Greeting() {
   const config = useConfig();
   const guestName = getGuestName();
-  const names = config.coupleNames || `${config.brideName} & ${config.groomName}`;
-  
+  const names =
+    config.coupleNames || `${config.brideName} & ${config.groomName}`;
+
   // Текст с Заглавной буквы
   const salutation = guestName
     ? `${guestName}, дорогие родные и друзья!`
@@ -27,28 +27,31 @@ function Greeting() {
           src="/Zagalovok.webp"
           alt={names}
           className="invitation-greeting__names-image"
-          style={{ display: 'block', margin: '0 auto', maxWidth: '80%' }}
+          style={{ display: "block", margin: "0 auto", maxWidth: "80%" }}
         />
-        
+
         <h3
           style={{
             /* КОПИРУЕМ ИЗ ТВОЕЙ АНКЕТЫ */
-            fontFamily: "Pinyon Script, cursive", 
+            fontFamily: "var(--font-script)",
             color: "var(--antique-dark)",
             textAlign: "center",
-            
+
             /* НАСТРОЙКИ РАЗМЕРА И ПЛОТНОСТИ */
-            fontSize: 45,        // Чуть меньше 72, чтобы фраза влезла
-            lineHeight: 1,     // СБЛИЖАЕМ СТРОКИ (чем меньше число, тем ближе)
+            fontSize: 45, // Чуть меньше 72, чтобы фраза влезла
+            lineHeight: 1, // СБЛИЖАЕМ СТРОКИ (чем меньше число, тем ближе)
             marginTop: 15,
             marginBottom: 10,
-            fontWeight: "normal"
+            fontWeight: "normal",
           }}
         >
           {salutation}
         </h3>
 
-        <div className="invitation-greeting__copy" style={{ textAlign: "center" }}>
+        <div
+          className="invitation-greeting__copy"
+          style={{ textAlign: "center" }}
+        >
           <p>В нашей жизни предстоят счастливые перемены!</p>
           <p>
             Мы хотим, чтобы в этот день рядом с нами были самые близкие и
@@ -78,7 +81,7 @@ function Footer() {
       </motion.span>
       <p
         style={{
-          fontFamily: "Pinyon Script, cursive",
+          fontFamily: "var(--font-script)",
           fontSize: 48,
           color: "var(--antique-dark)",
         }}

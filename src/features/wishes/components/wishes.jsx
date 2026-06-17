@@ -28,7 +28,7 @@ export default function Wishes() {
       <RevealOnScroll>
         <h3
           style={{
-            fontFamily: "Pinyon Script, cursive",
+            fontFamily: "var(--font-script)",
             fontSize: 72,
             color: "var(--antique-dark)",
             textAlign: "center",

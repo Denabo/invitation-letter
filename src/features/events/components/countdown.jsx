@@ -63,7 +63,7 @@ export default function Countdown() {
               <div style={{ minWidth: 60, textAlign: "center" }}>
                 <div
                   style={{
-                    fontFamily: "Cormorant Garamond, serif",
+                    fontFamily: "var(--font-serif)",
                     fontSize: 44,
                     fontWeight: 300,
                     color: "var(--antique-dark)",
