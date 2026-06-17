@@ -61,7 +61,7 @@ export default function Gifts() {
               marginBottom: 14,
             }}
           >
-            детали
+            пожелание
           </h3>
           <p
             className="invitation-info-text"
