@@ -17,7 +17,6 @@ function Greeting() {
   const names =
     config.coupleNames || `${config.brideName} & ${config.groomName}`;
 
-  // Текст с Заглавной буквы
   const salutation = guestName
     ? `${guestName}, дорогие родные и друзья!`
     : "Дорогие родные и друзья!";
@@ -40,16 +39,13 @@ function Greeting() {
         <Sparkles>
           <h3
             style={{
-              /* КОПИРУЕМ ИЗ ТВОЕЙ АНКЕТЫ */
               fontFamily: "var(--font-script)",
               color: "var(--heading-script)",
               textAlign: "center",
-
-              /* НАСТРОЙКИ РАЗМЕРА И ПЛОТНОСТИ */
-              fontSize: 45, // Чуть меньше 72, чтобы фраза влезла
-              lineHeight: 1, // СБЛИЖАЕМ СТРОКИ (чем меньше число, тем ближе)
+              fontSize: 45,
+              lineHeight: 1,
               marginTop: 15,
-              marginBottom: 10,
+              marginBottom: 40, // ← БЫЛО 10, увеличили отступ снизу
               fontWeight: "normal",
             }}
           >
@@ -62,8 +58,10 @@ function Greeting() {
           style={{ textAlign: "center" }}
         >
           <p>
-            С огромной радостью и большой любовью приглашаем вас разделить с
-            нами трогательный и важный момент нашей жизни!
+            С большой радостью в сердце приглашаем вас разделить с нами
+            один из самых важных дней нашей жизни — день нашей свадьбы!
+            Нам будет очень ценно провести его рядом с вами и сохранить
+            эти тёплые воспоминания вместе 💗
           </p>
         </div>
       </RevealOnScroll>
