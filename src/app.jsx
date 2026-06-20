@@ -1,6 +1,5 @@
 import { lazy, Suspense } from "react";
 import { Helmet, HelmetProvider } from "react-helmet-async";
-import { useInvitation } from "@/features/invitation";
 import staticConfig from "@/config/config";
 
 const LandingPage = lazy(
@@ -8,18 +7,7 @@ const LandingPage = lazy(
 );
 
 function App() {
-  const { config, isLoading, error } = useInvitation();
-  const activeConfig = config || staticConfig.data;
-
-  if (isLoading) return <div style={{ minHeight: "100dvh" }} />;
-  if (error)
-    return (
-      <div
-        style={{ minHeight: "100dvh", display: "grid", placeItems: "center" }}
-      >
-        {error}
-      </div>
-    );
+  const activeConfig = staticConfig.data;
 
   return (
     <HelmetProvider>

@@ -2,7 +2,6 @@ import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import RevealOnScroll from "@/components/ui/reveal-on-scroll";
 import Sparkles from "@/components/ui/sparkles";
-import { useInvitation } from "@/features/invitation";
 import { getGuestName } from "@/lib/invitation-storage";
 import { api } from "@/lib/api";
 
@@ -127,7 +126,6 @@ function buildMessage({
 }
 
 export default function Wishes() {
-  const { uid } = useInvitation();
   const [open, setOpen] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [sending, setSending] = useState(false);
@@ -160,9 +158,16 @@ export default function Wishes() {
     if (sending) return;
     setSending(true);
     try {
-      await api.createWish(uid, {
+      await api.createRsvp({
         name,
         attendance: presence,
+        withPartner,
+        partnerName,
+        withKids,
+        children,
+        hasCar,
+        hasFreeSeats,
+        freeSeats,
         message: buildMessage({
           withPartner,
           partnerName,

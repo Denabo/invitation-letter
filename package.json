@@ -1,6 +1,6 @@
 {
   "name": "sakeenah",
-  "description": "Modern Islamic wedding invitation platform with multi-tenant architecture",
+  "description": "Static wedding invitation with a minimal RSVP API",
   "version": "2.1.0",
   "author": "mrofisr",
   "license": "Apache-2.0",
@@ -15,8 +15,7 @@
     "react",
     "vite",
     "hono",
-    "postgresql",
-    "multi-tenant"
+    "postgresql"
   ],
   "private": true,
   "type": "module",
@@ -38,7 +37,7 @@
     "cf:tail": "wrangler tail",
     "test": "vitest run",
     "test:watch": "vitest",
-    "test:unit": "vitest run src/server/**/*.spec.js",
+    "test:unit": "vitest run src/server",
     "test:e2e": "vitest run e2e/**/*.e2e.spec.js",
     "test:coverage": "vitest run --coverage",
     "prepare": "husky"
@@ -46,7 +45,6 @@
   "dependencies": {
     "@hono/node-server": "^1.8.0",
     "@hono/zod-validator": "^0.7.6",
-    "@tanstack/react-query": "^5.90.20",
     "caniuse-lite": "^1.0.30001757",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",

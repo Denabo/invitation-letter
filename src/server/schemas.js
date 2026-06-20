@@ -1,41 +1,89 @@
 /**
- * Zod validation schemas for API endpoints
- * Provides type-safe request validation with detailed error messages
+ * Zod validation schemas for API endpoints.
  */
 
 import { z } from "zod";
 
-/**
- * Wish creation schema
- * Validates incoming wish submissions with attendance tracking
- */
-export const createWishSchema = z.object({
+const yesNoSchema = z.enum(["yes", "no"]);
+
+export const childSchema = z.object({
   name: z
     .string()
-    .min(1, "Name is required")
-    .max(100, "Name must be less than 100 characters")
-    .trim(),
-
-  message: z
+    .max(100, "Child name must be less than 100 characters")
+    .trim()
+    .optional()
+    .default(""),
+  age: z
     .string()
-    .min(1, "Message is required")
-    .max(500, "Message must be less than 500 characters")
-    .trim(),
-
-  attendance: z
-    .enum(["ATTENDING", "NOT_ATTENDING", "MAYBE"], {
-      errorMap: () => ({
-        message: "Attendance must be ATTENDING, NOT_ATTENDING, or MAYBE",
-      }),
-    })
-    .default("MAYBE"),
+    .max(20, "Child age must be less than 20 characters")
+    .trim()
+    .optional()
+    .default(""),
 });
 
 /**
- * Wishes query parameters schema
- * Validates pagination parameters
+ * RSVP submission schema for the single invitation site.
  */
-export const wishesQuerySchema = z.object({
+export const createRsvpSchema = z
+  .object({
+    name: z
+      .string()
+      .min(1, "Name is required")
+      .max(100, "Name must be less than 100 characters")
+      .trim(),
+    attendance: z
+      .enum(["ATTENDING", "NOT_ATTENDING", "MAYBE"], {
+        errorMap: () => ({
+          message: "Attendance must be ATTENDING, NOT_ATTENDING, or MAYBE",
+        }),
+      })
+      .default("MAYBE"),
+    withPartner: yesNoSchema.default("no"),
+    partnerName: z
+      .string()
+      .max(100, "Partner name must be less than 100 characters")
+      .trim()
+      .optional()
+      .default(""),
+    withKids: yesNoSchema.default("no"),
+    children: z
+      .array(childSchema)
+      .max(10, "No more than 10 children can be submitted")
+      .optional()
+      .default([]),
+    hasCar: yesNoSchema.default("no"),
+    hasFreeSeats: yesNoSchema.default("no"),
+    freeSeats: z
+      .union([z.string(), z.number()])
+      .optional()
+      .default("")
+      .transform((value) => String(value).trim())
+      .pipe(z.string().max(2, "Free seats must be less than 100")),
+    comment: z
+      .string()
+      .max(500, "Comment must be less than 500 characters")
+      .trim()
+      .optional()
+      .default(""),
+    message: z
+      .string()
+      .max(500, "Message must be less than 500 characters")
+      .trim()
+      .optional()
+      .default(""),
+  })
+  .transform((data) => ({
+    ...data,
+    children: data.withKids === "yes" ? data.children : [],
+    partnerName: data.withPartner === "yes" ? data.partnerName : "",
+    hasFreeSeats: data.hasCar === "yes" ? data.hasFreeSeats : "no",
+    freeSeats:
+      data.hasCar === "yes" && data.hasFreeSeats === "yes"
+        ? data.freeSeats
+        : "",
+  }));
+
+export const rsvpQuerySchema = z.object({
   limit: z
     .string()
     .optional()
@@ -48,7 +96,6 @@ export const wishesQuerySchema = z.object({
         .positive("Limit must be positive")
         .max(100, "Limit cannot exceed 100"),
     ),
-
   offset: z
     .string()
     .optional()
@@ -63,36 +110,6 @@ export const wishesQuerySchema = z.object({
 });
 
 /**
- * UID parameter schema
- * Validates wedding invitation UID format
- */
-export const uidParamSchema = z.object({
-  uid: z
-    .string()
-    .min(1, "UID is required")
-    .max(100, "UID must be less than 100 characters")
-    .regex(
-      /^[a-z0-9-]+$/,
-      "UID must contain only lowercase letters, numbers, and hyphens",
-    ),
-});
-
-/**
- * Wish ID parameter schema
- * Validates wish ID for deletion
- */
-export const wishIdParamSchema = z.object({
-  uid: z.string().min(1),
-  id: z
-    .string()
-    .regex(/^\d+$/, "Wish ID must be a valid number")
-    .transform((val) => parseInt(val, 10)),
-});
-
-// Type definitions for JSDoc (no runtime impact)
-/**
- * @typedef {import('zod').infer<typeof createWishSchema>} CreateWish
- * @typedef {import('zod').infer<typeof wishesQuerySchema>} WishesQuery
- * @typedef {import('zod').infer<typeof uidParamSchema>} UidParam
- * @typedef {import('zod').infer<typeof wishIdParamSchema>} WishIdParam
+ * @typedef {import('zod').infer<typeof createRsvpSchema>} CreateRsvp
+ * @typedef {import('zod').infer<typeof rsvpQuerySchema>} RsvpQuery
  */
