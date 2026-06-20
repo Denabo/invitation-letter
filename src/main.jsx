@@ -6,50 +6,39 @@
  * You may obtain a copy of the License at
  *
  *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
  */
 
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { BrowserRouter } from "react-router-dom";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import App from "./app.jsx";
 import "./index.css";
-import { InvitationProvider } from "./features/invitation";
+import { safeBase64 } from "./lib/base64";
+import { storeGuestName } from "./lib/invitation-storage";
 
-// Replay scroll-reveal animations on every page reload: stop the browser from
-// restoring the previous scroll position and always start from the top, so the
-// user scrolls through the content fresh and each element animates in again.
 if (typeof window !== "undefined" && "scrollRestoration" in window.history) {
   window.history.scrollRestoration = "manual";
   window.scrollTo(0, 0);
 }
 
-// Create a client
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      staleTime: 5 * 60 * 1000, // 5 minutes
-      gcTime: 10 * 60 * 1000, // 10 minutes (formerly cacheTime)
-      retry: 1,
-      refetchOnWindowFocus: false,
-    },
-  },
-});
+if (typeof window !== "undefined") {
+  const urlParams = new URLSearchParams(window.location.search);
+  const guestParam = urlParams.get("guest");
+
+  if (guestParam) {
+    try {
+      const decodedName = safeBase64.decode(guestParam);
+      if (decodedName) {
+        storeGuestName(decodedName);
+        window.history.replaceState({}, "", window.location.pathname || "/");
+      }
+    } catch (error) {
+      console.error("Error decoding guest name:", error);
+    }
+  }
+}
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
-        <InvitationProvider>
-          <App />
-        </InvitationProvider>
-      </BrowserRouter>
-    </QueryClientProvider>
+    <App />
   </StrictMode>,
 );

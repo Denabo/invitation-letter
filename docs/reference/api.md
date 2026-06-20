@@ -1,121 +1,98 @@
 # API Reference
 
-All API endpoints use Zod schema validation for type-safe request handling.
+The project now exposes a minimal API for one static wedding invitation. Invitation content lives in `src/config/config.js`; PostgreSQL stores only RSVP submissions.
 
-## Invitations
+## Health
 
-### GET `/api/invitation/:uid`
+### GET `/api/health`
 
-Retrieves wedding details including agenda and bank accounts.
-
-**Parameters:**
-
-| Name  | Type   | Description                                                   |
-| ----- | ------ | ------------------------------------------------------------- |
-| `uid` | string | Wedding identifier (lowercase letters, numbers, hyphens only) |
-
-**Response:**
+Returns API readiness.
 
 ```json
 {
-  "uid": "wedding-2025",
-  "title": "Wedding of Ahmad & Fatimah",
-  "groom_name": "Ahmad",
-  "bride_name": "Fatimah",
-  "date": "2025-06-15",
-  "agenda": [...],
-  "banks": [...]
+  "success": true,
+  "data": { "status": "ok" }
 }
 ```
 
-## Wishes
+## RSVP
 
-### GET `/api/:uid/wishes`
+### POST `/api/rsvp`
 
-Retrieves paginated wishes for a wedding.
-
-**Parameters:**
-
-| Name     | Type   | Default  | Description                          |
-| -------- | ------ | -------- | ------------------------------------ |
-| `uid`    | string | required | Wedding identifier                   |
-| `limit`  | number | 50       | Number of wishes to return (max 100) |
-| `offset` | number | 0        | Pagination offset                    |
-
-### POST `/api/:uid/wishes`
-
-Creates new wish with attendance status.
+Creates a new guest questionnaire/RSVP submission.
 
 **Request Body:**
 
 ```json
 {
   "name": "Guest Name",
-  "message": "Congratulations!",
-  "attendance": "ATTENDING"
+  "attendance": "ATTENDING",
+  "withPartner": "yes",
+  "partnerName": "Partner Name",
+  "withKids": "yes",
+  "children": [{ "name": "Child", "age": "7" }],
+  "hasCar": "yes",
+  "hasFreeSeats": "yes",
+  "freeSeats": "2",
+  "message": "Generated questionnaire summary"
 }
 ```
 
 **Validation:**
 
-| Field        | Rules                                                       |
-| ------------ | ----------------------------------------------------------- |
-| `name`       | 1-100 characters, automatically trimmed                     |
-| `message`    | 1-500 characters, automatically trimmed                     |
-| `attendance` | `ATTENDING`, `NOT_ATTENDING`, or `MAYBE` (default: `MAYBE`) |
+| Field | Rules |
+| --- | --- |
+| `name` | Required, 1-100 characters |
+| `attendance` | `ATTENDING`, `NOT_ATTENDING`, or `MAYBE` |
+| `withPartner`, `withKids`, `hasCar`, `hasFreeSeats` | `yes` or `no` |
+| `children` | Up to 10 child records |
+| `comment`, `message` | Up to 500 characters |
 
-### DELETE `/api/:uid/wishes/:id`
+### GET `/api/rsvp`
 
-Deletes a specific wish (admin function).
+Returns paginated RSVP submissions. Keep this endpoint private or protect it before exposing an admin panel.
 
-**Parameters:**
+| Query | Default | Rules |
+| --- | --- | --- |
+| `limit` | `50` | Max `100` |
+| `offset` | `0` | Must be `>= 0` |
 
-| Name  | Type   | Description        |
-| ----- | ------ | ------------------ |
-| `uid` | string | Wedding identifier |
-| `id`  | number | Wish ID to delete  |
+### GET `/api/rsvp/stats`
 
-### GET `/api/:uid/stats`
-
-Returns attendance statistics.
-
-**Response:**
+Returns RSVP statistics.
 
 ```json
 {
-  "attending": 45,
-  "not_attending": 12,
-  "maybe": 8,
-  "total": 65
+  "success": true,
+  "data": {
+    "attending": "45",
+    "not_attending": "12",
+    "maybe": "8",
+    "with_partner": "20",
+    "children_count": "9",
+    "cars": "18",
+    "free_seats": "11",
+    "total": "65"
+  }
 }
 ```
 
 ## Error Responses
 
-All endpoints return validation errors in this format:
-
 ```json
 {
   "success": false,
-  "error": {
-    "issues": [
-      {
-        "path": ["name"],
-        "message": "Name must be less than 100 characters"
-      }
-    ]
-  }
+  "error": "Message",
+  "code": "DUPLICATE_RSVP"
 }
 ```
 
 ## HTTP Status Codes
 
-| Code | Meaning          |
-| ---- | ---------------- |
-| 200  | Success          |
-| 201  | Created          |
-| 204  | No Content       |
-| 400  | Validation Error |
-| 404  | Not Found        |
-| 409  | Conflict         |
-| 500  | Server Error     |
+| Code | Meaning |
+| --- | --- |
+| 200 | Success |
+| 201 | Created |
+| 400 | Validation Error |
+| 409 | Duplicate RSVP |
+| 500 | Server Error |
