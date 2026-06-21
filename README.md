@@ -55,3 +55,7 @@ See [API Reference](docs/reference/api.md).
 ## Deployment
 
 See [Deployment Guide](docs/how-to/deployment.md).
+
+## Troubleshooting
+
+If RSVP submission fails with PostgreSQL authentication, connection, or missing-column errors, see [RSVP Database Troubleshooting](docs/how-to/troubleshooting-rsvp-database.md).
