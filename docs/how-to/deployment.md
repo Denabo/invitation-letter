@@ -29,7 +29,7 @@ Run the schema once against PostgreSQL:
 psql "$DATABASE_URL" -f src/server/db/schema.sql.example
 ```
 
-The schema creates only `rsvp_submissions`.
+The schema creates only `rsvp_submissions`. If an older table already exists and the API reports a missing column, run `src/server/db/migrations/001-align-rsvp-submissions.sql` instead of recreating the table.
 
 ## Frontend
 
