@@ -4,7 +4,7 @@
 -- Run this file once in your PostgreSQL database before starting the API.
 -- =============================================================================
 
-CREATE TABLE rsvp_submissions (
+CREATE TABLE IF NOT EXISTS rsvp_submissions (
     id SERIAL PRIMARY KEY,
     guest_name VARCHAR(100) NOT NULL,
     attendance VARCHAR(20) NOT NULL DEFAULT 'MAYBE'
@@ -25,8 +25,8 @@ CREATE TABLE rsvp_submissions (
     CONSTRAINT unique_rsvp_guest_name UNIQUE (guest_name)
 );
 
-CREATE INDEX idx_rsvp_submissions_created_at ON rsvp_submissions(created_at DESC);
-CREATE INDEX idx_rsvp_submissions_attendance ON rsvp_submissions(attendance);
+CREATE INDEX IF NOT EXISTS idx_rsvp_submissions_created_at ON rsvp_submissions(created_at DESC);
+CREATE INDEX IF NOT EXISTS idx_rsvp_submissions_attendance ON rsvp_submissions(attendance);
 
 CREATE OR REPLACE FUNCTION update_updated_at_column()
 RETURNS TRIGGER AS $$
@@ -36,7 +36,17 @@ BEGIN
 END;
 $$ language 'plpgsql';
 
-CREATE TRIGGER update_rsvp_submissions_updated_at
-    BEFORE UPDATE ON rsvp_submissions
-    FOR EACH ROW
-    EXECUTE FUNCTION update_updated_at_column();
+DO $$
+BEGIN
+    IF NOT EXISTS (
+        SELECT 1
+        FROM pg_trigger
+        WHERE tgname = 'update_rsvp_submissions_updated_at'
+    ) THEN
+        CREATE TRIGGER update_rsvp_submissions_updated_at
+            BEFORE UPDATE ON rsvp_submissions
+            FOR EACH ROW
+            EXECUTE FUNCTION update_updated_at_column();
+    END IF;
+END;
+$$;
