@@ -129,6 +129,7 @@ export default function Wishes() {
   const [open, setOpen] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [sending, setSending] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
   const [name, setName] = useState(getGuestName() || "");
   const [withPartner, setWithPartner] = useState("no");
@@ -157,6 +158,7 @@ export default function Wishes() {
     e.preventDefault();
     if (sending) return;
     setSending(true);
+    setSubmitError("");
     try {
       await api.createRsvp({
         name,
@@ -180,6 +182,11 @@ export default function Wishes() {
         }),
       });
       setSubmitted(true);
+    } catch (error) {
+      setSubmitError(
+        error.message ||
+          "Не удалось отправить анкету. Попробуйте ещё раз чуть позже.",
+      );
     } finally {
       setSending(false);
     }
@@ -462,6 +469,20 @@ export default function Wishes() {
                     </motion.div>
                   )}
                 </AnimatePresence>
+
+                {submitError && (
+                  <p
+                    role="alert"
+                    style={{
+                      color: "#b91c1c",
+                      fontSize: 13,
+                      textAlign: "center",
+                      margin: "16px 0 0",
+                    }}
+                  >
+                    {submitError}
+                  </p>
+                )}
 
                 <button
                   type="submit"
