@@ -71,6 +71,26 @@ curl -X POST http://localhost:3000/api/rsvp \
 
 Для обычной анкеты используйте pooled URL (`...-pooler...`). `DATABASE_URL_UNPOOLED` нужен только для операций, где нельзя использовать pgbouncer, например некоторые миграции с транзакционными особенностями.
 
+## Как это подключено в проекте для Vercel
+
+Для Vercel в репозитории есть отдельные serverless functions:
+
+- `api/health.js` → `GET /api/health`
+- `api/rsvp.js` → `GET /api/rsvp` и `POST /api/rsvp`
+- `api/rsvp/stats.js` → `GET /api/rsvp/stats`
+
+Поэтому после деплоя Vercel должен показывать эти endpoints как Functions. Если `/api/health` возвращает страницу 404 вместо JSON, проверьте, что проект деплоится из корня репозитория, а папка `api/` попала в git/deploy.
+
+## Если видите `Unexpected token 'T'`
+
+Ошибка вида `Unexpected token 'T', "The page c"... is not valid JSON` означает, что браузер получил HTML/текстовую страницу Vercel вместо JSON API-ответа. Обычно это происходит, когда `/api/rsvp` не задеплоился как Hono endpoint или `VITE_API_URL` указывает не на тот домен.
+
+Проверьте:
+
+1. `https://your-project.vercel.app/api/health` должен возвращать JSON `{"success":true,...}`.
+2. В Vercel должны быть задеплоены serverless functions из папки `api/`: `api/health.js`, `api/rsvp.js`, `api/rsvp/stats.js`.
+3. Если API и сайт на одном домене, `VITE_API_URL` можно не задавать. Если API отдельно — укажите полный origin без пути, например `https://api.example.com`.
+
 ## 5. После деплоя
 
 Проверьте:
