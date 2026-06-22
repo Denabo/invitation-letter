@@ -17,7 +17,7 @@ export default function Location() {
 
   const banquet = config.location?.banquet ?? {
     name: "Банкет",
-    address: 'Парк "Лукоморье"',
+    address: 'г. Воронеж, Парк-отель "Лукоморье"',
     mapsUrl:
       "https://yandex.ru/maps/org/lukomorye/80744907903/?ll=39.469502%2C51.615050&z=15.4",
   };

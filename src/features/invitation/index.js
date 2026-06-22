@@ -1,5 +1,4 @@
-// Invitation Feature - Core invitation display and state management
-export { InvitationProvider, useInvitation } from "./invitation-context";
+// Invitation Feature - Core invitation display components
 export { useConfig } from "./hooks/use-config";
 
 // Components

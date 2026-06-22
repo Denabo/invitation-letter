@@ -1,80 +1,42 @@
-# Getting Started with Sakeenah
-
-This tutorial walks you through setting up your first wedding invitation with Sakeenah.
+# Getting Started
 
 ## Prerequisites
 
-- Bun v1.3.5 or later
-- PostgreSQL v14+ (local or cloud-hosted)
-- Git
+- Bun
+- PostgreSQL
 
-## Installation
-
-### 1. Clone and Install Dependencies
+## Install
 
 ```bash
-git clone https://github.com/mrofisr/sakeenah.git
-cd sakeenah
 bun install
-```
-
-### 2. Set Up PostgreSQL Database
-
-```bash
-# Create database
-createdb sakeenah
-
-# Apply schema
-psql -d sakeenah -f src/server/db/schema.sql.example
-```
-
-### 3. Configure Environment Variables
-
-```bash
 cp .env.example .env
 ```
 
-Edit `.env` with your settings:
+Edit `.env`:
 
 ```env
-# Frontend
 VITE_API_URL=http://localhost:3000
-
-# Backend
-DATABASE_URL=postgresql://username:password@localhost:5432/sakeenah
+DATABASE_URL=postgresql://username:password@localhost:5432/wedding?sslmode=require
 PORT=3000
 ```
 
-### 4. Add Your Wedding Data
+## Database
 
 ```bash
-# Copy the SQL template
-cp src/server/db/add-wedding.sql.example my-wedding.sql
-
-# Edit my-wedding.sql with your wedding details
-# Then insert into database
-psql -d sakeenah -f my-wedding.sql
+psql "$DATABASE_URL" -f src/server/db/schema.sql.example
 ```
 
-This creates your wedding invitation with a unique UID (e.g., `ahmad-fatimah-2025`).
-
-### 5. Start Development Servers
+## Run Locally
 
 ```bash
 bun run dev
 ```
 
-This runs both frontend (Vite on port 5173) and backend (Hono API on port 3000) concurrently.
+Open:
 
-### 6. Access Your Invitation
+- Frontend: `http://localhost:5173`
+- API health: `http://localhost:3000/api/health`
 
-- **Frontend**: `http://localhost:5173/your-wedding-uid`
-- **API endpoint**: `http://localhost:3000/api/invitation/your-wedding-uid`
+## Edit Invitation Content
 
-Replace `your-wedding-uid` with the UID you defined in your SQL file.
-
-## Next Steps
-
-- [Generate personalized guest links](../how-to/personalized-links.md)
-- [Deploy to production](../how-to/deployment.md)
-- [API Reference](../reference/api.md)
+Change wedding text, schedule, venue, and media in `src/config/config.js`.

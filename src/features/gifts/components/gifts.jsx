@@ -135,6 +135,8 @@ export default function Gifts() {
           >
             {config.dressCode?.text}
           </p>
+          
+          {/* Первое фото (палитра) */}
           <img
             src="/photos/color.jpg"
             alt="Цветовая палитра нарядов"
@@ -142,6 +144,17 @@ export default function Gifts() {
               display: "block",
               width: "100%",
               marginTop: 8,
+            }}
+          />
+          
+          {/* Второе фото (добавленное) */}
+          <img
+            src="/photos/photo1.png"
+            alt="Примеры нарядов"
+            style={{
+              display: "block",
+              width: "100%",
+              marginTop: 16, // Отступ между первой и второй фотографией
             }}
           />
         </RevealOnScroll>

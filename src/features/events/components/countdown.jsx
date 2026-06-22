@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import RevealOnScroll from "@/components/ui/reveal-on-scroll";
+// Если вы используете Next.js, лучше использовать оптимизированный компонент:
+// import Image from "next/image"; 
 
 export default function Countdown() {
   const [timeLeft, setTimeLeft] = useState({
@@ -10,9 +12,10 @@ export default function Countdown() {
   });
 
   useEffect(() => {
-    const target = new Date(2026, 8, 12, 15, 30, 0);
+    // Обратите внимание: месяцы в JS начинаются с 0, поэтому 8 — это сентябрь
+    const target = new Date(2026, 8, 12, 15, 30, 0); 
     const timer = setInterval(() => {
-      const diff = target - new Date();
+      const diff = target.getTime() - new Date().getTime();
       if (diff <= 0)
         return setTimeLeft({
           days: "000",
@@ -33,6 +36,23 @@ export default function Countdown() {
   return (
     <section style={{ marginBottom: 8 }}>
       <RevealOnScroll>
+        
+        {/* --- НАЧАЛО БЛОКА С ФОТО --- */}
+        <div style={{ display: "flex", justifyContent: "center", marginBottom: 20 }}>
+          <img
+            src="/photos/we.png" 
+            alt="Мы"
+            style={{
+              width: "100%",
+              maxWidth: "320px", // Максимальная ширина картинки (меняйте по вкусу)
+              height: "auto",
+              borderRadius: "12px", // Скругленные углы (уберите, если не нужно)
+              objectFit: "cover"
+            }}
+          />
+        </div>
+        {/* --- КОНЕЦ БЛОКА С ФОТО --- */}
+
         <p
           style={{
             fontSize: 10,

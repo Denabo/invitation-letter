@@ -33,7 +33,7 @@ const TRIGGER_RATIO = 0.92;
  * element the same way — including the very first paint and the elements at the
  * bottom of the page.
  */
-export function useReveal(ref, triggerRatio = TRIGGER_RATIO) {
+function useReveal(ref, triggerRatio = TRIGGER_RATIO) {
   const [revealed, setRevealed] = useState(false);
 
   useEffect(() => {

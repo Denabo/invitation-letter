@@ -1,99 +1,74 @@
 # Deployment Guide
 
-This guide covers deploying Sakeenah to production environments.
+This project is now designed as a simple single-invitation deployment:
 
-## Option 1: Cloudflare Workers (Recommended)
+1. Static React/Vite frontend.
+2. Small Hono/Bun backend for `/api/rsvp`.
+3. One PostgreSQL table for RSVP submissions.
 
-Deploy full-stack application to Cloudflare's edge network.
+## Environment Variables
 
-### Steps
-
-1. **Authenticate with Cloudflare:**
-
-   ```bash
-   wrangler login
-   ```
-
-2. **Create Hyperdrive connection:**
-
-   ```bash
-   wrangler hyperdrive create sakeenah-db \
-     --connection-string="postgresql://user:pass@host:5432/sakeenah"
-   ```
-
-3. **Update `wrangler.jsonc`** with your Hyperdrive ID and custom domain
-
-4. **Deploy:**
-
-   ```bash
-   bun run deploy
-   ```
-
-### Benefits
-
-- Global edge distribution (100+ locations)
-- Sub-50ms response times
-- Automatic SSL certificates
-- 100,000 requests/day (free tier)
-
-## Option 2: Separate Hosting
-
-Deploy frontend and backend to different providers.
-
-### Frontend Options
-
-- Vercel
-- Netlify
-- Cloudflare Pages
-
-Deploy the `dist/` folder after running `bun run build`.
-
-### Backend Options
-
-- VPS with Bun runtime
-- Railway
-- Fly.io
-- Render
-
-### Database Options
-
-- Supabase
-- Neon
-- Railway PostgreSQL
-
-### Environment Variables
+Frontend build:
 
 ```env
-VITE_API_URL=https://api.yourdomain.com
-DATABASE_URL=postgresql://user:pass@production-host:5432/sakeenah
+VITE_API_URL=https://api.your-domain.ru
 ```
 
-### Build Commands
+Backend runtime:
+
+```env
+DATABASE_URL=postgresql://user:password@host:5432/database?sslmode=require
+PORT=3000
+```
+
+## Database
+
+Run the schema once against PostgreSQL:
 
 ```bash
-bun run build    # Frontend production build
-bun run server   # Backend production server
+psql "$DATABASE_URL" -f src/server/db/schema.sql.example
 ```
 
-## Scripts Reference
+The schema creates only `rsvp_submissions`. If an older table already exists and the API reports a missing column, run `src/server/db/migrations/001-align-rsvp-submissions.sql` instead of recreating the table.
+
+## Frontend
+
+Build the static site:
 
 ```bash
-# Development
-bun run dev              # Run client + server concurrently
-bun run dev:client       # Frontend only (Vite)
-bun run dev:server       # Backend only (Hono API)
-
-# Production
-bun run build            # Build frontend to dist/
-bun run preview          # Preview production build
-bun run server           # Run backend server
-
-# Cloudflare Workers
-bun run deploy           # Build + deploy to Workers
-bun run cf:dev           # Test with Workers runtime
-bun run cf:tail          # View live deployment logs
-
-# Utilities
-bun run generate-links   # Generate personalized guest links
-bun run lint             # ESLint code validation
+bun run build
 ```
+
+Deploy the generated `dist/` directory to static hosting, object storage with website hosting, CDN, or an nginx server.
+
+## Backend
+
+Start the API server:
+
+```bash
+bun run server
+```
+
+Check readiness:
+
+```bash
+curl https://api.your-domain.ru/api/health
+```
+
+Submit a smoke-test RSVP:
+
+```bash
+curl -X POST https://api.your-domain.ru/api/rsvp \
+  -H 'Content-Type: application/json' \
+  -d '{"name":"Test Guest","attendance":"ATTENDING","message":"Smoke test"}'
+```
+
+## VK Cloud Shape
+
+A straightforward VK Cloud deployment can use:
+
+- VK Cloud PostgreSQL for the database.
+- A small VM or container for the Hono/Bun backend.
+- Static hosting/object storage/CDN or nginx for the `dist/` frontend.
+
+Keep `DATABASE_URL` only on the backend. Never expose database credentials through `VITE_*` variables.

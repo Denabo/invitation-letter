@@ -9,20 +9,13 @@ import {
   MessageCircleHeart,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { useConfig } from "@/features/invitation/hooks/use-config";
 
 const baseMenuItems = [
-  { icon: Home, label: "Beranda", href: "#home", id: "home" },
-  { icon: CalendarHeart, label: "Event", href: "#event", id: "event" },
-  { icon: MapPin, label: "Lokasi", href: "#location", id: "location" },
-  {
-    icon: Gift,
-    label: "Hadiah",
-    href: "#gifts",
-    id: "gifts",
-    requiresBanks: true,
-  },
-  { icon: MessageCircleHeart, label: "Harapan", href: "#wishes", id: "wishes" },
+  { icon: Home, label: "Главная", href: "#home", id: "home" },
+  { icon: CalendarHeart, label: "Тайминг", href: "#event", id: "event" },
+  { icon: MapPin, label: "Локация", href: "#location", id: "location" },
+  { icon: Gift, label: "Детали", href: "#gifts", id: "gifts" },
+  { icon: MessageCircleHeart, label: "Анкета", href: "#wishes", id: "wishes" },
 ];
 
 /**
@@ -42,19 +35,8 @@ const baseMenuItems = [
  * @returns {JSX.Element} A JSX element containing the animated bottom navigation bar with auto-detection.
  */
 const BottomBar = () => {
-  const config = useConfig();
   const [active, setActive] = React.useState("home");
-
-  // Filter menu items based on config - hide gifts when no banks configured
-  const menuItems = useMemo(() => {
-    const hasBanks = config?.banks && config.banks.length > 0;
-    return baseMenuItems.filter((item) => {
-      if (item.requiresBanks && !hasBanks) {
-        return false;
-      }
-      return true;
-    });
-  }, [config?.banks]);
+  const menuItems = useMemo(() => baseMenuItems, []);
 
   // Function to handle smooth scrolling when clicking menu items
   const handleMenuClick = useCallback((e, href, id) => {
