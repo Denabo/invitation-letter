@@ -71,6 +71,16 @@ curl -X POST http://localhost:3000/api/rsvp \
 
 Для обычной анкеты используйте pooled URL (`...-pooler...`). `DATABASE_URL_UNPOOLED` нужен только для операций, где нельзя использовать pgbouncer, например некоторые миграции с транзакционными особенностями.
 
+## Если видите `Unexpected token 'T'`
+
+Ошибка вида `Unexpected token 'T', "The page c"... is not valid JSON` означает, что браузер получил HTML/текстовую страницу Vercel вместо JSON API-ответа. Обычно это происходит, когда `/api/rsvp` не задеплоился как Hono endpoint или `VITE_API_URL` указывает не на тот домен.
+
+Проверьте:
+
+1. `https://your-project.vercel.app/api/health` должен возвращать JSON `{"success":true,...}`.
+2. В Vercel должен быть задеплоен Hono entrypoint из `src/index.js`, который экспортирует серверное приложение.
+3. Если API и сайт на одном домене, `VITE_API_URL` можно не задавать. Если API отдельно — укажите полный origin без пути, например `https://api.example.com`.
+
 ## 5. После деплоя
 
 Проверьте:
