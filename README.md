@@ -32,7 +32,7 @@ bun run dev
 Create the database table:
 
 ```bash
-psql "$DATABASE_URL" -f src/server/db/schema.sql.example
+bun run db:init
 ```
 
 ## Scripts
@@ -44,6 +44,7 @@ bun run dev:server       # Backend only
 bun run build            # Build frontend to dist/
 bun run server           # Run backend server
 bun run generate-links   # Generate personalized guest links
+bun run db:init          # Create RSVP table in PostgreSQL
 bun run lint             # ESLint validation
 bun run test             # Vitest tests
 ```
@@ -54,7 +55,7 @@ See [API Reference](docs/reference/api.md).
 
 ## Deployment
 
-See [Deployment Guide](docs/how-to/deployment.md).
+See [Deployment Guide](docs/how-to/deployment.md). For Neon/Vercel Postgres setup, see [RSVP database setup](docs/how-to/vercel-neon-rsvp.md).
 
 ## Troubleshooting
 
