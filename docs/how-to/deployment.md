@@ -23,6 +23,8 @@ PORT=3000
 
 ## Database
 
+For Neon/Vercel Postgres step-by-step setup, see [RSVP database setup](vercel-neon-rsvp.md).
+
 Run the schema once against PostgreSQL:
 
 ```bash

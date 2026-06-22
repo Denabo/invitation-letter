@@ -40,7 +40,8 @@
     "test:unit": "vitest run src/server",
     "test:e2e": "vitest run e2e/**/*.e2e.spec.js",
     "test:coverage": "vitest run --coverage",
-    "prepare": "husky"
+    "prepare": "husky",
+    "db:init": "bun scripts/init-db.js"
   },
   "dependencies": {
     "@hono/node-server": "^1.8.0",
