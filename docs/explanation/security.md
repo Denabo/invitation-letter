@@ -1,8 +1,8 @@
 # Security Notes
 
-- Keep `DATABASE_URL` only on the backend.
-- Only expose `VITE_API_URL` to the browser.
-- Validate all RSVP submissions on the server with Zod.
-- Restrict CORS to your production frontend domain before public launch.
-- Protect `GET /api/rsvp` and `GET /api/rsvp/stats` if you build an admin view.
-- Do not log secrets or full database connection strings.
+- Keep MySQL credentials only in `api/rsvp.php` on the server.
+- Never place database passwords in `VITE_*` variables because those values are bundled into browser JavaScript.
+- `api/rsvp.php` validates JSON size and field lengths before inserting data.
+- Database writes use PDO prepared statements.
+- External errors are sanitized; detailed database errors are written only to PHP error logs.
+- The endpoint allows only `POST` and `OPTIONS` requests.

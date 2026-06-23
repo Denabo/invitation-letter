@@ -1,42 +1,29 @@
 # Getting Started
 
-## Prerequisites
+## Requirements
 
-- Bun
-- PostgreSQL
+- Bun for frontend development
+- PHP 8+ and MySQL on production hosting for RSVP submissions
 
-## Install
+## Install and run frontend
 
 ```bash
 bun install
-cp .env.example .env
+bun run dev:client
 ```
 
-Edit `.env`:
+## Configure RSVP endpoint
+
+By default, the built site posts to `/api/rsvp.php`. For another endpoint, create `.env`:
 
 ```env
-VITE_API_URL=http://localhost:3000
-DATABASE_URL=postgresql://username:password@localhost:5432/wedding?sslmode=require
-PORT=3000
+VITE_RSVP_API_URL=https://your-domain.example/api/rsvp.php
 ```
 
-## Database
+## Build
 
 ```bash
-psql "$DATABASE_URL" -f src/server/db/schema.sql.example
+bun run build
 ```
 
-## Run Locally
-
-```bash
-bun run dev
-```
-
-Open:
-
-- Frontend: `http://localhost:5173`
-- API health: `http://localhost:3000/api/health`
-
-## Edit Invitation Content
-
-Change wedding text, schedule, venue, and media in `src/config/config.js`.
+For shared hosting setup, see [per.ru PHP/MySQL deployment](../how-to/per-ru-php-mysql.md).

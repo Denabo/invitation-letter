@@ -1,98 +1,50 @@
-# API Reference
+# RSVP API Reference
 
-The project now exposes a minimal API for one static wedding invitation. Invitation content lives in `src/config/config.js`; PostgreSQL stores only RSVP submissions.
+The production API is a PHP endpoint intended for shared hosting.
 
-## Health
+## POST `/api/rsvp.php`
 
-### GET `/api/health`
+Creates one RSVP submission in MySQL.
 
-Returns API readiness.
-
-```json
-{
-  "success": true,
-  "data": { "status": "ok" }
-}
-```
-
-## RSVP
-
-### POST `/api/rsvp`
-
-Creates a new guest questionnaire/RSVP submission.
-
-**Request Body:**
+### Request body
 
 ```json
 {
-  "name": "Guest Name",
+  "name": "Гость",
   "attendance": "ATTENDING",
   "withPartner": "yes",
-  "partnerName": "Partner Name",
-  "withKids": "yes",
-  "children": [{ "name": "Child", "age": "7" }],
+  "partnerName": "Пара",
+  "withKids": "no",
+  "children": [],
   "hasCar": "yes",
   "hasFreeSeats": "yes",
   "freeSeats": "2",
-  "message": "Generated questionnaire summary"
+  "comment": "Комментарий",
+  "message": "Сообщение"
 }
 ```
 
-**Validation:**
-
-| Field | Rules |
-| --- | --- |
-| `name` | Required, 1-100 characters |
-| `attendance` | `ATTENDING`, `NOT_ATTENDING`, or `MAYBE` |
-| `withPartner`, `withKids`, `hasCar`, `hasFreeSeats` | `yes` or `no` |
-| `children` | Up to 10 child records |
-| `comment`, `message` | Up to 500 characters |
-
-### GET `/api/rsvp`
-
-Returns paginated RSVP submissions. Keep this endpoint private or protect it before exposing an admin panel.
-
-| Query | Default | Rules |
-| --- | --- | --- |
-| `limit` | `50` | Max `100` |
-| `offset` | `0` | Must be `>= 0` |
-
-### GET `/api/rsvp/stats`
-
-Returns RSVP statistics.
+### Success response
 
 ```json
 {
   "success": true,
   "data": {
-    "attending": "45",
-    "not_attending": "12",
-    "maybe": "8",
-    "with_partner": "20",
-    "children_count": "9",
-    "cars": "18",
-    "free_seats": "11",
-    "total": "65"
+    "id": 1,
+    "guest_name": "Гость",
+    "attendance": "ATTENDING"
   }
 }
 ```
 
-## Error Responses
+### Error response
 
 ```json
 {
   "success": false,
-  "error": "Message",
-  "code": "DUPLICATE_RSVP"
+  "error": "Name is required",
+  "code": "VALIDATION_ERROR"
 }
 ```
 
-## HTTP Status Codes
-
-| Code | Meaning |
-| --- | --- |
-| 200 | Success |
-| 201 | Created |
-| 400 | Validation Error |
-| 409 | Duplicate RSVP |
-| 500 | Server Error |
+Common codes: `VALIDATION_ERROR`, `DUPLICATE_RSVP`, `DATABASE_ERROR`, `INTERNAL_SERVER_ERROR`.

@@ -1,35 +1,27 @@
-# Testing Guide
+# Testing
 
-The simplified API is covered with Vitest unit and E2E-style tests.
+The current project has frontend/unit test tooling through Vitest. The PHP endpoint can be syntax-checked locally when PHP is installed.
 
-## Commands
+## JavaScript checks
 
 ```bash
-bun run test
-bun run test:unit
-bun run test:e2e
 bun run lint
+bun run test
 bun run build
 ```
 
-## Server Route Tests
+## PHP checks
 
-RSVP route tests live beside the route implementation:
-
-```text
-src/server/features/rsvp/routes.js
-src/server/features/rsvp/routes.spec.js
+```bash
+php -l api/rsvp.php
 ```
 
-They mock the database client and verify:
+## Manual API smoke test
 
-- `GET /health`
-- `POST /rsvp`
-- validation failures
-- duplicate RSVP handling
-- paginated reads
-- stats reads
+After uploading files and creating the MySQL table:
 
-## E2E API Tests
-
-`e2e/api.e2e.spec.js` imports the Hono app and exercises public `/api/*` routes with a mocked database.
+```bash
+curl -X POST https://ваш-домен/api/rsvp.php \
+  -H 'Content-Type: application/json' \
+  -d '{"name":"Тестовый Гость","attendance":"ATTENDING","message":"Проверка"}'
+```

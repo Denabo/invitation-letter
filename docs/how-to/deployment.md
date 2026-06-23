@@ -1,76 +1,35 @@
-# Deployment Guide
+# Deployment
 
-This project is now designed as a simple single-invitation deployment:
+The app is deployed as static files plus one PHP/MySQL endpoint.
 
-1. Static React/Vite frontend.
-2. Small Hono/Bun backend for `/api/rsvp`.
-3. One PostgreSQL table for RSVP submissions.
-
-## Environment Variables
-
-Frontend build:
-
-```env
-VITE_API_URL=https://api.your-domain.ru
-```
-
-Backend runtime:
-
-```env
-DATABASE_URL=postgresql://user:password@host:5432/database?sslmode=require
-PORT=3000
-```
-
-## Database
-
-For Neon/Vercel Postgres step-by-step setup, see [RSVP database setup](vercel-neon-rsvp.md).
-
-Run the schema once against PostgreSQL:
-
-```bash
-psql "$DATABASE_URL" -f src/server/db/schema.sql.example
-```
-
-The schema creates only `rsvp_submissions`. If an older table already exists and the API reports a missing column, run `src/server/db/migrations/001-align-rsvp-submissions.sql` instead of recreating the table.
-
-## Frontend
-
-Build the static site:
+## Build frontend
 
 ```bash
 bun run build
 ```
 
-Deploy the generated `dist/` directory to static hosting, object storage with website hosting, CDN, or an nginx server.
+Upload the contents of `dist/` to the public directory of your hosting account.
 
-## Backend
+## Upload backend
 
-Start the API server:
+Upload `api/rsvp.php` so it is available at `/api/rsvp.php` next to the built site.
 
-```bash
-bun run server
+## Create database
+
+Create a MySQL database in the hosting panel and run:
+
+```text
+api/schema.mysql.sql
 ```
 
-Check readiness:
+Then put the MySQL host, database name, user, and password into the constants at the top of `api/rsvp.php`.
 
-```bash
-curl https://api.your-domain.ru/api/health
+## Custom API URL
+
+If the endpoint is not hosted at `/api/rsvp.php`, set this before building:
+
+```env
+VITE_RSVP_API_URL=https://your-domain.example/api/rsvp.php
 ```
 
-Submit a smoke-test RSVP:
-
-```bash
-curl -X POST https://api.your-domain.ru/api/rsvp \
-  -H 'Content-Type: application/json' \
-  -d '{"name":"Test Guest","attendance":"ATTENDING","message":"Smoke test"}'
-```
-
-## VK Cloud Shape
-
-A straightforward VK Cloud deployment can use:
-
-- VK Cloud PostgreSQL for the database.
-- A small VM or container for the Hono/Bun backend.
-- Static hosting/object storage/CDN or nginx for the `dist/` frontend.
-
-Keep `DATABASE_URL` only on the backend. Never expose database credentials through `VITE_*` variables.
+Never put database credentials in `VITE_*` variables because they are bundled into browser JavaScript.

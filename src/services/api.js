@@ -1,7 +1,7 @@
-const API_URL = (import.meta.env.VITE_API_URL || "").replace(/\/$/, "");
+const RSVP_API_URL = import.meta.env.VITE_RSVP_API_URL || "/api/rsvp.php";
 
 export async function createRsvp(rsvpData) {
-  const response = await fetch(`${API_URL}/api/rsvp`, {
+  const response = await fetch(RSVP_API_URL, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
