@@ -1,62 +1,35 @@
-# Sakeenah: Static Wedding Invitation + RSVP API
+# Sakeenah
 
-Sakeenah is now simplified for a single wedding invitation: a static React/Vite frontend plus a small Hono/Bun API that stores guest RSVP questionnaires in PostgreSQL.
+Static React/Vite wedding invitation with a single PHP/MySQL RSVP endpoint for shared hosting such as per.ru.
 
-## Core Features
+## Stack
 
-- Static invitation content in `src/config/config.js`
-- Personalized guest links with base64-encoded guest names
-- Russian RSVP questionnaire with attendance, partner, children, and transport fields
-- Minimal `/api/rsvp` endpoint for form submissions
-- One PostgreSQL table: `rsvp_submissions`
+| Area | Technology |
+| --- | --- |
+| Frontend | React 18 + Vite 6 + Tailwind CSS |
+| RSVP backend | PHP PDO endpoint in `api/rsvp.php` |
+| Database | MySQL table from `api/schema.mysql.sql` |
 
-## Technical Stack
-
-| Layer | Technology | Purpose |
-| --- | --- | --- |
-| Runtime | Bun | Package management and server execution |
-| Frontend | React 18 + Vite | Static invitation UI |
-| Backend | Hono | Lightweight RSVP API |
-| Database | PostgreSQL | RSVP storage |
-| Styling | Tailwind CSS | Responsive styling |
-
-## Quick Start
+## Development
 
 ```bash
 bun install
-cp .env.example .env
-# Edit .env with DATABASE_URL and VITE_API_URL
-bun run dev
+bun run dev:client
 ```
 
-Create the database table:
+## Build
 
 ```bash
-bun run db:init
+bun run build
 ```
 
-## Scripts
+Upload `dist/` to the public web directory. Upload `api/rsvp.php` to `/api/rsvp.php` on the same hosting account.
 
-```bash
-bun run dev              # Run client + server concurrently
-bun run dev:client       # Frontend only
-bun run dev:server       # Backend only
-bun run build            # Build frontend to dist/
-bun run server           # Run backend server
-bun run generate-links   # Generate personalized guest links
-bun run db:init          # Create RSVP table in PostgreSQL
-bun run lint             # ESLint validation
-bun run test             # Vitest tests
-```
+## PHP/MySQL setup
 
-## API
+1. Create a MySQL database in your hosting panel.
+2. Run `api/schema.mysql.sql` in that database.
+3. Put credentials into the constants at the top of `api/rsvp.php`.
+4. If the endpoint is not `/api/rsvp.php`, set `VITE_RSVP_API_URL` before building.
 
-See [API Reference](docs/reference/api.md).
-
-## Deployment
-
-See [Deployment Guide](docs/how-to/deployment.md). For Neon/Vercel Postgres setup, see [RSVP database setup](docs/how-to/vercel-neon-rsvp.md).
-
-## Troubleshooting
-
-If RSVP submission fails with PostgreSQL authentication, connection, or missing-column errors, see [RSVP Database Troubleshooting](docs/how-to/troubleshooting-rsvp-database.md).
+Detailed Russian instructions: [per.ru PHP/MySQL deployment](docs/how-to/per-ru-php-mysql.md).

@@ -4,7 +4,7 @@ import path from "path";
 export default defineConfig({
   test: {
     // Test file patterns
-    include: ["src/**/*.spec.js", "src/**/*.test.js", "e2e/**/*.e2e.spec.js"],
+    include: ["src/**/*.spec.js", "src/**/*.test.js"],
 
     // Exclude patterns
     exclude: ["node_modules", "dist"],
@@ -16,12 +16,8 @@ export default defineConfig({
     coverage: {
       provider: "v8",
       reporter: ["text", "html", "lcov"],
-      include: ["src/server/**/*.js"],
-      exclude: [
-        "src/server/**/*.spec.js",
-        "src/server/**/*.test.js",
-        "src/server/db/**",
-      ],
+      include: ["src/**/*.{js,jsx}"],
+      exclude: ["src/**/*.spec.js", "src/**/*.test.js"],
     },
 
     // Global test timeout

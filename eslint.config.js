@@ -7,13 +7,12 @@ import reactRefresh from "eslint-plugin-react-refresh";
 export default [
   // Global ignores
   {
-    ignores: ["dist", "node_modules", ".wrangler", "coverage"],
+    ignores: ["dist", "node_modules", "coverage"],
   },
 
   // Frontend: React components and browser code
   {
     files: ["src/**/*.{js,jsx}"],
-    ignores: ["src/server/**"],
     languageOptions: {
       ecmaVersion: 2022,
       globals: {
@@ -54,36 +53,9 @@ export default [
     },
   },
 
-  // Backend: Hono server and Node.js code
-  {
-    files: ["src/server/**/*.js"],
-    ignores: ["src/server/**/*.spec.js"],
-    languageOptions: {
-      ecmaVersion: 2022,
-      globals: {
-        ...globals.node,
-        ...globals.es2021,
-      },
-      parserOptions: {
-        ecmaVersion: "latest",
-        sourceType: "module",
-      },
-    },
-    rules: {
-      ...js.configs.recommended.rules,
-      "no-unused-vars": [
-        "error",
-        {
-          argsIgnorePattern: "^_",
-          varsIgnorePattern: "^_",
-        },
-      ],
-    },
-  },
-
   // Test files: Vitest globals
   {
-    files: ["**/*.spec.js", "**/*.test.js", "e2e/**/*.js"],
+    files: ["**/*.spec.js", "**/*.test.js"],
     languageOptions: {
       ecmaVersion: 2022,
       globals: {
