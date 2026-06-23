@@ -130,24 +130,33 @@ function validateRsvp(array $payload): array
     ];
 }
 
-function cleanString(mixed $value, int $maxLength): string
+function cleanString($value, int $maxLength): string
 {
     $string = trim((string) $value);
 
-    if (mb_strlen($string, 'UTF-8') > $maxLength) {
+    if (stringLength($string) > $maxLength) {
         throw new InvalidArgumentException('Field is too long');
     }
 
     return $string;
 }
 
-function nullableString(mixed $value, int $maxLength): ?string
+function stringLength(string $value): int
+{
+    if (function_exists('mb_strlen')) {
+        return mb_strlen($value, 'UTF-8');
+    }
+
+    return strlen($value);
+}
+
+function nullableString($value, int $maxLength): ?string
 {
     $string = cleanString($value, $maxLength);
     return $string === '' ? null : $string;
 }
 
-function yesNoToBool(mixed $value): bool
+function yesNoToBool($value): bool
 {
     $string = cleanString($value, 3);
 
@@ -161,7 +170,7 @@ function yesNoToBool(mixed $value): bool
 /**
  * @return array<int, array{name: string, age: string}>
  */
-function normalizeChildren(mixed $children): array
+function normalizeChildren($children): array
 {
     if (!is_array($children)) {
         throw new InvalidArgumentException('Children must be an array');
@@ -261,7 +270,7 @@ function insertRsvp(PDO $pdo, array $rsvp): array
 /**
  * @param array<string, mixed> $extra
  */
-function respond(int $status, bool $success, ?string $error = null, ?string $code = null, array $extra = []): never
+function respond(int $status, bool $success, ?string $error = null, ?string $code = null, array $extra = []): void
 {
     http_response_code($status);
 
